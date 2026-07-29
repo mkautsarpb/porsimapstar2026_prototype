@@ -1,0 +1,151 @@
+/* Latar aurora: blob warna + tiga lapis bintang parallax + bintang jatuh. */
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 600ms var(--ease-in-out),
+    visibility 0s;
+}
+
+/*
+ * Di area terang aurora bukan cuma dibuat transparan, tapi benar-benar
+ * disembunyikan. `opacity: 0` saja tidak cukup: tiga blob di dalamnya memakai
+ * filter blur 100–120px yang tetap dirasterisasi ulang tiap frame walau tak
+ * terlihat. `visibility: hidden` menghentikan itu, dan ditunda 600ms supaya
+ * transisi memudarnya tetap terlihat.
+ */
+.auroraTersembunyi {
+  composes: aurora;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 600ms var(--ease-in-out),
+    visibility 0s 600ms;
+}
+
+.blobLayer {
+  position: absolute;
+  inset: 0;
+  transform: translateY(calc(var(--scroll-y, 0px) * 0.05));
+  will-change: transform;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.blobA {
+  left: 4%;
+  top: 8%;
+  width: 54vw;
+  height: 54vw;
+  opacity: 0.15;
+  filter: blur(100px);
+  background: radial-gradient(circle, rgba(42, 85, 168, 0.6), rgba(42, 85, 168, 0) 68%);
+  animation: cw-blob-a 58s var(--ease-in-out) infinite;
+}
+
+.blobB {
+  right: 2%;
+  top: 34%;
+  width: 46vw;
+  height: 46vw;
+  opacity: 0.1;
+  filter: blur(110px);
+  background: radial-gradient(circle, rgba(211, 32, 39, 0.55), rgba(211, 32, 39, 0) 66%);
+  animation: cw-blob-b 71s var(--ease-in-out) infinite;
+}
+
+.blobC {
+  left: 26%;
+  bottom: 2%;
+  width: 40vw;
+  height: 40vw;
+  opacity: 0.09;
+  filter: blur(120px);
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.5), rgba(245, 166, 35, 0) 64%);
+  animation: cw-blob-c 46s var(--ease-in-out) infinite;
+}
+
+.starLayer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.starFar {
+  transform: translateY(calc(var(--scroll-progress, 0) * -90px));
+}
+
+.starMid {
+  transform: translateY(calc(var(--scroll-progress, 0) * -150px));
+}
+
+.starNear,
+.starSparkle {
+  transform: translateY(calc(var(--scroll-progress, 0) * -240px));
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-white);
+  animation: cw-twinkle var(--star-dur) ease-in-out var(--star-delay) infinite alternate;
+}
+
+.sparkle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  animation: cw-sparkle var(--star-dur) ease-in-out var(--star-delay) infinite;
+}
+
+.meteor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.meteorTrail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1.5px;
+  border-radius: 1px;
+  transform-origin: 0 50%;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+}
+
+.meteorHead {
+  position: absolute;
+  right: -1px;
+  top: -0.75px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.55);
+}
+
+/* Di layar sempit, lapisan berat dilepas demi LCP dan hemat baterai. */
+@media (max-width: 767px) {
+  .blobB,
+  .blobC,
+  .starMid,
+  .starNear,
+  .starSparkle {
+    display: none;
+  }
+}

@@ -1,0 +1,124 @@
+/**
+ * Design token PORSIMAPTAR XXVI 2026 — tema CAKRAWALA.
+ * Sumber nilai: desain "PORSIMAPTAR Landing" di Claude Design.
+ * Komponen TIDAK boleh menulis hex langsung (agents.md §1) — selalu lewat var() di sini.
+ */
+
+:root {
+  /* ---- Warna inti: navy → sky → gold ---- */
+  --color-navy-900: #0c1f45; /* latar utama gelap */
+  --color-navy-800: #0f2550; /* varian gradient akademik */
+  --color-navy-750: #1a2e5c; /* varian gradient seni */
+  --color-navy-700: #143168; /* strip angka, judul terang */
+  --color-blue-500: #2a55a8; /* aksen biru / tautan */
+  --color-red-500: #d32027; /* aksi utama */
+  --color-gold-500: #f5a623; /* aksen emas */
+  --color-gold-300: #ffd37a; /* titik terakhir linimasa */
+  --color-gold-400: #ffc155; /* status "sisa sedikit" di panel gelap */
+
+  /* ---- Netral terang ---- */
+  --color-white: #ffffff;
+  --color-surface-1: #ffffff;
+  --color-surface-2: #f5f7fb;
+  --color-surface-3: #eef2fa;
+  --color-surface-4: #f6f8fc;
+  --color-surface-5: #fbfcfe;
+  --color-surface-6: #f9fafb;
+  --color-surface-muted: #f2f4f7;
+  --color-glow-1: #eaf0f9;
+  --color-glow-2: #f1f5fc;
+
+  /* ---- Teks ---- */
+  --color-text-strong: #101828;
+  --color-text-body: #475467;
+  --color-text-muted: #667085;
+  --color-text-disabled: #98a2b3;
+  --color-text-on-dark: #dce4f5;
+  --color-text-on-dark-muted: #b9c6e4;
+  --color-text-on-dark-faint: #8fa3cc;
+  --color-link-on-dark: #8fb4ff;
+
+  /* ---- Garis & batas ---- */
+  --color-border: #e4e7ec;
+  --color-border-soft: #e3e8f2;
+  --color-border-blue: #d0d9ec;
+  --color-border-on-dark: rgba(255, 255, 255, 0.1);
+
+  /* ---- Status kuota ---- */
+  --color-status-open-fg: #15724f;
+  --color-status-open-bg: #e6f4ee;
+  --color-status-tight-fg: #8a5200;
+  --color-status-tight-bg: #fdf1df;
+  --color-status-full-fg: #475467;
+  --color-status-full-bg: #f2f4f7;
+  --color-status-open-fg-dark: #7be0ae;
+  --color-meter-track: #f2f4f7;
+  --color-meter-fill: #143168;
+  --color-meter-full-a: #98a2b3;
+  --color-meter-full-b: #c4cbd6;
+
+  /* ---- Gradien khas Cakrawala ---- */
+  --gradient-cakrawala: linear-gradient(
+    90deg,
+    var(--color-blue-500),
+    var(--color-red-500) 55%,
+    var(--color-gold-500)
+  );
+  --gradient-dawn: radial-gradient(ellipse 55% 100% at 50% 0%, rgba(245, 166, 35, 0.42), rgba(245, 166, 35, 0) 55%),
+    radial-gradient(ellipse 85% 100% at 50% 0%, rgba(211, 32, 39, 0.2), rgba(211, 32, 39, 0) 60%),
+    radial-gradient(ellipse 130% 100% at 50% 0%, rgba(42, 85, 168, 0.16), transparent 65%);
+  --gradient-dawn-footer: radial-gradient(ellipse 120% 70% at 50% 0%, rgba(245, 166, 35, 0.4), rgba(245, 166, 35, 0) 60%),
+    radial-gradient(ellipse 150% 90% at 50% 0%, rgba(211, 32, 39, 0.2), rgba(211, 32, 39, 0) 65%),
+    radial-gradient(ellipse 200% 120% at 50% 0%, rgba(42, 85, 168, 0.18), transparent 70%);
+
+  /* Latar panel kiri modal, per kategori cabang. */
+  --gradient-modal-olahraga: linear-gradient(135deg, #143168 0%, #0c1f45 100%);
+  --gradient-modal-seni: radial-gradient(circle at 82% 88%, rgba(245, 166, 35, 0.1), rgba(245, 166, 35, 0) 58%),
+    linear-gradient(135deg, #1a2e5c 0%, #0c1f45 100%);
+  --gradient-modal-akademik: linear-gradient(135deg, #0f2550 0%, #0c1f45 100%);
+
+  /* ---- Tipografi ---- */
+  --font-display: var(--font-bricolage), sans-serif;
+  --font-body: var(--font-jakarta), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  --text-eyebrow: 12px;
+  --tracking-eyebrow: 0.22em;
+  --tracking-wide: 0.28em;
+  --tracking-mono: 0.16em;
+
+  /* ---- Radius ---- */
+  --radius-sm: 7px;
+  --radius-md: 9px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 18px;
+  --radius-pill: 999px;
+
+  /* ---- Elevasi ---- */
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-card-hover: 0 12px 30px rgba(20, 49, 104, 0.1);
+  --shadow-red: 0 6px 18px rgba(211, 32, 39, 0.32);
+  --shadow-red-lg: 0 10px 30px rgba(211, 32, 39, 0.38);
+  --shadow-red-hover: 0 16px 38px rgba(211, 32, 39, 0.5);
+  --shadow-modal: 0 30px 80px rgba(12, 31, 69, 0.35);
+
+  /* ---- Layout ---- */
+  --container-max: 1240px;
+  --container-narrow: 900px;
+  --section-padding-y: clamp(56px, 8vw, 104px);
+  --section-padding-x: 20px;
+
+  /* ---- Gerak ---- */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 180ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+
+  /* ---- Variabel runtime (diisi oleh useScrollMetrics) ---- */
+  --scroll-progress: 0;
+  --scroll-y: 0px;
+  --hero-fade: 1;
+}

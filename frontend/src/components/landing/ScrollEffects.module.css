@@ -1,0 +1,13 @@
+/* Bar progres baca, menempel di tepi atas viewport. */
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  z-index: 60;
+  pointer-events: none;
+  transform-origin: left;
+  transform: scaleX(var(--scroll-progress, 0));
+  background: var(--gradient-cakrawala);
+}

@@ -1,0 +1,600 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 40px);
+  background: rgba(12, 31, 69, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: cw-fade-in var(--duration-base) linear both;
+}
+
+.shell {
+  display: flex;
+  width: 100%;
+  max-width: 880px;
+  max-height: 85vh;
+  animation: cw-modal-in 280ms var(--ease-out-expo) both;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-height: 85vh;
+  background: var(--color-surface-1);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-modal);
+}
+
+/* ---- Panel kiri: latar navy + maskot cabang ---- */
+.left {
+  position: relative;
+  flex: 0 0 38%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 100%;
+  overflow: hidden;
+  background: var(--left-bg);
+}
+
+.leftIconGhost {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 115%;
+  height: 56%;
+  margin-left: -57.5%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: var(--icon-url);
+  opacity: 0.04;
+  filter: brightness(0) invert(1) blur(2px);
+}
+
+.leftHalo {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 104%;
+  padding-bottom: 104%;
+  margin-left: -52%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.14), rgba(245, 166, 35, 0) 62%);
+}
+
+.leftHead {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  right: 26px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.leftMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.leftKode {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-gold-500);
+}
+
+.leftStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(21, 114, 79, 0.28);
+  color: var(--color-status-open-fg-dark);
+}
+
+.leftStatusHampir {
+  composes: leftStatus;
+  background: rgba(245, 166, 35, 0.18);
+  color: var(--color-gold-400);
+}
+
+.leftStatusPenuh {
+  composes: leftStatus;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.leftDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+/* Nama cabang dicetak renggang sebagai elemen grafis. */
+.leftSpaced {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  word-break: break-word;
+}
+
+.leftRule {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  opacity: 0.6;
+  background: var(--gradient-cakrawala);
+}
+
+.maskot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 78%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+  background-image: var(--maskot-url);
+  animation: cw-maskot-in 400ms var(--ease-out-expo) 180ms both;
+}
+
+/* ---- Panel kanan: detail yang bisa digulir ---- */
+.right {
+  position: relative;
+  flex: 1 1 62%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.close {
+  position: absolute;
+  top: clamp(22px, 3vw, 32px);
+  right: clamp(18px, 2.4vw, 26px);
+  z-index: 4;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-1);
+  color: var(--color-text-body);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out-expo),
+    color var(--duration-fast) var(--ease-out-expo);
+}
+
+.close:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-navy-700);
+}
+
+.scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 49, 104, 0.25) transparent;
+  padding: clamp(24px, 3vw, 36px) clamp(18px, 2.4vw, 28px) 100px clamp(22px, 3vw, 36px);
+}
+
+.title {
+  margin: 0;
+  padding-right: 44px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: clamp(30px, 4.2vw, 40px);
+  line-height: 1.03;
+  color: var(--color-navy-700);
+}
+
+.subMeta {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.kategori {
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+.tipe {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  color: var(--color-blue-500);
+  border: 1px solid var(--color-border-blue);
+}
+
+.ringkasan {
+  margin: 18px 0 0;
+  max-width: 56ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(16, 24, 40, 0.8);
+  text-wrap: pretty;
+}
+
+.blokFormat {
+  margin-top: 32px;
+  padding: 16px 20px 18px;
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border-blue);
+}
+
+.blokLabel {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-red-500);
+}
+
+.formatRows {
+  margin: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, max-content);
+  justify-content: start;
+  gap: 14px 0;
+}
+
+.formatCell {
+  padding: 0 18px;
+  border-left: 1px solid rgba(20, 49, 104, 0.14);
+}
+
+.formatCellFirst {
+  composes: formatCell;
+  border-left: 0;
+}
+
+.formatNilai {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-navy-700);
+}
+
+.formatLabel {
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.35;
+  white-space: nowrap;
+  color: var(--color-text-body);
+}
+
+.perInstitusi {
+  margin: 12px 0 0;
+  padding-left: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-body);
+}
+
+.perInstitusi strong {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-navy-700);
+}
+
+.blokKuota {
+  margin-top: 30px;
+}
+
+.kuotaHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.kuotaTeks {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-body);
+}
+
+.kuotaSisa {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-body);
+}
+
+.kuotaSisaHampir {
+  composes: kuotaSisa;
+  color: var(--color-status-tight-fg);
+}
+
+.kuotaSisaPenuh {
+  composes: kuotaSisa;
+  color: var(--color-text-muted);
+}
+
+.meterRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.track {
+  flex: 1 1 auto;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-meter-track);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  width: var(--fill-width);
+  background: var(--color-meter-fill);
+}
+
+.fillHampir {
+  composes: fill;
+  background: var(--color-status-tight-fg);
+}
+
+.fillPenuh {
+  composes: fill;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-meter-full-a) 0 5px,
+    var(--color-meter-full-b) 5px 10px
+  );
+}
+
+.pct {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(16, 24, 40, 0.55);
+}
+
+/* ---- Akordeon detail teknis ---- */
+.accordions {
+  margin-top: 30px;
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-4);
+  overflow: hidden;
+}
+
+.accItem {
+  border-top: 1px solid var(--color-border);
+}
+
+.accItemFirst {
+  composes: accItem;
+  border-top: 0;
+}
+
+.accTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 18px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-navy-700);
+}
+
+.accChevron {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-right: 3px;
+  border-right: 2px solid var(--color-blue-500);
+  border-bottom: 2px solid var(--color-blue-500);
+  transform: rotate(45deg);
+  transition: transform var(--duration-base) var(--ease-out-expo);
+}
+
+.accChevronOpen {
+  composes: accChevron;
+  transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+.accList {
+  margin: 0;
+  padding: 0 18px 16px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.accLine {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-body);
+}
+
+.accBullet {
+  flex: none;
+  color: var(--color-blue-500);
+  font-weight: 700;
+}
+
+.catatan {
+  margin: 28px 0 0;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-status-tight-fg);
+}
+
+.catatanTanda {
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* ---- Footer aksi ---- */
+.fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--footer-h, 76px);
+  height: 32px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), var(--color-surface-1));
+}
+
+.footer {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px clamp(20px, 3vw, 30px);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-1);
+}
+
+.footerCta {
+  background: var(--color-red-500);
+  color: var(--color-white);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 11px;
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.footerCta:hover {
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.footerGhost {
+  background: var(--color-surface-6);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-disabled);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 20px;
+  border-radius: 11px;
+  cursor: not-allowed;
+}
+
+.footerNote {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-disabled);
+}
+
+.footerDeadline {
+  flex: 1 1 100%;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.handle {
+  display: none;
+}
+
+/* ---- Mode bottom sheet di layar sempit ---- */
+@media (max-width: 639px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .shell {
+    max-width: 100%;
+    max-height: 92vh;
+    height: 92vh;
+  }
+
+  .panel {
+    flex-direction: column;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(var(--drag-y, 0px));
+  }
+
+  .left {
+    flex: none;
+    min-height: 200px;
+  }
+
+  .maskot {
+    height: 84%;
+  }
+
+  .handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    padding: 10px 0 2px;
+    display: flex;
+    justify-content: center;
+    touch-action: none;
+    cursor: grab;
+  }
+
+  .handleBar {
+    display: block;
+    width: 44px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.55);
+  }
+}

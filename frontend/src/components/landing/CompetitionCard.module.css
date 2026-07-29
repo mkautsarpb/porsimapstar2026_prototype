@@ -1,0 +1,253 @@
+.card {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 22px 22px 26px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--duration-base) var(--ease-out-expo),
+    box-shadow var(--duration-base) var(--ease-out-expo),
+    border-color var(--duration-base) var(--ease-out-expo);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-border-blue);
+}
+
+/* Piktogram cabang, samar di pojok kanan atas; sedikit bergeser saat kartu disentuh. */
+.icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 72px;
+  height: 72px;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: var(--icon-url);
+  opacity: 0.1;
+  transition:
+    opacity var(--duration-base) var(--ease-out-expo),
+    transform var(--duration-base) var(--ease-out-expo);
+}
+
+.card:hover .icon,
+.card:focus-visible .icon {
+  opacity: 0.18;
+  transform: translate(-2px, -2px);
+}
+
+.meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kode {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.tipe {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  color: var(--color-blue-500);
+  border: 1px solid var(--color-border-blue);
+}
+
+.nama {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 74%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--color-navy-700);
+}
+
+.kategori {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+.meter {
+  position: relative;
+  z-index: 1;
+  margin-top: 6px;
+}
+
+.meterHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.meterKuota {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-body);
+}
+
+.meterSisa {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-body);
+}
+
+.meterSisaHampir {
+  composes: meterSisa;
+  color: var(--color-status-tight-fg);
+}
+
+.meterSisaPenuh {
+  composes: meterSisa;
+  color: var(--color-text-muted);
+}
+
+.track {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-meter-track);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  width: var(--fill-width);
+  background: var(--color-meter-fill);
+}
+
+.fillHampir {
+  composes: fill;
+  background: var(--color-status-tight-fg);
+}
+
+/* Kuota penuh ditandai pola garis, bukan hanya warna (agents.md §7). */
+.fillPenuh {
+  composes: fill;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-meter-full-a) 0 5px,
+    var(--color-meter-full-b) 5px 10px
+  );
+}
+
+.foot {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 11px;
+  border-radius: var(--radius-pill);
+  background: var(--color-status-open-bg);
+  color: var(--color-status-open-fg);
+}
+
+.statusHampir {
+  composes: status;
+  background: var(--color-status-tight-bg);
+  color: var(--color-status-tight-fg);
+}
+
+.statusPenuh {
+  composes: status;
+  background: var(--color-status-full-bg);
+  color: var(--color-status-full-fg);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.cta {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-blue);
+  background: var(--color-surface-1);
+  color: var(--color-blue-500);
+  transition:
+    background var(--duration-fast) var(--ease-out-expo),
+    color var(--duration-fast) var(--ease-out-expo);
+}
+
+.ctaPenuh {
+  composes: cta;
+  background: var(--color-surface-6);
+  color: var(--color-text-body);
+}
+
+.cta:hover,
+.ctaPenuh:hover {
+  border-color: var(--color-red-500);
+  color: var(--color-red-500);
+}
+
+/* Garis gradien tipis yang menyapu masuk di dasar kartu saat disentuh. */
+.underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--gradient-cakrawala);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-in-out);
+}
+
+.card:hover .underline,
+.card:focus-visible .underline {
+  transform: scaleX(1);
+}

@@ -1,0 +1,64 @@
+.intro {
+  margin-bottom: clamp(32px, 5vw, 52px);
+}
+
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(20px, 3vw, 28px);
+}
+
+/* Garis horizon yang menghubungkan keempat tahap. */
+.rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 26px;
+  height: 1px;
+  background: var(--gradient-cakrawala);
+}
+
+.step {
+  position: relative;
+  padding-top: 56px;
+}
+
+/* "Matahari" tiap tahap membesar dan menghangat menuju penutupan. */
+.sun {
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+  top: var(--sun-top);
+  width: var(--sun-size);
+  height: var(--sun-size);
+  background: var(--sun-color);
+  box-shadow:
+    0 0 0 6px var(--color-navy-900),
+    0 0 26px var(--sun-glow);
+}
+
+.meta {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--tracking-mono);
+  color: var(--color-gold-500);
+}
+
+.title {
+  margin: 8px 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+.detail {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-text-on-dark-muted);
+  text-wrap: pretty;
+}

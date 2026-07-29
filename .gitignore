@@ -1,36 +1,24 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Aturan tingkat repo. Aturan khusus Next.js ada di frontend/.gitignore.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# OS
 .DS_Store
-*.pem
+Thumbs.db
+desktop.ini
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# editor
+.vscode/
+.idea/
+*.swp
+*~
 
-# local env files
-.env*.local
-.env
+# log & berkas sementara
+*.log
+*.tmp
 
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Dokumen sumber (SRS, user flow) yang tersimpan di root — lihat README.
+# Sengaja dibatasi ke root pakai awalan "/": juknis PDF yang nanti diunggah ke
+# frontend/public/ harus tetap bisa di-commit, karena modal lomba punya tombol
+# "Unduh juknis" yang merujuk ke sana.
+/*.docx
+/*.pdf
+~$*

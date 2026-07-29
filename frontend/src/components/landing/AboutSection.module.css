@@ -1,0 +1,49 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.paragraphLead {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-text-strong);
+  text-wrap: pretty;
+}
+
+.paragraph {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  text-wrap: pretty;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-blue);
+  color: var(--color-navy-700);
+}
+
+.glow {
+  background: radial-gradient(58% 52% at 50% 42%, var(--color-glow-1), rgba(245, 247, 251, 0) 72%);
+}

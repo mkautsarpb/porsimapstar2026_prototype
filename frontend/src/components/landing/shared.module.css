@@ -1,0 +1,115 @@
+/* Pola berulang antar section: container, eyebrow, judul, garis pemisah, glow. */
+
+.section {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+.sectionDark {
+  composes: section;
+  background: linear-gradient(180deg, rgba(12, 31, 69, 0.94), rgba(12, 31, 69, 0.88));
+}
+
+/*
+ * Section terang membawa latarnya sendiri. Di desain sumber latar ini dilukis
+ * oleh lapisan terpisah di belakang maskot terbang; maskot itu tidak dibawa ke
+ * sini, jadi latar dipasang langsung — hasil visualnya sama, tanpa JS, dan
+ * aurora navy tidak tembus ke area terang.
+ */
+.sectionLight {
+  composes: section;
+  background: var(--color-surface-2);
+}
+
+.sectionWhite {
+  composes: section;
+  background: var(--color-surface-1);
+}
+
+.container {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.containerNarrow {
+  composes: container;
+  max-width: var(--container-narrow);
+}
+
+/* Garis gradien full-bleed di batas atas section; tumbuh dari tengah saat terlihat. */
+.hlineWrap {
+  position: absolute;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  top: 0;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hline {
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-blue-500) 16%,
+    var(--color-red-500) 50%,
+    var(--color-gold-500) 78%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 700ms var(--ease-out-expo);
+}
+
+/* Cahaya lembut di tengah section terang, ikut bergeser saat digulir. */
+.glow {
+  position: absolute;
+  inset: -18% 0;
+  pointer-events: none;
+  transform: translateY(calc(var(--scroll-progress, 0) * -70px));
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-red-500);
+}
+
+.eyebrowGold {
+  composes: eyebrow;
+  color: var(--color-gold-500);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-size: clamp(32px, 5vw, 44px);
+  color: var(--color-navy-700);
+  text-wrap: balance;
+}
+
+.headingLight {
+  composes: heading;
+  color: var(--color-white);
+}
+
+.lead {
+  margin: 14px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  text-wrap: pretty;
+}

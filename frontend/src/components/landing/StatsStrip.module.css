@@ -1,0 +1,37 @@
+.strip {
+  position: relative;
+  z-index: 1;
+  background: var(--color-navy-700);
+  border-top: 1px solid var(--color-border-on-dark);
+}
+
+.inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 36px) 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(16px, 3vw, 28px);
+}
+
+.item {
+  border-left: 2px solid rgba(245, 166, 35, 0.5);
+  padding-left: 16px;
+  min-height: 78px;
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(30px, 4.4vw, 42px);
+  line-height: 1.05;
+  color: var(--color-white);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-on-dark-muted);
+}

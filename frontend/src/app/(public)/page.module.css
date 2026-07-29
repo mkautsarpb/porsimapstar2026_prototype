@@ -1,0 +1,8 @@
+/* Konteks tumpukan halaman: aurora di z-0, seluruh section di z-1. */
+.shell {
+  position: relative;
+  isolation: isolate;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--color-navy-900);
+}

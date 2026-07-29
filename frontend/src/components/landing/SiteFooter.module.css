@@ -1,0 +1,150 @@
+.footer {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(12, 31, 69, 0.9), rgba(12, 31, 69, 0.97));
+  padding: 0 20px clamp(32px, 5vw, 48px);
+}
+
+/* Fajar kedua di batas atas footer — menutup halaman dengan motif yang sama seperti hero. */
+.dawn {
+  margin: 0 auto;
+  position: relative;
+  height: 120px;
+}
+
+.dawnLine {
+  position: absolute;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  top: 0;
+  height: 2px;
+  overflow: hidden;
+}
+
+.dawnGlow {
+  position: absolute;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  top: 2px;
+  height: 150px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  background-image: var(--gradient-dawn-footer);
+}
+
+.top {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(24px, 4vw, 40px);
+  padding-bottom: clamp(28px, 4vw, 44px);
+}
+
+.mascot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.logo {
+  display: block;
+  width: 101px;
+  height: 54px;
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
+}
+
+.address {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-on-dark-muted);
+  max-width: 280px;
+}
+
+.role {
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-500);
+}
+
+.name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.phone {
+  margin: 6px 0 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-text-on-dark-muted);
+}
+
+.email {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--color-link-on-dark);
+}
+
+.email:hover {
+  color: var(--color-gold-500);
+}
+
+.bottom {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border-on-dark);
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copy {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-on-dark-faint);
+}
+
+.links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.link {
+  font-size: 13px;
+  color: var(--color-text-on-dark-muted);
+}
+
+.link:hover {
+  color: var(--color-gold-500);
+}

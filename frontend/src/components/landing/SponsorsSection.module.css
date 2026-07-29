@@ -1,0 +1,68 @@
+.section {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--color-surface-1);
+  padding: clamp(48px, 7vw, 88px) 20px;
+}
+
+.label {
+  margin: 0 0 26px;
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* Logo tampil abu-abu sampai disentuh kursor supaya tidak menyaingi konten utama. */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92px;
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-5);
+  filter: grayscale(1);
+  opacity: 0.62;
+  transition:
+    filter var(--duration-base) var(--ease-out-expo),
+    opacity var(--duration-base) var(--ease-out-expo),
+    transform var(--duration-base) var(--ease-out-expo);
+}
+
+.card:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: var(--mark-color);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--color-navy-700);
+}

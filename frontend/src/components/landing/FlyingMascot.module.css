@@ -1,0 +1,110 @@
+/*
+ * Maskot yang melintas zigzag di latar mengikuti scroll.
+ *
+ * Tumpukan lapisan sengaja dipisah: lapisan luar hanya membawa posisi, rotasi
+ * punya lapisan sendiri, dan arah hadap (scaleX) lapisan sendiri lagi — supaya
+ * membalik arah tidak ikut membalik rotasinya.
+ */
+
+.flight {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 18vh;
+  height: 18vh;
+  opacity: 0;
+  filter: blur(1.5px);
+  transition: opacity 400ms ease-in-out;
+}
+
+.bob {
+  position: absolute;
+  inset: 0;
+  animation: cw-bob 3s ease-in-out infinite;
+}
+
+.rot,
+.face {
+  position: absolute;
+  inset: 0;
+}
+
+/* Dua "kulit": siluet navy saat melintas area terang, gambar berwarna saat di area gelap. */
+.skin {
+  position: absolute;
+  inset: 0;
+  transition: opacity 400ms ease-in-out;
+}
+
+.skinNavy {
+  composes: skin;
+  opacity: 0;
+}
+
+.skinColor {
+  composes: skin;
+  opacity: 1;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: var(--color-navy-700);
+  transition: opacity 200ms var(--ease-in-out);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.shadeFly {
+  composes: shade;
+  opacity: 1;
+  -webkit-mask-image: url('/uploads/maskot/5_fly.webp');
+  mask-image: url('/uploads/maskot/5_fly.webp');
+}
+
+.shadeBank {
+  composes: shade;
+  opacity: 0;
+  -webkit-mask-image: url('/uploads/maskot/6_bank.webp');
+  mask-image: url('/uploads/maskot/6_bank.webp');
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 200ms var(--ease-in-out);
+}
+
+.frameFly {
+  composes: frame;
+  opacity: 1;
+}
+
+.frameBank {
+  composes: frame;
+  opacity: 0;
+}
+
+/*
+ * Lapisan latar section terang. Berada di alur dokumen pada z-index 0, sebelum
+ * maskot di urutan DOM — jadi maskot melintas DI ATAS warna latar section, tapi
+ * seluruh isi section (z-index 1) tetap tergambar di atas maskot.
+ */
+.fills {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0;
+  z-index: 0;
+  pointer-events: none;
+}
