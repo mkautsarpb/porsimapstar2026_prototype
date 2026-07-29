@@ -1,4 +1,4 @@
-# AGENTS.md — Frontend PORSIMAPTAR XXVI 2026
+  # AGENTS.md — Frontend PORSIMAPTAR XXVI 2026
 
 > Repo ini **HANYA frontend**. Sumber kebenaran spesifikasi: `SRS_Frontend_NextJS_PORSIMAPTAR_XXVI_2026.docx` v1.0.
 > Tema: CAKRAWALA — "Bersaing dengan Sportivitas, Bersatu dalam Solidaritas."

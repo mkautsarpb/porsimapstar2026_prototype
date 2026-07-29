@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { CSSProperties, KeyboardEvent } from 'react';
 import { DAFTAR_LOMBA, MASKOT_LOMBA } from '@/data/lomba';
 import { grupDari, ringkasKuota } from '@/lib/kuota';
@@ -215,7 +216,24 @@ export function CompetitionSection() {
         </div>
       </div>
 
-      {aktif ? <CompetitionModal lomba={aktif.lomba} kuota={aktif.kuota} onClose={tutupModal} /> : null}
+      {/*
+        Modal dipasang lewat portal ke <body>, bukan dirender di sini.
+
+        Section ini punya `z-index: 1`, yang membuat stacking context baru —
+        akibatnya `z-index: 60` milik modal hanya berlaku di dalam section ini.
+        Section berikutnya (acara, linimasa, sponsor, dst.) juga `z-index: 1` dan
+        digambar belakangan, jadi konten mereka menimpa modal. Portal
+        mengeluarkan modal dari stacking context tersebut.
+
+        Aman dari SSR: `aktif` hanya bisa terisi lewat effect atau event handler,
+        yang keduanya berjalan setelah mount.
+      */}
+      {aktif
+        ? createPortal(
+            <CompetitionModal lomba={aktif.lomba} kuota={aktif.kuota} onClose={tutupModal} />,
+            document.body,
+          )
+        : null}
     </section>
   );
 }

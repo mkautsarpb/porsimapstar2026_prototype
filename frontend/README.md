@@ -64,6 +64,30 @@ public/uploads/         logo, ikon cabang, maskot — lihat README di dalamnya
 - **`prefers-reduced-motion` dihormati** di seluruh animasi.
 - **Fokus dikelola di modal**: fokus pindah ke judul saat terbuka, di-trap selama
   terbuka, dan kembali ke kartu pemicu saat ditutup.
+- **Semua overlay wajib lewat `createPortal` ke `document.body`.** Lihat di bawah.
+
+### Overlay harus di-portal — jangan dirender di dalam section
+
+Tiap section punya `z-index: 1`, dan itu **membuat stacking context baru**.
+Akibatnya `z-index` sebesar apa pun pada elemen di dalam section hanya berlaku
+relatif terhadap section itu sendiri, bukan terhadap halaman. Section yang datang
+setelahnya juga `z-index: 1` dan digambar belakangan, jadi konten mereka akan
+menimpa overlay tersebut.
+
+Gejalanya khas: modal terbuka, tapi section di bawahnya tembus ke atas modal dan
+tidak ikut teredam overlay.
+
+```tsx
+// SALAH — z-index 60 terjebak di stacking context section
+{buka ? <Dialog … /> : null}
+
+// BENAR
+{buka ? createPortal(<Dialog … />, document.body) : null}
+```
+
+Berlaku untuk semua dialog yang nanti dibuat (`ConfirmDialog`, `ResultDialog`,
+`AuditReasonDialog`, `CommandSearch`, dan sejenisnya — agents.md §3). Aman dari
+SSR selama state pembukanya hanya diisi lewat effect atau event handler.
 
 ## Kinerja scroll
 
