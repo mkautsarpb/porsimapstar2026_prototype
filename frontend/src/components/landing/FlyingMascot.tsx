@@ -58,18 +58,32 @@ export function FlyingMascot() {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-fill]'));
     if (sections.length === 0) return;
 
+    /*
+     * Baca dulu semua, baru tulis semua. Versi sebelumnya menyelang keduanya di
+     * dalam satu loop — menulis `el.style.top`, lalu iterasi berikutnya membaca
+     * `sec.offsetTop` — sehingga browser dipaksa menghitung ulang layout secara
+     * sinkron sekali per section. Fungsi ini dipanggil tiap resize dan tiap kali
+     * tinggi body berubah (mis. akordeon FAQ dibuka), jadi biayanya terasa.
+     */
     const tataLetak = (): void => {
-      fills.style.height = `${document.documentElement.scrollHeight}px`;
-      sections.forEach((sec, i) => {
+      const tinggiDokumen = document.documentElement.scrollHeight;
+      const ukuran = sections.map((sec) => ({
+        top: sec.offsetTop,
+        height: sec.offsetHeight,
+        fill: sec.dataset.fill ?? '',
+      }));
+
+      fills.style.height = `${tinggiDokumen}px`;
+      ukuran.forEach((u, i) => {
         let el = fills.children[i] as HTMLElement | undefined;
         if (!el) {
           el = document.createElement('div');
           el.style.cssText = 'position:absolute;left:0;right:0';
           fills.appendChild(el);
         }
-        el.style.top = `${sec.offsetTop}px`;
-        el.style.height = `${sec.offsetHeight}px`;
-        el.style.background = sec.dataset.fill ?? '';
+        el.style.top = `${u.top}px`;
+        el.style.height = `${u.height}px`;
+        el.style.background = u.fill;
       });
       sections.forEach((sec) => {
         sec.style.background = 'transparent';

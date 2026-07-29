@@ -146,7 +146,7 @@ Hal yang gampang salah dan harus dijaga:
 
 **Peserta:** urutan Action Required = deadline terdekat → perubahan jadwal → revisi dokumen → kelengkapan umum. QR **tidak** ditampilkan untuk registration draft/rejected/withdrawn/revoked. Peserta multi-lomba → kartu terpisah, status/QR/jadwal/hasil **tidak boleh tertukar** (AC-FE-07). Unread badge berkurang hanya setelah acknowledgement tersimpan.
 
-**Admin:** setiap widget wajib punya **definisi metrik (tooltip)**, `last_updated_at`, **stale state**, filter, dan drill-down (FE-ADASH-002). Widget yang gagal refresh **tidak boleh** menampilkan angka lama seolah realtime (AC-FE-09). Filter disimpan di query URL tanpa data sensitif; filter + pagination tetap terjaga saat balik dari halaman detail (AC-FE-13). Bulk action **tidak** boleh untuk keputusan dokumen massal — bulk assign/filter/export tetap boleh (AC-FE-12).
+**Admin:** setiap widget wajib punya **definisi metrik (tooltip)**, `last_updated_at`, **stale state**, filter, dan drill-down (FE-ADASH-002). Widget yang gagal refresh **tidak boleh** menampilkan angka lama seolah realtime (AC-FE-09). Filter disimpan di query URL tanpa data sensitif; filter + pagination tetap terjaga saat balik dari   halaman detail (AC-FE-13). Bulk action **tidak** boleh untuk keputusan dokumen massal — bulk assign/filter/export tetap boleh (AC-FE-12).
 
 ## 11. Definition of Done
 

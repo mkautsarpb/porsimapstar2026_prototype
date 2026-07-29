@@ -14,10 +14,9 @@
 
 /*
  * Di area terang aurora bukan cuma dibuat transparan, tapi benar-benar
- * disembunyikan. `opacity: 0` saja tidak cukup: tiga blob di dalamnya memakai
- * filter blur 100–120px yang tetap dirasterisasi ulang tiap frame walau tak
- * terlihat. `visibility: hidden` menghentikan itu, dan ditunda 600ms supaya
- * transisi memudarnya tetap terlihat.
+ * disembunyikan. `opacity: 0` saja tidak cukup: isinya masih ikut dianimasikan
+ * dan dikomposit walau tak terlihat. `visibility: hidden` menghentikan itu, dan
+ * ditunda 600ms supaya transisi memudarnya tetap terlihat.
  */
 .auroraTersembunyi {
   composes: aurora;
@@ -28,11 +27,15 @@
     visibility 0s 600ms;
 }
 
+/*
+ * Lapisan ini sengaja TIDAK ikut bergeser mengikuti scroll dan tidak dipromosikan
+ * dengan will-change. Sebelumnya ia ditranslasi tiap frame, yang memaksa seluruh
+ * tumpukan blob dikomposit ulang setiap kali halaman digulir — penyebab utama
+ * frame drop saat scroll, padahal geserannya cuma 5% dan nyaris tak terlihat.
+ */
 .blobLayer {
   position: absolute;
   inset: 0;
-  transform: translateY(calc(var(--scroll-y, 0px) * 0.05));
-  will-change: transform;
 }
 
 .blob {
@@ -40,36 +43,61 @@
   border-radius: 50%;
 }
 
+/*
+ * Dulu tiap blob memakai `filter: blur(100–120px)` di atas radial-gradient.
+ * Gradient radial sudah mulus dengan sendirinya, jadi blur itu hampir tak
+ * menambah apa-apa secara visual tapi memaksa rasterisasi ulang elemen seluas
+ * ~54vw tiap frame. Kelembutannya sekarang datang dari stop gradient bertahap,
+ * dan ukurannya dilebihkan sedikit untuk menggantikan sebaran blur yang hilang.
+ */
 .blobA {
-  left: 4%;
-  top: 8%;
-  width: 54vw;
-  height: 54vw;
+  left: -3%;
+  top: 1%;
+  width: 68vw;
+  height: 68vw;
   opacity: 0.15;
-  filter: blur(100px);
-  background: radial-gradient(circle, rgba(42, 85, 168, 0.6), rgba(42, 85, 168, 0) 68%);
+  background: radial-gradient(
+    circle,
+    rgba(42, 85, 168, 0.6) 0%,
+    rgba(42, 85, 168, 0.34) 26%,
+    rgba(42, 85, 168, 0.12) 48%,
+    rgba(42, 85, 168, 0.03) 66%,
+    rgba(42, 85, 168, 0) 80%
+  );
   animation: cw-blob-a 58s var(--ease-in-out) infinite;
 }
 
 .blobB {
-  right: 2%;
-  top: 34%;
-  width: 46vw;
-  height: 46vw;
+  right: -6%;
+  top: 27%;
+  width: 60vw;
+  height: 60vw;
   opacity: 0.1;
-  filter: blur(110px);
-  background: radial-gradient(circle, rgba(211, 32, 39, 0.55), rgba(211, 32, 39, 0) 66%);
+  background: radial-gradient(
+    circle,
+    rgba(211, 32, 39, 0.55) 0%,
+    rgba(211, 32, 39, 0.31) 25%,
+    rgba(211, 32, 39, 0.11) 47%,
+    rgba(211, 32, 39, 0.03) 65%,
+    rgba(211, 32, 39, 0) 79%
+  );
   animation: cw-blob-b 71s var(--ease-in-out) infinite;
 }
 
 .blobC {
-  left: 26%;
-  bottom: 2%;
-  width: 40vw;
-  height: 40vw;
+  left: 18%;
+  bottom: -6%;
+  width: 55vw;
+  height: 55vw;
   opacity: 0.09;
-  filter: blur(120px);
-  background: radial-gradient(circle, rgba(245, 166, 35, 0.5), rgba(245, 166, 35, 0) 64%);
+  background: radial-gradient(
+    circle,
+    rgba(245, 166, 35, 0.5) 0%,
+    rgba(245, 166, 35, 0.28) 24%,
+    rgba(245, 166, 35, 0.1) 46%,
+    rgba(245, 166, 35, 0.03) 64%,
+    rgba(245, 166, 35, 0) 78%
+  );
   animation: cw-blob-c 46s var(--ease-in-out) infinite;
 }
 
