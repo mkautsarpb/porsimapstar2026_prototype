@@ -1,0 +1,91 @@
+/* Titik tiga hanya untuk mobile; di desktop nav inline milik SiteHeader yang dipakai. */
+.wrap {
+  display: none;
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 44px = target sentuh minimum. */
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border-on-dark);
+  border-radius: var(--radius-md);
+  color: var(--color-text-on-dark);
+  cursor: pointer;
+}
+
+.trigger[aria-expanded='true'] {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: max(200px, min(260px, calc(100vw - 40px)));
+  padding: 8px;
+  background: var(--color-navy-800);
+  border: 1px solid var(--color-border-on-dark);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  animation: cw-rise var(--duration-base) var(--ease-out-expo) both;
+}
+
+.link {
+  padding: 11px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-on-dark);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+}
+
+.cta {
+  margin-top: 6px;
+  padding: 12px;
+  background: var(--color-red-500);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-red);
+  color: var(--color-white);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cta:hover {
+  color: var(--color-white);
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    display: block;
+  }
+}

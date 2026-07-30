@@ -1,17 +1,18 @@
 import Image from 'next/image';
+import { HeaderMenu, type MenuItem } from './HeaderMenu';
 import styles from './SiteHeader.module.css';
 
-const MENU = [
+const MENU: readonly MenuItem[] = [
   { href: '#tentang', label: 'Tentang' },
   { href: '#lomba', label: 'Cabang lomba' },
   { href: '#jadwal', label: 'Jadwal' },
   { href: '#cara', label: 'Cara daftar' },
   { href: '#tanya', label: 'Tanya jawab' },
-] as const;
+];
 
 /**
- * Header sticky. Murni Server Component — tidak ada state, jadi tidak perlu
- * dikirim ke bundle client.
+ * Header sticky. Tetap Server Component — satu-satunya bagian ber-state adalah
+ * `HeaderMenu` (titik tiga mobile), jadi hanya itu yang masuk bundle client.
  */
 export function SiteHeader() {
   return (
@@ -39,6 +40,8 @@ export function SiteHeader() {
             Buat akun
           </a>
         </nav>
+
+        <HeaderMenu menu={MENU} />
       </div>
     </header>
   );
