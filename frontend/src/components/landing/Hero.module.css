@@ -53,8 +53,6 @@
   width: 120px;
   height: 64px;
   object-fit: contain;
-  opacity: 0.9;
-  filter: brightness(0) invert(1);
   animation: cw-rise 700ms var(--ease-out-expo) both;
 }
 
