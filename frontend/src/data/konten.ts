@@ -1,4 +1,12 @@
-import type { Acara, Faq, KontakPanitia, LangkahDaftar, Sponsor, Statistik, TahapLinimasa } from '@/types/landing';
+import type {
+  Acara,
+  Faq,
+  KontakPanitia,
+  LangkahDaftar,
+  Sponsor,
+  Statistik,
+  TahapLinimasa,
+} from '@/types/landing';
 
 /** Kuota total peserta belum diumumkan resmi — strip ini sengaja tanpa angka kuota. */
 export const STATISTIK: readonly Statistik[] = [
@@ -103,13 +111,21 @@ export const LANGKAH_DAFTAR: readonly LangkahDaftar[] = [
   },
 ];
 
+/**
+ * TODO(api-contract): masih placeholder. Nama sponsor sebenarnya baru dipasang
+ * setelah kontrak sponsorship final; `level` yang menentukan ukuran logo di rail.
+ * Urut dari level tertinggi supaya rail terbaca berjenjang.
+ */
 export const SPONSORS: readonly Sponsor[] = [
-  { nama: 'Bank Jateng', warna: 'var(--color-navy-700)' },
-  { nama: 'Telkomsel', warna: 'var(--color-red-500)' },
-  { nama: 'Sido Muncul', warna: 'var(--color-gold-500)' },
-  { nama: 'Pocari', warna: 'var(--color-blue-500)' },
-  { nama: 'Djarum Fdn', warna: 'var(--color-navy-700)' },
-  { nama: 'Kemenpora', warna: 'var(--color-status-open-fg)' },
+  { nama: 'Sponsor 1', level: 'gold' },
+  { nama: 'Sponsor 2', level: 'gold' },
+  { nama: 'Sponsor 3', level: 'silver' },
+  { nama: 'Sponsor 4', level: 'silver' },
+  { nama: 'Sponsor 5', level: 'silver' },
+  { nama: 'Sponsor 6', level: 'bronze' },
+  { nama: 'Sponsor 7', level: 'bronze' },
+  { nama: 'Sponsor 8', level: 'bronze' },
+  { nama: 'Sponsor 9', level: 'bronze' },
 ];
 
 export const FAQS: readonly Faq[] = [
@@ -135,24 +151,31 @@ export const FAQS: readonly Faq[] = [
   },
 ];
 
+/**
+ * TODO(api-contract): masih placeholder. Sengaja tidak memakai nama, nomor, dan
+ * domain yang terlihat asli supaya prototipe tidak dikira memuat kontak beneran —
+ * `example.com` adalah domain contoh yang memang dicadangkan (RFC 2606).
+ * Nomor telepon masih bertopeng, jadi belum bisa jadi tautan `tel:`
+ * (lihat HeaderMenu.tsx); pasang lagi begitu nomor asli tersedia.
+ */
 export const KONTAK: readonly KontakPanitia[] = [
   {
     peran: 'Ketua panitia',
-    nama: 'Bripka Ardhan Wicaksono',
-    telp: '+62 812-2500-1126',
-    email: 'ketua@porsimaptar.id',
+    nama: 'Nama Ketua Panitia',
+    telp: '+62 8xx-xxxx-xxxx',
+    email: 'ketua@example.com',
   },
   {
     peran: 'Pendaftaran & verifikasi',
-    nama: 'Nadia Rahmasari',
-    telp: '+62 813-9004-7781',
-    email: 'daftar@porsimaptar.id',
+    nama: 'Nama Koordinator Pendaftaran',
+    telp: '+62 8xx-xxxx-xxxx',
+    email: 'daftar@example.com',
   },
   {
     peran: 'Media & sponsor',
-    nama: 'Yoga Prasetya',
-    telp: '+62 857-2211-9043',
-    email: 'media@porsimaptar.id',
+    nama: 'Nama Koordinator Media',
+    telp: '+62 8xx-xxxx-xxxx',
+    email: 'media@example.com',
   },
 ];
 

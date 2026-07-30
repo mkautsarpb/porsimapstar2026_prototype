@@ -231,4 +231,5 @@ export const DOKUMEN_UMUM: readonly string[] = [
   'Foto 3×4 latar merah',
 ];
 
-export const PIC_DEFAULT = { nama: 'Nadia Rahmasari', kontak: '+62 813-9004-7781' } as const;
+/** TODO(api-contract): placeholder, samakan gayanya dengan `KONTAK` di konten.ts. */
+export const PIC_DEFAULT = { nama: 'Nama Koordinator Pendaftaran', kontak: '+62 8xx-xxxx-xxxx' } as const;

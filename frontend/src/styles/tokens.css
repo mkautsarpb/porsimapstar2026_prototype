@@ -52,10 +52,22 @@
   --color-status-full-fg: #475467;
   --color-status-full-bg: #f2f4f7;
   --color-status-open-fg-dark: #7be0ae;
+
   --color-meter-track: #f2f4f7;
   --color-meter-fill: #143168;
   --color-meter-full-a: #98a2b3;
   --color-meter-full-b: #c4cbd6;
+
+  /* ---- Level sponsor: `soft` untuk sisi terang gradien logo ---- */
+  --color-tier-gold: #d99b1c;
+  --color-tier-gold-soft: #f0c46b;
+  --color-tier-gold-bg: #fdf4e2;
+  --color-tier-silver: #7d8794;
+  --color-tier-silver-soft: #b3bbc6;
+  --color-tier-silver-bg: #f1f3f6;
+  --color-tier-bronze: #a6703f;
+  --color-tier-bronze-soft: #c99a72;
+  --color-tier-bronze-bg: #f7efe7;
 
   /* ---- Gradien khas Cakrawala ---- */
   --gradient-cakrawala: linear-gradient(

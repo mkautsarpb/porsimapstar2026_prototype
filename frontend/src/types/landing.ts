@@ -78,9 +78,12 @@ export interface LangkahDaftar {
   readonly detail: string;
 }
 
+/** Level sponsor, urut dari kontribusi tertinggi. Menentukan ukuran logo di rail. */
+export type LevelSponsor = 'gold' | 'silver' | 'bronze';
+
 export interface Sponsor {
   readonly nama: string;
-  readonly warna: string;
+  readonly level: LevelSponsor;
 }
 
 export interface Faq {

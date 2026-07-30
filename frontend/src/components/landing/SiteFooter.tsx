@@ -6,7 +6,8 @@ import styles from './SiteFooter.module.css';
 const TAUTAN = [
   { href: '#tanya', label: 'Tanya jawab' },
   { href: '#jadwal', label: 'Jadwal' },
-  { href: '#kontak', label: 'Kontak panitia' },
+  // Menunjuk ke blok kontak yang di mobile pindah ke HeaderMenu, jadi ikut disembunyikan.
+  { href: '#kontak', label: 'Kontak panitia', hanyaDesktop: true },
 ] as const;
 
 export function SiteFooter() {
@@ -46,8 +47,12 @@ export function SiteFooter() {
           </p>
         </div>
 
+        {/*
+          Di mobile blok ini disembunyikan (lihat SiteFooter.module.css) karena
+          isinya sudah tersedia di dropdown hamburger — footer mobile jadi ringkas.
+        */}
         {KONTAK.map((k) => (
-          <div key={k.email}>
+          <div key={k.email} className={styles.contact}>
             <p className={styles.role}>{k.peran}</p>
             <p className={styles.name}>{k.nama}</p>
             <p className={styles.phone}>{k.telp}</p>
@@ -62,7 +67,11 @@ export function SiteFooter() {
         <p className={styles.copy}>© 2026 Panitia PORSIMAPTAR XXVI · Cakrawala</p>
         <div className={styles.links}>
           {TAUTAN.map((t) => (
-            <a key={t.href} href={t.href} className={styles.link}>
+            <a
+              key={t.href}
+              href={t.href}
+              className={'hanyaDesktop' in t ? `${styles.link} ${styles.linkDesktop}` : styles.link}
+            >
               {t.label}
             </a>
           ))}

@@ -81,13 +81,23 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  width: max(200px, min(260px, calc(100vw - 40px)));
+  width: max(240px, min(300px, calc(100vw - 32px)));
+  /* Isi panel (nav + kontak) bisa melebihi layar pendek — sisakan ruang header. */
+  max-height: calc(100dvh - 84px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 8px;
   background: var(--color-navy-800);
   border: 1px solid var(--color-border-on-dark);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-modal);
   animation: cw-rise var(--duration-base) var(--ease-out-expo) both;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .link {
@@ -118,6 +128,107 @@
 
 .cta:hover {
   color: var(--color-white);
+}
+
+/* Blok kontak panitia — pengganti kontak footer di layar mobile. */
+.kontak {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border-on-dark);
+}
+
+.kontakTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 12px;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-on-dark);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.kontakTrigger:hover,
+.kontakTrigger:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+}
+
+.kontakTrigger[aria-expanded='true'] {
+  color: var(--color-gold-500);
+}
+
+/* Panah dari dua sisi border — menghindari aset ikon untuk bentuk sesederhana ini. */
+.chevron {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--duration-base) var(--ease-out-expo);
+}
+
+.kontakTrigger[aria-expanded='true'] .chevron {
+  margin-top: 3px;
+  transform: rotate(225deg);
+}
+
+.kontakList {
+  animation: cw-rise var(--duration-base) var(--ease-out-expo) both;
+}
+
+.kontakItem {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+}
+
+.kontakItem + .kontakItem {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.peran {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-on-dark-faint);
+}
+
+.nama {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.telp {
+  margin: 3px 0 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-on-dark-muted);
+}
+
+.email {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--color-link-on-dark);
+  overflow-wrap: anywhere;
+}
+
+.email:hover,
+.email:focus-visible {
+  color: var(--color-gold-500);
 }
 
 @media (max-width: 767px) {

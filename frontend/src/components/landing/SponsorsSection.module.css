@@ -16,53 +16,166 @@
   text-align: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+/*
+  Rail full-bleed: kartu dibiarkan keluar dari lebar container supaya terlihat
+  berjalan masuk dan keluar layar, bukan berhenti di tepi container.
+  Mask memudarkan kedua ujung agar kartu tidak terpotong mendadak.
+*/
+.rail {
+  --rail-gap: 12px;
+  --rail-fade: clamp(40px, 8vw, 120px);
+  overflow: hidden;
+  /* Membatalkan padding horizontal 20px milik section. */
+  margin-inline: -20px;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black var(--rail-fade),
+    black calc(100% - var(--rail-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black var(--rail-fade),
+    black calc(100% - var(--rail-fade)),
+    transparent
+  );
 }
 
-/* Logo tampil abu-abu sampai disentuh kursor supaya tidak menyaingi konten utama. */
+/*
+  Track berisi 4 set identik dan digeser tepat selebar satu set (-25%), jadi tiap
+  putaran berakhir di susunan yang sama persis. Jumlah set menentukan lebar layar
+  maksimum yang masih aman: pada geseran terjauh sisa track di kanan = 3 set, jadi
+  rail tetap penuh sampai viewport ~3x lebar satu set. Kalau `RAIL_SETS` di
+  SponsorsSection.tsx diubah, persentase keyframe harus ikut diubah (100 / n).
+*/
+.track {
+  display: flex;
+  width: max-content;
+  animation: cw-rail-ltr 48s linear infinite;
+  will-change: transform;
+}
+
+.rail:hover .track,
+.rail:focus-within .track {
+  animation-play-state: paused;
+}
+
+/*
+  Jarak antarkartu memakai gap + padding-right, bukan gap di `.track`. Kalau gap
+  antarset ikut dihitung, satu set tidak lagi tepat 25% lebar track dan loop akan
+  tersentak tiap putaran.
+*/
+.set {
+  display: flex;
+  /* Kartu tiap level beda tinggi — disejajarkan di tengah rail. */
+  align-items: center;
+  gap: var(--rail-gap);
+  padding-right: var(--rail-gap);
+}
+
+/* Kiri ke kanan: mulai dari tergeser ke kiri, lalu bergerak kembali ke 0. */
+@keyframes cw-rail-ltr {
+  from {
+    transform: translate3d(-25%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*
+  Semua ukuran kartu berasal dari variabel yang di-set per level di bawah, jadi
+  menambah level baru cukup satu blok `[data-level=...]`. Level rendah sengaja
+  sedikit diredam opacity-nya supaya hierarki terbaca, bukan cuma dari ukuran.
+*/
 .card {
   display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 92px;
+  gap: var(--card-gap);
+  width: var(--card-w);
+  height: var(--card-h);
   border: 1px solid var(--color-border-soft);
   border-radius: var(--radius-xl);
   background: var(--color-surface-5);
-  filter: grayscale(1);
-  opacity: 0.62;
+  opacity: var(--card-opacity);
   transition:
-    filter var(--duration-base) var(--ease-out-expo),
     opacity var(--duration-base) var(--ease-out-expo),
-    transform var(--duration-base) var(--ease-out-expo);
+    transform var(--duration-base) var(--ease-out-expo),
+    box-shadow var(--duration-base) var(--ease-out-expo);
+}
+
+.card[data-level='gold'] {
+  --card-w: clamp(210px, 21vw, 250px);
+  --card-h: 148px;
+  --card-gap: 12px;
+  --card-mark: 58px;
+  --card-name: 19px;
+  --card-opacity: 1;
+  --tier-fg: var(--color-tier-gold);
+  --tier-fg-soft: var(--color-tier-gold-soft);
+  --tier-bg: var(--color-tier-gold-bg);
+  border-color: rgba(217, 155, 28, 0.32);
+}
+
+.card[data-level='silver'] {
+  --card-w: clamp(176px, 18vw, 202px);
+  --card-h: 122px;
+  --card-gap: 9px;
+  --card-mark: 44px;
+  --card-name: 16px;
+  --card-opacity: 0.9;
+  --tier-fg: var(--color-tier-silver);
+  --tier-fg-soft: var(--color-tier-silver-soft);
+  --tier-bg: var(--color-tier-silver-bg);
+}
+
+.card[data-level='bronze'] {
+  --card-w: clamp(150px, 15vw, 168px);
+  --card-h: 100px;
+  --card-gap: 7px;
+  --card-mark: 32px;
+  --card-name: 14px;
+  --card-opacity: 0.82;
+  --tier-fg: var(--color-tier-bronze);
+  --tier-fg-soft: var(--color-tier-bronze-soft);
+  --tier-bg: var(--color-tier-bronze-bg);
 }
 
 .card:hover {
-  filter: grayscale(0);
   opacity: 1;
   transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
+/* Placeholder logo: kotak berwarna sesuai level. */
 .mark {
-  width: 34px;
-  height: 34px;
+  width: var(--card-mark);
+  height: var(--card-mark);
   border-radius: var(--radius-md);
-  background: var(--mark-color);
+  background: linear-gradient(145deg, var(--tier-fg), var(--tier-fg-soft));
 }
 
 .name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--card-name);
   letter-spacing: -0.01em;
   color: var(--color-navy-700);
+}
+
+.tier {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--tier-bg);
+  color: var(--tier-fg);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }

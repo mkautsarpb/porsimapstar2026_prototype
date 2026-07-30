@@ -321,3 +321,37 @@
   text-align: center;
   animation: cw-rise 600ms var(--ease-out-expo) 840ms both;
 }
+
+/*
+ * Mobile: dua tombol dijaga tetap satu baris berdampingan. Dengan padding dan
+ * ukuran huruf versi desktop keduanya butuh ~420px, jadi di layar sempit tombol
+ * membungkus jadi dua baris dan mendorong `note` keluar layar awal.
+ *
+ * Lebarnya sengaja tidak dibagi rata (`flex: 1`): dibagi rata, "Lihat daftar
+ * lomba" tidak cukup ruang dan pecah dua baris. Dibiarkan selebar isinya, dua
+ * tombol muat berdampingan sampai layar 320px. Padding tombol utama dilebihkan
+ * supaya labelnya yang pendek tidak membuatnya tampak kalah dari tombol ghost.
+ */
+@media (max-width: 767px) {
+  .buttons {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .ctaPrimary,
+  .ctaGhost {
+    min-width: 0;
+    white-space: nowrap;
+    /* Ikut lebar layar supaya keduanya tetap muat di HP paling sempit. */
+    font-size: clamp(12px, 3.5vw, 16px);
+    text-align: center;
+  }
+
+  .ctaPrimary {
+    padding: 14px 20px;
+  }
+
+  .ctaGhost {
+    padding: 14px 14px;
+  }
+}

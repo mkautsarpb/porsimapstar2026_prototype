@@ -146,3 +146,19 @@
 .link:hover {
   color: var(--color-gold-500);
 }
+
+/*
+ * Mobile: kontak panitia dipindah ke dropdown hamburger (`HeaderMenu`). Tiga blok
+ * kontak yang menumpuk membuat footer memanjang hampir dua layar, sementara logo,
+ * alamat, dan copyright cukup untuk menutup halaman.
+ */
+@media (max-width: 767px) {
+  .contact,
+  .linkDesktop {
+    display: none;
+  }
+
+  .mascot {
+    height: 72px;
+  }
+}

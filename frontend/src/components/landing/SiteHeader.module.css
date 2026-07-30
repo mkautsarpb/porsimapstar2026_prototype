@@ -89,8 +89,8 @@
 }
 
 /*
- * Mobile: nav inline dilipat ke tombol titik tiga (`HeaderMenu`). Lima tautan +
- * CTA membungkus jadi tiga baris di layar sempit dan memakan hampir separuh
+ * Mobile: nav inline dilipat ke tombol titik tiga (`HeaderMenu`). Enam tautan +
+ * CTA membungkus jadi beberapa baris di layar sempit dan memakan hampir separuh
  * viewport, jadi header dijaga satu baris.
  */
 @media (max-width: 767px) {
