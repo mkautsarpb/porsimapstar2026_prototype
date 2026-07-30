@@ -208,12 +208,6 @@ export function CompetitionSection() {
             </div>
           ))}
         </div>
-
-        <div className={styles.more}>
-          <a href="#daftar" className={styles.moreLink}>
-            Cari dan filter semua cabang →
-          </a>
-        </div>
       </div>
 
       {/*

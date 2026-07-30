@@ -100,23 +100,6 @@
   align-items: stretch;
 }
 
-.more {
-  margin-top: clamp(24px, 4vw, 34px);
-}
-
-.moreLink {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--color-blue-500);
-  border-bottom: 2px solid rgba(42, 85, 168, 0.3);
-  padding-bottom: 2px;
-}
-
-.moreLink:hover {
-  color: var(--color-red-500);
-  border-color: var(--color-red-500);
-}
-
 .glow {
   background: radial-gradient(58% 52% at 50% 46%, var(--color-glow-2), rgba(255, 255, 255, 0) 72%);
 }
