@@ -1,0 +1,135 @@
+.halaman {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.remah {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.remah a {
+  color: var(--color-link-soft);
+}
+
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.ikon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  padding: 10px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+}
+
+.identitas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.meta {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.arti {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.kepalaKanan {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.tenggat {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  color: var(--color-warn-fg);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---- Tab ---- */
+
+.tab {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.tabItem {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-meta);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tabItem:hover {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.tabItem[data-aktif='true'] {
+  border-bottom-color: var(--color-navy-900);
+  color: var(--color-navy-900);
+  font-weight: 700;
+}
+
+.isi {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kosong {
+  margin: 0;
+  padding: 24px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-2xl);
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  font-size: 14px;
+}

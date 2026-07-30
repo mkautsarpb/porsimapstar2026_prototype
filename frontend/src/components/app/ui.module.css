@@ -1,0 +1,202 @@
+/* Primitif bersama area peserta: kartu, judul zona, badge, tombol, meter. */
+
+.kartu {
+  padding: 16px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-2xl);
+  background: var(--color-surface-1);
+}
+
+.zona {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zonaKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.judulZona {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.metaZona {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tautanZona {
+  color: var(--color-link-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---- Badge status: ikon + teks, tidak pernah warna saja (agents.md §7) ---- */
+
+.badge {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge[data-nada='ok'] {
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+}
+
+.badge[data-nada='warn'] {
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.badge[data-nada='danger'] {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}
+
+.badge[data-nada='info'] {
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.badgeBesar {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+/* ---- Chip meta (kategori, tipe lomba) ---- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---- Tombol ---- */
+
+.tombol {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tombol:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.tombolUtama {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.tombolUtama:hover {
+  background: var(--color-navy-700);
+  color: var(--color-white);
+}
+
+.tombolSky {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.tombolSky:hover {
+  background: var(--color-info-bg);
+  color: var(--color-navy-700);
+}
+
+.tombolKecil {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---- Meter kuota / kelengkapan ---- */
+
+.meter {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+}
+
+.meterIsi {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-sky-500);
+}
+
+.meterPenuh {
+  background: var(--color-warn-strong);
+}
+
+/* ---- Kisi konten 12 kolom ---- */
+
+.kisi {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .kisi {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .span12 {
+    grid-column: span 12;
+  }
+
+  .span7 {
+    grid-column: span 7;
+  }
+
+  .span5 {
+    grid-column: span 5;
+  }
+}

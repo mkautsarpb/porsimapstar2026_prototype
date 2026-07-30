@@ -1,0 +1,114 @@
+.daftar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-2xl);
+  background: var(--color-surface-1);
+}
+
+.baris {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.tanggal {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.tanggalAngka {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tanggalBulan {
+  color: var(--color-gold-500);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.judulBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.nama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.detail {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.waktu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.jamLama {
+  color: var(--color-text-meta);
+}
+
+.jam {
+  font-weight: 700;
+}
+
+.venue {
+  color: var(--color-text-meta);
+}
+
+.kaki {
+  padding: 12px;
+  color: var(--color-link-soft);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .baris {
+    flex-wrap: wrap;
+  }
+
+  .baris > button {
+    margin-left: 72px;
+  }
+}

@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { AUTH_MOCK, kirimMasuk, type SimulasiRespons } from '@/lib/api/auth';
 import { pesanError } from '@/lib/auth-errors';
 import { errorEmail, errorPasswordMasuk } from '@/lib/validasi-auth';
@@ -35,6 +35,7 @@ export function MasukForm({
   /** Skenario respons mock selama endpoint auth belum ada. */
   readonly simulasi?: SimulasiRespons;
 }) {
+  const router = useRouter();
   const online = useOnline();
 
   const idAwal = useId();
@@ -105,7 +106,10 @@ export function MasukForm({
 
     // Sukses hanya diklaim setelah respons server (agents.md §1).
     setLayar('sukses');
-    setLive('Masuk berhasil.');
+    setLive('Masuk berhasil. Mengalihkan ke dashboard peserta.');
+    // TODO(api-contract): tujuan seharusnya mengikuti `role` dari server —
+    // panitia ke /admin/dashboard, super admin ke /super. Area itu belum ada.
+    router.prefetch('/dashboard');
   }
 
   if (layar === 'verifikasi') {
@@ -127,16 +131,7 @@ export function MasukForm({
   if (layar === 'sukses') {
     return (
       <section className={styles.card}>
-        <MasukSukses
-          onUlangi={() => {
-            setLayar('form');
-            setPassword('');
-            setTerkirim(false);
-            setDisentuh({});
-            setGagal(null);
-            setLive('');
-          }}
-        />
+        <MasukSukses onLanjut={() => router.replace('/dashboard')} />
       </section>
     );
   }
@@ -294,13 +289,19 @@ export function MasukForm({
   );
 }
 
-/** Layar konfirmasi setelah sesi aktif. Fokus dipindah ke judul agar diumumkan. */
-function MasukSukses({ onUlangi }: { readonly onUlangi: () => void }) {
+/**
+ * Konfirmasi singkat sebelum masuk ke dashboard. Peralihan diberi jeda pendek
+ * supaya statusnya sempat terbaca dan sempat diumumkan screen reader; tombolnya
+ * tetap ada sebagai jalan keluar kalau peralihan otomatis gagal.
+ */
+function MasukSukses({ onLanjut }: { readonly onLanjut: () => void }) {
   const refJudul = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     refJudul.current?.focus({ preventScroll: true });
-  }, []);
+    const timer = setTimeout(onLanjut, 1200);
+    return () => clearTimeout(timer);
+  }, [onLanjut]);
 
   return (
     <div>
@@ -313,22 +314,12 @@ function MasukSukses({ onUlangi }: { readonly onUlangi: () => void }) {
       <p className={styles.deskripsiHasil}>
         Sesi kamu aktif. Kami sedang mengalihkan ke dashboard peserta.
       </p>
-      {/* TODO(api-contract): setelah endpoint login nyata tersedia, ganti tombol ini
-          dengan router.replace('/dashboard') memakai role dari respons server. */}
-      <Image
-        src="/uploads/maskot-sm.webp"
-        alt=""
-        aria-hidden="true"
-        width={132}
-        height={176}
-        className={styles.maskotSukses}
-      />
       <button
         type="button"
-        onClick={onUlangi}
+        onClick={onLanjut}
         className={`${styles.tombolSekunder} ${styles.aksiTunggal}`}
       >
-        Ulangi dari halaman masuk
+        Buka dashboard sekarang
       </button>
     </div>
   );

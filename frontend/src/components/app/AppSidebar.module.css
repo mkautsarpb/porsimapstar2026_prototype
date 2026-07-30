@@ -1,0 +1,268 @@
+.sidebar {
+  display: none;
+  flex: none;
+  flex-direction: column;
+  width: 248px;
+  padding: 16px 12px;
+  background: var(--color-navy-900);
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 8px 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: inherit;
+}
+
+.logo {
+  flex: none;
+  width: auto;
+  height: 28px;
+}
+
+.brandTeks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.brandNama {
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brandEdisi {
+  color: var(--color-gold-500);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-lg);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.item[data-aktif='true'] {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+}
+
+/* Penanda halaman aktif: garis emas, bukan sekadar beda warna teks. */
+.penanda {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 0;
+  width: 4px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+
+.item[data-aktif='true'] .penanda {
+  background: var(--color-gold-500);
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.akun {
+  display: flex;
+  flex: none;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-gold-500);
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.akunTeks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.akunNama {
+  overflow: hidden;
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.akunNomor {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Tablet: rail ikon 72px ---- */
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    width: 72px;
+    padding: 16px 8px;
+  }
+
+  .brand {
+    justify-content: center;
+    padding: 0 0 24px;
+  }
+
+  .brandTeks,
+  .akunTeks {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .item {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Tooltip hanya-CSS: nama menu muncul saat hover atau fokus keyboard. */
+  .item::after {
+    content: attr(data-label);
+    position: absolute;
+    left: calc(100% + 8px);
+    z-index: 5;
+    padding: 6px 10px;
+    border-radius: var(--radius-md);
+    background: var(--color-navy-900);
+    color: var(--color-white);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-in-out);
+  }
+
+  .item:hover::after,
+  .item:focus-visible::after {
+    opacity: 1;
+  }
+
+  .akun {
+    justify-content: center;
+    padding: 8px;
+  }
+}
+
+/* ---- Desktop: sidebar penuh dengan label ---- */
+@media (min-width: 1120px) {
+  .sidebar {
+    width: 248px;
+    padding: 16px 12px;
+  }
+
+  .brand {
+    justify-content: flex-start;
+    padding: 0 8px 24px;
+  }
+
+  .brandTeks,
+  .akunTeks {
+    position: static;
+    display: flex;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+
+  .item {
+    justify-content: flex-start;
+    padding: 0 12px;
+  }
+
+  .label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    clip: auto;
+  }
+
+  .item::after {
+    content: none;
+  }
+
+  .akun {
+    justify-content: flex-start;
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item::after {
+    transition: none;
+  }
+}

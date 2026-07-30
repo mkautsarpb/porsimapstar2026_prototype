@@ -1,0 +1,205 @@
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.ikon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+}
+
+.identitas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.nama {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.namaTautan {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.namaTautan:hover {
+  color: var(--color-link-soft);
+  text-decoration: underline;
+}
+
+.chipBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.arti {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.catatan {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-warn-bg);
+}
+
+.catatanIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-warn-fg);
+}
+
+.catatanJudul {
+  margin: 0;
+  color: var(--color-warn-fg);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.catatanTeks {
+  margin: 4px 0 0;
+  color: var(--color-warn-fg);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.avatarBaris {
+  display: flex;
+  flex: none;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-left: -4px;
+  border: 2px solid var(--color-surface-1);
+  border-radius: 50%;
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.avatar[data-nada='navy'] {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.avatar[data-nada='sky'] {
+  background: var(--color-sky-500);
+  color: var(--color-white);
+}
+
+.avatar[data-nada='gold'] {
+  background: var(--color-gold-500);
+  color: var(--color-navy-900);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px 24px;
+  margin: 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--color-border-blue);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.metaLabel {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.metaNilai {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.kaki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tenggat {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tenggat[data-perlu='true'] {
+  color: var(--color-warn-fg);
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}

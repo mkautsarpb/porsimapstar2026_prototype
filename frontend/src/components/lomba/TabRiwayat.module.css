@@ -1,0 +1,85 @@
+.linimasa {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+/* Garis penghubung antar jejak. */
+.item::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  bottom: 0;
+  left: 15px;
+  width: 2px;
+  background: var(--color-border-blue);
+}
+
+.item:last-child::before {
+  display: none;
+}
+
+.tanda {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: 50%;
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.item[data-nada='ok'] .tanda {
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+}
+
+.item[data-nada='warn'] .tanda {
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.item[data-nada='info'] .tanda {
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.teks {
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.waktu {
+  flex: none;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}

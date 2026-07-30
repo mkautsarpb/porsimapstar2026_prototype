@@ -40,6 +40,12 @@
   --color-text-on-dark-faint: #8fa3cc;
   --color-link-on-dark: #8fb4ff;
 
+  /* ---- Area aplikasi (dashboard peserta & panitia) ----
+     Dua nilai ini khas panel token desain "Dashboard Peserta v3"; sisa paletnya
+     memakai token yang sudah ada di atas. */
+  --color-text-meta: #456a98; /* teks pendukung di atas surface terang */
+  --color-link-soft: #1e6fb0; /* tautan & teks di dalam isian sky */
+
   /* ---- Garis & batas ---- */
   --color-border: #e4e7ec;
   --color-border-soft: #e3e8f2;

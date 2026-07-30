@@ -1,0 +1,149 @@
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kepala {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.ikonCabang {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+}
+
+.identitas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.nama {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.namaTautan {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.namaTautan:hover {
+  color: var(--color-link-soft);
+  text-decoration: underline;
+}
+
+.chipBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roster {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+}
+
+.avatarBaris {
+  display: flex;
+  flex: none;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-left: -4px;
+  border: 2px solid var(--color-surface-1);
+  border-radius: 50%;
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.avatar[data-nada='navy'] {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.avatar[data-nada='sky'] {
+  background: var(--color-sky-500);
+  color: var(--color-white);
+}
+
+.avatar[data-nada='gold'] {
+  background: var(--color-gold-500);
+  color: var(--color-navy-900);
+}
+
+.rosterTeks {
+  min-width: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.kuota {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kuotaBaris {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kuotaAngka {
+  color: var(--color-navy-900);
+}
+
+.jadwal {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.jadwal svg {
+  flex: none;
+  color: var(--color-sky-500);
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}

@@ -49,21 +49,30 @@
   pointer-events: none;
 }
 
-/* Maskot sebagai siluet pudar di sudut kanan bawah. */
+/*
+ * Maskot sebagai siluet pudar di sisi kanan bawah. Ukuran dan posisi mengikuti
+ * desain "Masuk & Daftar" apa adanya: kotak 56% × 86% panel, menempel kanan-bawah,
+ * dengan 8% bagian bawah sengaja keluar panel supaya kakinya terpotong tepi.
+ *
+ * Memakai `maskot/siluet.png` — aset siluet dari project desain, 560×869 tanpa
+ * ruang transparan di tepinya. Frame maskot biasa (`1_stand.webp`) tidak dipakai
+ * di sini: kanvasnya nyaris kotak dengan padding ~20% di sisi kanan, jadi
+ * `background-position: right` selalu menyisakan celah dan figurnya tampak lebih
+ * kecil pada tinggi yang sama.
+ *
+ * Tidak ada filter warna: asetnya sudah siluet satu warna, cukup diredam opacity.
+ */
 .maskot {
   position: absolute;
   right: 2%;
-  bottom: -6%;
-  width: 52%;
-  height: 84%;
-  background-image: url('/uploads/maskot/1_stand.webp');
+  bottom: -8%;
+  width: 56%;
+  height: 86%;
+  background-image: url('/uploads/maskot/siluet.png');
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: contain;
-  /* brightness(0) + invert(1) mengubah maskot berwarna jadi siluet putih rata,
-     lalu diredam sampai hanya terbaca sebagai bayangan di latar navy. */
-  filter: brightness(0) invert(1);
-  opacity: 0.1;
+  opacity: 0.12;
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 100%);
   mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 100%);
   pointer-events: none;
@@ -158,8 +167,9 @@
     gap: 22px;
   }
 
+  /* Panel mobile jauh lebih pendek; lebarnya dinaikkan supaya `contain` tetap
+     dibatasi tinggi dan maskot tidak menyusut jadi terlalu kecil. */
   .maskot {
-    width: 42%;
-    opacity: 0.12;
+    width: 72%;
   }
 }

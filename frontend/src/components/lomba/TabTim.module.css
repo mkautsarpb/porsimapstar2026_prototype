@@ -1,0 +1,56 @@
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.lambang {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.identitas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.nama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: 50%;
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.peran {
+  margin-left: 8px;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}

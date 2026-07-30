@@ -1,0 +1,183 @@
+.bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color-border-blue);
+  background: var(--color-surface-1);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 2px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-text-meta);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.item[data-aktif='true'] {
+  color: var(--color-navy-900);
+  font-weight: 700;
+}
+
+.item:hover {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.label {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Sheet "Lainnya" ---- */
+
+.tirai {
+  position: fixed;
+  inset: 0;
+  z-index: 31;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: rgba(12, 31, 69, 0.45);
+  cursor: pointer;
+}
+
+.sheet {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 32;
+  padding: 8px 16px calc(24px + env(safe-area-inset-bottom));
+  border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
+  background: var(--color-surface-1);
+  animation: cw-sheet-in var(--duration-base) var(--ease-out-expo) both;
+}
+
+@keyframes cw-sheet-in {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.pegangan {
+  display: block;
+  width: 40px;
+  height: 4px;
+  margin: 0 auto 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-blue);
+}
+
+.sheetDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sheetItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.sheetItem:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.sheetIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-link-soft);
+}
+
+.sheetTeks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sheetLabel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sheetBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.sheetKet {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sheetPanah {
+  flex: none;
+  margin-left: auto;
+  color: var(--color-text-meta);
+}
+
+@media (min-width: 768px) {
+  .bar,
+  .sheet,
+  .tirai {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet {
+    animation: none;
+  }
+}

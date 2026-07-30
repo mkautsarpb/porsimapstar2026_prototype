@@ -1,0 +1,70 @@
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 32px;
+}
+
+.ikon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-2xl);
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.teks {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.daftar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.item svg {
+  flex: none;
+  color: var(--color-success-fg);
+}
+
+.catatan {
+  max-width: 60ch;
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-info-bg);
+  color: var(--color-info-fg);
+  font-size: 13px;
+  line-height: 1.55;
+}

@@ -1,0 +1,234 @@
+/* Gaya bersama seluruh tab di halaman detail lomba. */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.judul {
+  margin: 0 0 12px;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.label {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.teks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.daftar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.baris:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.barisIsi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.barisJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.barisKet {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Tanggal kotak navy, dipakai tab Jadwal. */
+.tanggal {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.tanggalAngka {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tanggalBulan {
+  color: var(--color-gold-500);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.tanggalSelesai {
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.tanggalSelesai .tanggalBulan {
+  color: var(--color-text-meta);
+}
+
+.waktu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.jamLama {
+  color: var(--color-text-meta);
+}
+
+.jam {
+  font-weight: 700;
+}
+
+.venue {
+  color: var(--color-text-meta);
+}
+
+/* Blok informasi berlatar sky. */
+.info {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-info-bg);
+  color: var(--color-info-fg);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.infoIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-link-soft);
+}
+
+.peringatan {
+  border-color: var(--color-warn-border);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.peringatan .infoIkon {
+  color: var(--color-warn-fg);
+}
+
+/* Daftar pasangan label–nilai. */
+.rincian {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 16px 24px;
+  margin: 0;
+}
+
+.rincianItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rincianNilai {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Utilitas kecil supaya komponen tab tidak perlu style inline. */
+.kolom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.jarakAtas {
+  margin-top: 12px;
+}
+
+.jarakAtasBesar {
+  margin-top: 20px;
+}
+
+.aksiBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.barisPertama {
+  padding-top: 0;
+}
+
+.tombolBlok {
+  align-self: flex-start;
+  margin-top: 12px;
+}
+
+.kosong {
+  margin: 0;
+  padding: 24px 0;
+  color: var(--color-text-meta);
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .gridDua {
+    grid-template-columns: 3fr 2fr;
+  }
+}

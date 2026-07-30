@@ -37,6 +37,9 @@ masuk — klik "Isi form" supaya email dan password terisi otomatis.
 
 Masuk berhasil
   peserta@porsimaptar.test + Peserta2026!
+  Setelah konfirmasi singkat, halaman otomatis pindah ke /dashboard.
+  Dari sana: Lomba saya -> detail lomba (tab Ringkasan, Jadwal, Tim,
+  QR & check-in, Dokumen, Riwayat).
 
 Email atau password salah
   Pakai password apa pun yang salah, atau email yang tidak ada di daftar.
@@ -99,8 +102,13 @@ Contoh: http://localhost:3000/masuk?simulasi=rate-limit
   (F5). Empat akun di atas selalu tersedia karena di-seed dari kode.
   Pindah antar /masuk dan /daftar lewat tautan di halaman tetap aman.
 
-- Login berhasil belum mengalihkan ke dashboard: route peserta belum ada,
-  jadi alurnya berhenti di layar "Masuk berhasil".
+- Area peserta belum dijaga sesi: /dashboard dan halaman peserta lain bisa
+  dibuka langsung lewat URL tanpa login. Penjagaan menunggu cookie sesi dari
+  backend — menyembunyikan menu bukan kontrol keamanan.
+
+- Halaman peserta yang sudah jadi: /dashboard, /lomba-saya, dan
+  /lomba-saya/[id]. Menu lain (Tim, Jadwal, Dokumen, Profil, Bantuan,
+  Notifikasi, Sertifikat) masih halaman placeholder.
 
 - Tautan /lupa-password, /syarat, dan /privasi belum dibuat (masih 404).
 
