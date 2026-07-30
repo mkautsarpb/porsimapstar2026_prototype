@@ -1,0 +1,54 @@
+.shell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-surface-2);
+}
+
+.main {
+  display: flex;
+  flex: 42 1 460px;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 340px);
+  padding: clamp(20px, 3.4vw, 48px);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.bantuan {
+  margin: 0;
+  color: var(--color-text-body);
+  font-size: 12.5px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.bantuan a {
+  font-weight: 600;
+}
+
+/*
+ * Saat kolom membungkus (panel di atas, kartu di bawah), baris flex tidak boleh
+ * ikut diregangkan setinggi viewport — kalau tidak, panel menyisakan area kosong
+ * besar di antara tagline dan kartu jadwal.
+ */
+@media (max-width: 900px) {
+  .shell {
+    align-content: flex-start;
+  }
+
+  .main {
+    flex-grow: 1;
+    align-items: flex-start;
+    padding-top: clamp(18px, 5vw, 32px);
+  }
+}

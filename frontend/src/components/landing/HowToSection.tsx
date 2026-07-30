@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { LANGKAH_DAFTAR } from '@/data/konten';
 import shared from './shared.module.css';
 import styles from './HowToSection.module.css';
@@ -8,7 +9,7 @@ export function HowToSection() {
       <div aria-hidden="true" className={shared.hlineWrap}>
         <span data-hline="1" className={shared.hline} />
       </div>
-      <div aria-hidden="true" className={`${shared.glow} ${styles.glow}`} />
+      <div aria-hidden="true" data-parallax="-70" className={`${shared.glow} ${styles.glow}`} />
 
       <div className={shared.container}>
         <div data-reveal="1" className={styles.intro}>
@@ -31,9 +32,9 @@ export function HowToSection() {
             <p className={styles.bannerTitle}>Siap mengunci tempatmu?</p>
             <p className={styles.bannerNote}>Akun bisa dibuat sekarang, dokumen menyusul sebelum 5 Oktober.</p>
           </div>
-          <a href="#atas" className={styles.bannerCta}>
+          <Link href="/daftar" className={styles.bannerCta}>
             Buat akun
-          </a>
+          </Link>
         </div>
       </div>
     </section>

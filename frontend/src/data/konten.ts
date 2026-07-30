@@ -112,6 +112,28 @@ export const LANGKAH_DAFTAR: readonly LangkahDaftar[] = [
 ];
 
 /**
+ * Versi ringkas untuk panel kiri halaman masuk/daftar — sengaja tiga langkah saja
+ * supaya panel tetap pendek dan fokusnya ke pembuatan akun.
+ */
+export const LANGKAH_AKUN: readonly LangkahDaftar[] = [
+  {
+    no: '1',
+    judul: 'Buat akun',
+    detail: 'Cukup email dan password. Verifikasi lewat tautan yang kami kirim.',
+  },
+  {
+    no: '2',
+    judul: 'Lengkapi profil',
+    detail: 'Identitas, institusi, dan dokumen pendukung diisi setelah kamu masuk.',
+  },
+  {
+    no: '3',
+    judul: 'Pilih cabang',
+    detail: 'Maksimal dua cabang dengan jadwal yang tidak bentrok.',
+  },
+];
+
+/**
  * TODO(api-contract): masih placeholder. Nama sponsor sebenarnya baru dipasang
  * setelah kontrak sponsorship final; `level` yang menentukan ukuran logo di rail.
  * Urut dari level tertinggi supaya rail terbaca berjenjang.

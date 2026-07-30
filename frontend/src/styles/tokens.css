@@ -10,6 +10,8 @@
   --color-navy-800: #0f2550; /* varian gradient akademik */
   --color-navy-750: #1a2e5c; /* varian gradient seni */
   --color-navy-700: #143168; /* strip angka, judul terang */
+  --color-navy-950: #061a3c; /* ujung tergelap panel autentikasi */
+  --color-sky-500: #2e8bd6; /* aksen langit: ikon info, tautan panel gelap */
   --color-blue-500: #2a55a8; /* aksen biru / tautan */
   --color-red-500: #d32027; /* aksi utama */
   --color-gold-500: #f5a623; /* aksen emas */
@@ -53,6 +55,24 @@
   --color-status-full-bg: #f2f4f7;
   --color-status-open-fg-dark: #7be0ae;
 
+  /* ---- Umpan balik formulir (agents.md §4 & §7: warna selalu berpasangan ikon/teks) ---- */
+  --color-danger-fg: #8c1d18;
+  --color-danger-strong: #b3261e;
+  --color-danger-bg: #fdecea;
+  --color-danger-border: #f0b7b2;
+  --color-warn-fg: #8a5200;
+  --color-warn-strong: #b26a00;
+  --color-warn-bg: #fff6e6;
+  --color-warn-border: #f3d69b;
+  --color-info-fg: #123a7a;
+  --color-info-strong: var(--color-sky-500);
+  --color-info-bg: #eaf3fc;
+  --color-info-border: #bfdcf4;
+  --color-success-fg: #15724f;
+  --color-success-strong: #1b7f4b;
+  --color-success-bg: #e6f4ee;
+  --color-success-border: #afdcc5;
+
   --color-meter-track: #f2f4f7;
   --color-meter-fill: #143168;
   --color-meter-full-a: #98a2b3;
@@ -82,6 +102,14 @@
   --gradient-dawn-footer: radial-gradient(ellipse 120% 70% at 50% 0%, rgba(245, 166, 35, 0.4), rgba(245, 166, 35, 0) 60%),
     radial-gradient(ellipse 150% 90% at 50% 0%, rgba(211, 32, 39, 0.2), rgba(211, 32, 39, 0) 65%),
     radial-gradient(ellipse 200% 120% at 50% 0%, rgba(42, 85, 168, 0.18), transparent 70%);
+
+  /* Panel kiri halaman autentikasi: navy dalam, makin gelap ke sudut kanan bawah. */
+  --gradient-auth-panel: linear-gradient(
+    135deg,
+    var(--color-navy-800) 0%,
+    var(--color-navy-900) 52%,
+    var(--color-navy-950) 100%
+  );
 
   /* Latar panel kiri modal, per kategori cabang. */
   --gradient-modal-olahraga: linear-gradient(135deg, #143168 0%, #0c1f45 100%);
@@ -115,6 +143,8 @@
   --shadow-red-lg: 0 10px 30px rgba(211, 32, 39, 0.38);
   --shadow-red-hover: 0 16px 38px rgba(211, 32, 39, 0.5);
   --shadow-modal: 0 30px 80px rgba(12, 31, 69, 0.35);
+  --shadow-auth-card: 0 1px 2px rgba(12, 31, 69, 0.04), 0 6px 16px rgba(12, 31, 69, 0.05),
+    0 24px 48px rgba(12, 31, 69, 0.06);
 
   /* ---- Layout ---- */
   --container-max: 1240px;
@@ -128,9 +158,4 @@
   --duration-fast: 180ms;
   --duration-base: 200ms;
   --duration-slow: 300ms;
-
-  /* ---- Variabel runtime (diisi oleh useScrollMetrics) ---- */
-  --scroll-progress: 0;
-  --scroll-y: 0px;
-  --hero-fade: 1;
 }

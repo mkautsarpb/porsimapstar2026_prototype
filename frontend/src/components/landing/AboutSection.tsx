@@ -9,7 +9,7 @@ export function AboutSection() {
       <div aria-hidden="true" className={shared.hlineWrap}>
         <span data-hline="1" className={shared.hline} />
       </div>
-      <div aria-hidden="true" className={`${shared.glow} ${styles.glow}`} />
+      <div aria-hidden="true" data-parallax="-70" className={`${shared.glow} ${styles.glow}`} />
 
       <div className={shared.container}>
         <div className={styles.grid}>

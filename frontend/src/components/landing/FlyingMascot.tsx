@@ -25,6 +25,7 @@ export function FlyingMascot() {
   const reduced = useReducedMotion();
 
   const flightRef = useRef<HTMLDivElement>(null);
+  const bobRef = useRef<HTMLDivElement>(null);
   const rotRef = useRef<HTMLDivElement>(null);
   const faceRef = useRef<HTMLDivElement>(null);
   const navyRef = useRef<HTMLDivElement>(null);
@@ -34,7 +35,6 @@ export function FlyingMascot() {
 
   const poseSaatIni = useRef(-1);
   const diAreaGelap = useRef<boolean | null>(null);
-  const faktorTerang = useRef(1);
 
   useEffect(() => {
     const cek = (): void => setAktif(window.innerWidth >= LEBAR_MIN && !reduced);
@@ -114,6 +114,12 @@ export function FlyingMascot() {
     const f = flightRef.current;
     if (!aktif || !f) return;
 
+    // Ref ini bertahan lintas mount, sedangkan style elemennya tidak. Tanpa reset,
+    // gaya yang digerakkan oleh perubahan (pose, gelap/terang) tidak akan pernah
+    // ditulis ulang saat maskot diaktifkan kembali karena nilainya dikira sama.
+    poseSaatIni.current = -1;
+    diAreaGelap.current = null;
+
     const gantiPose = (i: number): void => {
       if (poseSaatIni.current === i) return;
       poseSaatIni.current = i;
@@ -173,10 +179,11 @@ export function FlyingMascot() {
       const my = (lerp(s[3], s[5], ty) * vh) / 100;
       const bob = Math.sin((performance.now() / 3000) * Math.PI * 2) * 8;
 
-      // Muncul di 10% awal ruas, menghilang di 10% akhir.
+      // Muncul di 10% awal ruas, menghilang di 10% akhir. Ini berubah tiap frame,
+      // jadi ditulis di `.bob` yang tidak punya transisi — bukan di `.flight`.
       const tepi = t < 0.1 ? t / 0.1 : t > 0.9 ? (1 - t) / 0.1 : 1;
       f.style.transform = `translate3d(${mx.toFixed(1)}px,${(my + bob).toFixed(1)}px,0)`;
-      f.style.opacity = (tepi * OPACITY_DASAR * faktorTerang.current).toFixed(3);
+      if (bobRef.current) bobRef.current.style.opacity = tepi.toFixed(3);
 
       if (rotRef.current) rotRef.current.style.transform = `rotate(${s[7]}deg)`;
       if (faceRef.current) faceRef.current.style.transform = `scaleX(${s[6]})`;
@@ -193,8 +200,10 @@ export function FlyingMascot() {
         diAreaGelap.current = gelap;
         if (colorRef.current) colorRef.current.style.opacity = gelap ? '1' : '0';
         if (navyRef.current) navyRef.current.style.opacity = gelap ? '0' : '1';
+        // Hanya berubah saat maskot berpindah pita; di sinilah transisi 400ms
+        // `.flight` berguna — termasuk untuk kemunculan pertamanya dari opacity 0.
+        f.style.opacity = (OPACITY_DASAR * (gelap ? 1 : FAKTOR_TERANG)).toFixed(3);
       }
-      faktorTerang.current = gelap ? 1 : FAKTOR_TERANG;
     };
 
     const berhenti = langgananScroll(gambar);
@@ -216,7 +225,7 @@ export function FlyingMascot() {
 
       {aktif ? (
         <div aria-hidden="true" ref={flightRef} className={styles.flight}>
-          <div className={styles.bob}>
+          <div ref={bobRef} className={styles.bob}>
             <div ref={rotRef} className={styles.rot}>
               <div ref={faceRef} className={styles.face}>
                 <div ref={navyRef} className={styles.skinNavy}>

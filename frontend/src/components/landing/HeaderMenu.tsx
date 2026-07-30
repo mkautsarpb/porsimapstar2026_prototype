@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { KeyboardEvent } from 'react';
 import { KONTAK } from '@/data/konten';
@@ -120,12 +121,15 @@ export function HeaderMenu({ menu }: Props) {
                 {m.label}
               </a>
             ))}
+            <Link href="/masuk" onClick={() => setBuka(false)} className={styles.link}>
+              Masuk
+            </Link>
           </nav>
 
           {/* CTA sengaja sebelum blok kontak supaya tidak perlu men-scroll panel. */}
-          <a href="#daftar" onClick={() => setBuka(false)} className={styles.cta}>
+          <Link href="/daftar" onClick={() => setBuka(false)} className={styles.cta}>
             Buat akun
-          </a>
+          </Link>
 
           {/* Disclosure kedua: daftar kontak baru turun setelah barisnya ditekan. */}
           <div ref={kontakRef} className={styles.kontak}>

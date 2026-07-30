@@ -35,7 +35,8 @@
   border: 1.5px solid var(--color-gold-500);
   border-bottom-color: transparent;
   border-left-color: transparent;
-  transform: translateY(calc(var(--scroll-y, 0px) * 0.14));
+  /* Keadaan awal; digerakkan lewat data-parallax-y oleh useScrollTargets. */
+  transform: translateY(0);
 }
 
 .top {
@@ -44,7 +45,8 @@
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
-  opacity: var(--hero-fade, 1);
+  /* Keadaan awal; diredupkan lewat data-hero-fade oleh useScrollTargets. */
+  opacity: 1;
 }
 
 .logo {
@@ -174,7 +176,8 @@
 .dawnInner {
   position: absolute;
   inset: 0;
-  transform: translateY(calc(var(--scroll-y, 0px) * 0.08));
+  /* Keadaan awal; digerakkan lewat data-parallax-y oleh useScrollTargets. */
+  transform: translateY(0);
 }
 
 .dawnGlow {
@@ -203,7 +206,8 @@
   align-items: center;
   gap: clamp(18px, 3vw, 26px);
   padding-top: clamp(72px, 12vh, 120px);
-  opacity: var(--hero-fade, 1);
+  /* Keadaan awal; diredupkan lewat data-hero-fade oleh useScrollTargets. */
+  opacity: 1;
 }
 
 .countdownBlock {

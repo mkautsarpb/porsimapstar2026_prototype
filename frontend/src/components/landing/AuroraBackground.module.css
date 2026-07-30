@@ -107,17 +107,16 @@
   will-change: transform;
 }
 
-.starFar {
-  transform: translateY(calc(var(--scroll-progress, 0) * -90px));
-}
-
-.starMid {
-  transform: translateY(calc(var(--scroll-progress, 0) * -150px));
-}
-
+/*
+ * Keadaan awal saja. Jarak geser tiap lapisan ditulis di `data-parallax` pada
+ * markup dan digerakkan langsung oleh useScrollTargets — bukan lewat custom
+ * property di root, yang dulu memaksa recalc style seluruh dokumen tiap frame.
+ */
+.starFar,
+.starMid,
 .starNear,
 .starSparkle {
-  transform: translateY(calc(var(--scroll-progress, 0) * -240px));
+  transform: translateY(0);
 }
 
 .star {

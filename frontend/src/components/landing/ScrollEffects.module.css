@@ -8,6 +8,7 @@
   z-index: 60;
   pointer-events: none;
   transform-origin: left;
-  transform: scaleX(var(--scroll-progress, 0));
+  /* Keadaan awal sebelum JS jalan; nilainya digerakkan oleh useScrollTargets. */
+  transform: scaleX(0);
   background: var(--gradient-cakrawala);
 }

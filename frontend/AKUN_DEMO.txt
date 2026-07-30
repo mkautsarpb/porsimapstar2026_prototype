@@ -1,0 +1,118 @@
+==========================================================================
+AKUN DEMO — PROTOTYPE AUTENTIKASI PORSIMAPTAR XXVI 2026
+==========================================================================
+
+Semua akun di bawah PALSU dan hanya hidup di dalam kode frontend
+(frontend/src/lib/api/mock-auth-db.ts). Belum ada backend, belum ada
+database, dan tidak ada email yang benar-benar terkirim.
+
+Halaman:  /masuk    -> login peserta
+          /daftar   -> buat akun peserta
+
+--------------------------------------------------------------------------
+1. DAFTAR AKUN
+--------------------------------------------------------------------------
+
+Password semua akun demo sama: Peserta2026!
+(kecuali akun panitia, lihat baris terakhir)
+
+  Email                            Password        Yang akan terjadi
+  -------------------------------  --------------  --------------------------
+  peserta@porsimaptar.test         Peserta2026!    Masuk berhasil
+  belumverif@porsimaptar.test      Peserta2026!    Banner "Email belum
+                                                   diverifikasi" + tombol
+                                                   kirim ulang tautan
+  ditangguhkan@porsimaptar.test    Peserta2026!    Banner "Akun sedang
+                                                   ditangguhkan"
+  panitia@porsimaptar.test         Panitia2026!    Masuk berhasil (peran
+                                                   panitia, dashboard-nya
+                                                   belum dibuat)
+
+Tiga akun pertama juga muncul di panel "MODE PROTOTYPE" di bawah kartu
+masuk — klik "Isi form" supaya email dan password terisi otomatis.
+
+--------------------------------------------------------------------------
+2. CARA MENCOBA TIAP KONDISI
+--------------------------------------------------------------------------
+
+Masuk berhasil
+  peserta@porsimaptar.test + Peserta2026!
+
+Email atau password salah
+  Pakai password apa pun yang salah, atau email yang tidak ada di daftar.
+  Pesannya sengaja sama untuk kedua kasus supaya orang luar tidak bisa
+  menebak email mana yang terdaftar.
+
+Terlalu banyak percobaan (rate limit)
+  Salah password 5 kali untuk email yang sama. Percobaan ke-6 terkunci
+  45 detik dengan hitung mundur di tombol.
+
+Email belum diverifikasi
+  belumverif@porsimaptar.test + Peserta2026!
+  Dari banner, klik "Kirim ulang tautan verifikasi" untuk masuk ke layar
+  "Cek email kamu".
+
+Akun ditangguhkan
+  ditangguhkan@porsimaptar.test + Peserta2026!
+
+Email sudah terpakai saat daftar
+  Daftar memakai peserta@porsimaptar.test.
+
+Buat akun baru (alur lengkap)
+  1. Buka /daftar, isi email baru, mis. namakamu@porsimaptar.test
+  2. Password minimal 8 karakter; supaya meter "Kuat", pakai huruf besar,
+     huruf kecil, angka, dan simbol. Contoh: Cakrawala26!
+  3. Centang persetujuan -> "Buat akun"
+  4. Muncul layar "Cek email kamu". Karena tidak ada email sungguhan,
+     klik tombol demo "Tandai email terverifikasi".
+  5. Klik "Kembali ke halaman masuk", lalu masuk dengan email + password
+     yang baru dibuat.
+
+Sesi kedaluwarsa
+  Buka /masuk?sesi=habis
+
+Offline
+  Matikan koneksi (atau mode offline di DevTools), lalu tekan Masuk.
+
+--------------------------------------------------------------------------
+3. MEMAKSA ERROR DARI "SERVER"
+--------------------------------------------------------------------------
+
+Tambahkan query ?simulasi=<kode> di /masuk atau /daftar:
+
+  ?simulasi=kredensial-salah     Email atau password salah
+  ?simulasi=belum-verifikasi     Email belum diverifikasi
+  ?simulasi=suspended            Akun ditangguhkan
+  ?simulasi=rate-limit           Terkunci 45 detik
+  ?simulasi=server-error         Gangguan di sisi server
+  ?simulasi=konflik              Pendaftaran tidak dapat dilanjutkan
+
+Contoh: http://localhost:3000/masuk?simulasi=rate-limit
+
+--------------------------------------------------------------------------
+4. BATASAN YANG PERLU DIINGAT
+--------------------------------------------------------------------------
+
+- Akun disimpan di MEMORI HALAMAN, bukan localStorage/sessionStorage
+  (agents.md §6 melarang menyimpan kredensial/PII di storage browser).
+  Akibatnya: akun yang kamu buat sendiri HILANG kalau halaman dimuat ulang
+  (F5). Empat akun di atas selalu tersedia karena di-seed dari kode.
+  Pindah antar /masuk dan /daftar lewat tautan di halaman tetap aman.
+
+- Login berhasil belum mengalihkan ke dashboard: route peserta belum ada,
+  jadi alurnya berhenti di layar "Masuk berhasil".
+
+- Tautan /lupa-password, /syarat, dan /privasi belum dibuat (masih 404).
+
+--------------------------------------------------------------------------
+5. SAAT BACKEND SUDAH SIAP
+--------------------------------------------------------------------------
+
+1. Set AUTH_MOCK = false di frontend/src/lib/api/auth.ts
+   -> panel akun demo dan tombol "Tandai email terverifikasi" hilang.
+2. Ganti isi kirimMasuk / kirimDaftar / kirimUlangVerifikasi dengan fetch
+   ke endpoint asli (kontraknya di frontend/src/types/api/auth.ts).
+3. Hapus frontend/src/lib/api/mock-auth-db.ts dan file TXT ini.
+
+Tidak ada komponen UI yang memanggil mock secara langsung — semuanya lewat
+lib/api/auth.ts, jadi penggantian cukup di satu tempat.

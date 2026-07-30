@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { HeaderMenu, type MenuItem } from './HeaderMenu';
 import styles from './SiteHeader.module.css';
 
@@ -36,9 +37,12 @@ export function SiteHeader() {
               {m.label}
             </a>
           ))}
-          <a href="#daftar" className={styles.cta}>
+          <Link href="/masuk" className={styles.link}>
+            Masuk
+          </Link>
+          <Link href="/daftar" className={styles.cta}>
             Buat akun
-          </a>
+          </Link>
         </nav>
 
         <HeaderMenu menu={MENU} />

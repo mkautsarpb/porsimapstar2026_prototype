@@ -26,15 +26,18 @@ function gayaBintang(s: Bintang): StarStyle {
 function LapisanBintang({
   bintang,
   className,
+  geser,
   kelip = false,
 }: {
   readonly bintang: readonly Bintang[];
   /** Berasal dari CSS module, yang bertipe index signature — bisa undefined. */
   readonly className: string | undefined;
+  /** Jarak geser parallax dalam px pada progres scroll penuh; makin dekat, makin jauh. */
+  readonly geser: number;
   readonly kelip?: boolean;
 }) {
   return (
-    <div className={`${styles.starLayer} ${className}`}>
+    <div data-parallax={geser} className={`${styles.starLayer} ${className}`}>
       {bintang.map((s, i) => (
         <span key={`${s.x}-${s.y}-${i}`} className={kelip ? styles.sparkle : styles.star} style={gayaBintang(s)} />
       ))}
@@ -152,9 +155,9 @@ export function AuroraBackground() {
         <div className={`${styles.blob} ${styles.blobC}`} />
       </div>
 
-      <LapisanBintang bintang={BINTANG_JAUH} className={styles.starFar} />
-      <LapisanBintang bintang={BINTANG_TENGAH} className={styles.starMid} />
-      <LapisanBintang bintang={BINTANG_DEKAT} className={styles.starNear} />
+      <LapisanBintang bintang={BINTANG_JAUH} className={styles.starFar} geser={-90} />
+      <LapisanBintang bintang={BINTANG_TENGAH} className={styles.starMid} geser={-150} />
+      <LapisanBintang bintang={BINTANG_DEKAT} className={styles.starNear} geser={-240} />
 
       <div ref={meteorRef} className={styles.meteor}>
         <div ref={trailRef} className={styles.meteorTrail}>
@@ -162,7 +165,7 @@ export function AuroraBackground() {
         </div>
       </div>
 
-      <LapisanBintang bintang={BINTANG_KELIP} className={styles.starSparkle} kelip />
+      <LapisanBintang bintang={BINTANG_KELIP} className={styles.starSparkle} geser={-240} kelip />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Countdown } from './Countdown';
 import styles from './Hero.module.css';
 
@@ -12,10 +13,10 @@ export function Hero() {
     <section id="atas" data-dark="1" className={styles.hero}>
       <div aria-hidden="true" className={styles.vignette} />
       <div aria-hidden="true" className={styles.curveWrap}>
-        <div className={styles.curve} />
+        <div data-parallax-y="0.14" className={styles.curve} />
       </div>
 
-      <div className={styles.top}>
+      <div data-hero-fade="" className={styles.top}>
         <Image
           src="/uploads/porsimaptar-trim.png"
           alt="Logo resmi PORSIMAPTAR 2026 — Pekan Olahraga dan Seni Mahasiswa, Pelajar, dan Taruna Akademi Kepolisian"
@@ -40,24 +41,29 @@ export function Hero() {
       </div>
 
       <div className={styles.lower}>
-        <div aria-hidden="true" className={styles.horizonLine}>
+        {/*
+         * Garis cakrawala dan cahaya fajarnya WAJIB memakai faktor parallax yang
+         * sama. Kalau salah satu statis, cahayanya turun sendiri saat digulir dan
+         * terlihat terlepas dari garisnya — keduanya satu objek visual.
+         */}
+        <div aria-hidden="true" data-parallax-y="0.08" className={styles.horizonLine}>
           <span />
         </div>
 
         <div aria-hidden="true" className={styles.dawn}>
-          <div className={styles.dawnInner}>
+          <div data-parallax-y="0.08" className={styles.dawnInner}>
             <div className={styles.dawnGlow} />
             <div className={styles.grain} />
           </div>
         </div>
 
-        <div className={styles.actionsWrap}>
+        <div data-hero-fade="" className={styles.actionsWrap}>
           <Countdown />
 
           <div id="daftar" className={styles.buttons}>
-            <a href="#cara" className={styles.ctaPrimary}>
+            <Link href="/daftar" className={styles.ctaPrimary}>
               Buat akun
-            </a>
+            </Link>
             <a href="#lomba" className={styles.ctaGhost}>
               Lihat daftar lomba
             </a>

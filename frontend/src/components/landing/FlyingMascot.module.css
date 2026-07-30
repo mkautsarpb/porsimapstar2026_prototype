@@ -16,9 +16,17 @@
   height: 18vh;
   opacity: 0;
   filter: blur(1.5px);
+  /*
+   * Transisi ini hanya untuk dua perubahan yang jarang: maskot pertama kali
+   * muncul, dan saat ia berpindah antara pita gelap/terang. Opacity per frame
+   * (memudar di tepi ruas) TIDAK ditulis di sini — dulu begitu, dan akibatnya
+   * transisi 400ms ini di-restart tiap frame sehingga nilainya tidak pernah
+   * sampai ke target dan elemen ber-blur ini terus dilukis ulang.
+   */
   transition: opacity 400ms ease-in-out;
 }
 
+/* Memudar di tepi ruas: ditulis tiap frame, jadi tidak boleh punya transisi. */
 .bob {
   position: absolute;
   inset: 0;

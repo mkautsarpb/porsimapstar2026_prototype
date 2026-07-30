@@ -12,5 +12,6 @@ export const JADWAL = {
 } as const;
 
 export const TANGGAL_ACARA = '26–30 Oktober 2026';
+export const PERIODE_PENDAFTARAN = '21 September – 5 Oktober 2026';
 export const LOKASI_ACARA = 'Akademi Kepolisian, Semarang';
 export const BATAS_PENDAFTARAN = 'Pendaftaran ditutup 5 Oktober 2026, 23.59 WIB';
