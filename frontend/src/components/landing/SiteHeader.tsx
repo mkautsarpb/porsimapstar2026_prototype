@@ -12,7 +12,7 @@ const MENU: readonly MenuItem[] = [
 
 /**
  * Header sticky. Tetap Server Component — satu-satunya bagian ber-state adalah
- * `HeaderMenu` (titik tiga mobile), jadi hanya itu yang masuk bundle client.
+ * `HeaderMenu` (garis tiga mobile), jadi hanya itu yang masuk bundle client.
  */
 export function SiteHeader() {
   return (

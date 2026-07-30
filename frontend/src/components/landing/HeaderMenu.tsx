@@ -14,7 +14,7 @@ interface Props {
 }
 
 /**
- * Tombol titik tiga untuk mobile: navigasi utama disembunyikan ke dalam dropdown
+ * Tombol garis tiga (hamburger) untuk mobile: navigasi utama disembunyikan ke dalam dropdown
  * supaya baris header tidak membungkus jadi tiga baris di layar sempit.
  * Pola disclosure (bukan `role="menu"`) karena isinya tautan biasa — Tab, Enter,
  * dan Escape bekerja tanpa keyboard handler tambahan (agents.md §7).
@@ -79,10 +79,10 @@ export function HeaderMenu({ menu }: Props) {
         onClick={() => setBuka((v) => !v)}
         className={styles.trigger}
       >
-        <span aria-hidden="true" className={styles.dots}>
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-          <span className={styles.dot} />
+        <span aria-hidden="true" className={styles.bars}>
+          <span className={styles.bar} />
+          <span className={styles.bar} />
+          <span className={styles.bar} />
         </span>
       </button>
 
