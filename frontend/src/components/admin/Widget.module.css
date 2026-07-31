@@ -1,0 +1,384 @@
+/*
+ * Kerapatan "compact" area admin: teks isi 13px, tombol 36px, padding kartu 16px.
+ * Nilainya datang dari lapisan --adm-* di tokens.css, bukan ditulis literal.
+ */
+.widget {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+/* Hanya widget yang menunggu tindakan manusia yang boleh punya border berwarna. */
+.widget[data-sorot='true'] {
+  border-color: var(--color-warn-border);
+  box-shadow: inset 3px 0 0 var(--color-warn-strong);
+}
+
+/* Kegagalan bersifat lokal: kartu yang gagal berubah, tetangganya tidak. */
+.widget[data-kondisi='gagal'] {
+  border-color: var(--color-danger-border);
+}
+
+.kepala {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+}
+
+.angkaBlok {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1) var(--adm-space-2);
+  align-items: baseline;
+}
+
+/* Stale: angka lama tetap terbaca, tapi jelas diredupkan. */
+.angkaBlok[data-stale='true'] {
+  opacity: 0.55;
+}
+
+.angka {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-2);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.pecahan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.sorotan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+}
+
+.sorotanLabel {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sorotanNilai {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.sorotanMeta {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+}
+
+.rincian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rincianBaris {
+  position: relative;
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--adm-space-1) 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+}
+
+/* Bar latar: proporsi terhadap baris terbesar. Warna muted, bukan warna status —
+   panjangnya yang membawa informasi, bukan warnanya. */
+.rincianLatar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+}
+
+.rincianLabel,
+.rincianNilai {
+  position: relative;
+  z-index: 1;
+}
+
+.rincianNilai {
+  color: var(--color-navy-900);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.rincianBaris[data-nada='ok'] .rincianNilai {
+  color: var(--color-success-fg);
+}
+
+.rincianBaris[data-nada='warn'] .rincianNilai {
+  color: var(--color-warn-fg);
+}
+
+.rincianBaris[data-nada='danger'] .rincianNilai {
+  color: var(--color-danger-strong);
+}
+
+/* ---- Kondisi memuat ---- */
+
+/* Kerangka mengikuti layout final supaya isi tidak melompat saat data datang. */
+.kerangka {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+.kerangkaAngka,
+.kerangkaBaris,
+.kerangkaBarisPendek {
+  display: block;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  animation: cw-widget-pulse 1.4s ease-in-out infinite;
+}
+
+.kerangkaAngka {
+  width: 96px;
+  height: 28px;
+}
+
+.kerangkaBaris {
+  width: 100%;
+  height: 12px;
+}
+
+.kerangkaBarisPendek {
+  width: 60%;
+  height: 12px;
+}
+
+@keyframes cw-widget-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---- Kondisi belum dimulai ---- */
+
+.belumMulai {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+}
+
+.belumMulaiJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.belumMulaiTeks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.55;
+}
+
+.belumMulaiTanggal {
+  margin: 0;
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+/* ---- Kondisi gagal ---- */
+
+.gagal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+}
+
+.gagalAngka {
+  margin: 0;
+  color: var(--color-text-disabled);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-2);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.gagalJudul {
+  margin: 0;
+  color: var(--color-danger-strong);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.gagalTeks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.5;
+}
+
+.gagalRef {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-8);
+}
+
+/* ---- Kondisi stale ---- */
+
+.stale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-md);
+  background: var(--color-warn-bg);
+}
+
+.staleBaris {
+  margin: 0;
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-8);
+  line-height: 1.5;
+}
+
+.stalePeringatan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  margin: 0;
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.stalePeringatanLabel {
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tombolMuatUlang {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  align-self: flex-start;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tombolMuatUlang:hover {
+  background: var(--color-warn-bg);
+}
+
+/* ---- Kaki ---- */
+
+.kaki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--adm-space-3);
+  border-top: 1px solid var(--color-border-blue);
+}
+
+.kakiTeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.diperbarui {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+}
+
+.drilldown {
+  display: inline-flex;
+  flex: none;
+  gap: var(--adm-space-1);
+  align-items: center;
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.drilldown:hover {
+  text-decoration: underline;
+}
+
+.drilldownMati {
+  flex: none;
+  color: var(--color-text-disabled);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kerangkaAngka,
+  .kerangkaBaris,
+  .kerangkaBarisPendek {
+    animation: none;
+  }
+}

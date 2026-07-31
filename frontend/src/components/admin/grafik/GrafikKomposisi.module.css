@@ -1,0 +1,103 @@
+.grafik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+.daftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baris {
+  display: grid;
+  grid-template-columns: 92px 1fr 44px;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.lomba {
+  overflow: hidden;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Celah pemisah digambar dengan warna surface, bukan garis tepi. */
+.rel {
+  display: flex;
+  gap: var(--adm-grafik-celah);
+  height: 18px;
+  min-width: 0;
+}
+
+.segmen {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  padding: 0 var(--adm-space-1);
+  border-radius: var(--radius-md);
+}
+
+.individu {
+  background: var(--adm-seri-individu);
+}
+
+.tim {
+  background: var(--adm-seri-tim);
+}
+
+/*
+ * Teks di dalam isian berwarna adalah satu-satunya tempat teks boleh memakai
+ * warna terang: dipilih menurut luminansi isiannya supaya kontrasnya aman.
+ */
+.labelDalam {
+  color: var(--color-white);
+  font-size: var(--adm-text-8);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tim .labelDalam {
+  color: var(--color-navy-900);
+}
+
+.total {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  text-align: right;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendaItem {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-sm);
+}

@@ -1,0 +1,94 @@
+.band {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+}
+
+/* Garis tipis penuh lebar: jangkar band tanpa menambah warna apa pun. */
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1) var(--adm-space-4);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--adm-space-2);
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.judul {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ikon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.meta {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+.cakupan {
+  margin: 0;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-md);
+  background: var(--color-info-bg);
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-7);
+}
+
+/*
+ * minmax(0, 1fr), bukan 1fr: `1fr` bermakna minmax(auto, 1fr), sehingga satu
+ * label sumbu yang `nowrap` bisa memaksa seluruh kolom melebar dan grafik
+ * meluber keluar kartu.
+ */
+.kisi {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--adm-space-4);
+}
+
+.kisi > * {
+  min-width: 0;
+}
+
+/* Kartu sekunder: tinggi mengikuti isi masing-masing, baris boleh tidak rata. */
+.kisi[data-rata-atas='true'] {
+  align-items: start;
+}
+
+@media (min-width: 720px) {
+  .kisi[data-kolom='dua'],
+  .kisi[data-kolom='tiga'],
+  .kisi[data-kolom='empat'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .kisi[data-kolom='tiga'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kisi[data-kolom='empat'] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

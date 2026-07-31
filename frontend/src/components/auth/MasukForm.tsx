@@ -56,6 +56,7 @@ export function MasukForm({
   const [memproses, setMemproses] = useState(false);
   const [gagal, setGagal] = useState<ApiError | null>(null);
   const [live, setLive] = useState('');
+  const [tujuan, setTujuan] = useState<{ href: string; label: string } | null>(null);
   const [sisaRetry, mulaiRetry] = useHitungMundur();
 
   const salahEmail = errorEmail(email);
@@ -104,12 +105,19 @@ export function MasukForm({
       return;
     }
 
-    // Sukses hanya diklaim setelah respons server (agents.md §1).
+    // Sukses hanya diklaim setelah respons server (agents.md §1). Tujuan setelah
+    // masuk ditentukan `role` dari server, bukan ditebak dari isi formulir.
+    // TODO(api-contract): area super admin (/super) belum ada; sementara ikut ke
+    // panel panitia.
+    const berikutnya =
+      hasil.data.role === 'peserta'
+        ? { href: '/dashboard', label: 'dashboard peserta' }
+        : { href: '/admin/dashboard', label: 'Panel Panitia' };
+
+    setTujuan(berikutnya);
     setLayar('sukses');
-    setLive('Masuk berhasil. Mengalihkan ke dashboard peserta.');
-    // TODO(api-contract): tujuan seharusnya mengikuti `role` dari server —
-    // panitia ke /admin/dashboard, super admin ke /super. Area itu belum ada.
-    router.prefetch('/dashboard');
+    setLive(`Masuk berhasil. Mengalihkan ke ${berikutnya.label}.`);
+    router.prefetch(berikutnya.href);
   }
 
   if (layar === 'verifikasi') {
@@ -128,10 +136,10 @@ export function MasukForm({
     );
   }
 
-  if (layar === 'sukses') {
+  if (layar === 'sukses' && tujuan) {
     return (
       <section className={styles.card}>
-        <MasukSukses onLanjut={() => router.replace('/dashboard')} />
+        <MasukSukses tujuan={tujuan} onLanjut={() => router.replace(tujuan.href)} />
       </section>
     );
   }
@@ -294,7 +302,13 @@ export function MasukForm({
  * supaya statusnya sempat terbaca dan sempat diumumkan screen reader; tombolnya
  * tetap ada sebagai jalan keluar kalau peralihan otomatis gagal.
  */
-function MasukSukses({ onLanjut }: { readonly onLanjut: () => void }) {
+function MasukSukses({
+  tujuan,
+  onLanjut,
+}: {
+  readonly tujuan: { readonly href: string; readonly label: string };
+  readonly onLanjut: () => void;
+}) {
   const refJudul = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -312,14 +326,14 @@ function MasukSukses({ onLanjut }: { readonly onLanjut: () => void }) {
         Masuk berhasil
       </h1>
       <p className={styles.deskripsiHasil}>
-        Sesi kamu aktif. Kami sedang mengalihkan ke dashboard peserta.
+        Sesi kamu aktif. Kami sedang mengalihkan ke {tujuan.label}.
       </p>
       <button
         type="button"
         onClick={onLanjut}
         className={`${styles.tombolSekunder} ${styles.aksiTunggal}`}
       >
-        Buka dashboard sekarang
+        Buka {tujuan.label} sekarang
       </button>
     </div>
   );

@@ -1,0 +1,190 @@
+/*
+ * Sticky di dalam area konten yang menggulir, tepat di bawah topbar.
+ * Border bawah dan bayangan halus WAJIB: tanpa pembatas, baris ini terlihat
+ * mengambang dan memotong kartu yang lewat di belakangnya.
+ */
+.baris {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  margin: calc(var(--adm-space-4) * -1) calc(var(--adm-space-4) * -1) 0;
+  padding: var(--adm-space-2) var(--adm-space-4);
+  border-bottom: 1px solid var(--color-border-blue);
+  background: var(--color-surface-1);
+  box-shadow: 0 1px 2px rgba(12, 31, 69, 0.06);
+}
+
+/* Baris terciut: satu baris, tinggi tetap, isinya bisa dibaca sekilas. */
+.ringkas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+  min-height: var(--adm-h-control);
+}
+
+.ikon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--adm-h-chip);
+  height: var(--adm-h-chip);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.chipDaftar {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: baseline;
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-pill);
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Filter yang menyimpang dari bawaan ditandai — jumlah saja tidak cukup untuk
+   tahu MANA yang aktif. */
+.chip[data-diubah='true'] {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.chipJudul {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.chip[data-diubah='true'] .chipJudul {
+  color: var(--color-text-on-dark-muted);
+}
+
+.chipBawaan {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  white-space: nowrap;
+}
+
+.status {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tombolUbah,
+.reset,
+.terapkan,
+.batal {
+  flex: none;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tombolUbah:hover,
+.reset:hover,
+.batal:hover {
+  background: var(--color-surface-3);
+}
+
+.reset,
+.batal {
+  border-color: transparent;
+  color: var(--color-link-soft);
+}
+
+.terapkan {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.terapkan:hover {
+  background: var(--color-navy-700);
+}
+
+/* ---- Panel terbuka ---- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  margin-top: var(--adm-space-3);
+  padding-top: var(--adm-space-3);
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.grup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+}
+
+.kolom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.judul {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.select {
+  max-width: 190px;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.select[data-diubah='true'] {
+  border-color: var(--color-navy-900);
+  background: var(--color-surface-3);
+}
+
+.aksi {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+}

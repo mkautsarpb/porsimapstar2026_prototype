@@ -1,0 +1,15 @@
+/* Peringatan lembut: cukup terbaca untuk disadari, tidak seberat status gagal. */
+.chip {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  align-self: flex-start;
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  line-height: 1.3;
+}

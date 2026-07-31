@@ -14,12 +14,15 @@ export function SegeraHadir({
   judul,
   penjelasan,
   isi,
+  kembali = { href: '/dashboard', label: 'Kembali ke dashboard' },
 }: {
   readonly ikon: NamaIkon;
   readonly judul: string;
   readonly penjelasan: string;
   /** Apa yang nanti ada di halaman ini. */
   readonly isi: readonly string[];
+  /** Tujuan tombol kembali — beda antara area peserta dan Panel Panitia. */
+  readonly kembali?: { readonly href: string; readonly label: string };
 }) {
   return (
     <div className={`${ui.kartu} ${styles.kartu}`}>
@@ -44,8 +47,8 @@ export function SegeraHadir({
         daftar lomba, dan detail lomba.
       </p>
 
-      <Link href="/dashboard" className={`${ui.tombol} ${ui.tombolUtama}`}>
-        Kembali ke dashboard
+      <Link href={kembali.href} className={`${ui.tombol} ${ui.tombolUtama}`}>
+        {kembali.label}
       </Link>
     </div>
   );

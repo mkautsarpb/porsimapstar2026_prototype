@@ -1,0 +1,50 @@
+.blok {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 48px;
+}
+
+.garis {
+  fill: none;
+  stroke: var(--color-navy-700);
+  stroke-width: var(--adm-grafik-tebal-garis);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Area sebagai cucian tipis, bukan blok pekat. */
+.area {
+  fill: var(--color-sky-500);
+  opacity: 0.1;
+}
+
+.ujung {
+  fill: var(--color-navy-700);
+  stroke: var(--color-surface-1);
+  stroke-width: var(--adm-grafik-celah);
+}
+
+.kaki {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-variant-numeric: tabular-nums;
+}
+
+.rentangLabel {
+  font-variant-numeric: normal;
+}
+
+.akhir {
+  color: var(--color-navy-900);
+  font-weight: 700;
+}

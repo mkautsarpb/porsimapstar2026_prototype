@@ -1,0 +1,55 @@
+.grafik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+.plot {
+  display: flex;
+  gap: var(--adm-grafik-celah);
+  align-items: flex-end;
+  height: 132px;
+  padding-bottom: var(--adm-space-1);
+  border-bottom: 1px solid var(--adm-grafik-grid);
+}
+
+/* Kolom penuh tinggi jadi sasaran hover-nya besar, bukan sebesar batangnya saja. */
+.kolom {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  height: 100%;
+  min-width: 0;
+}
+
+.batang {
+  width: 100%;
+  /* Ujung data membulat, pangkal di garis dasar tetap siku. */
+  border-radius: var(--adm-space-1) var(--adm-space-1) 0 0;
+  background: var(--adm-grafik-mark);
+}
+
+.batang[data-sorot='true'] {
+  background: var(--adm-grafik-sorot);
+}
+
+.sumbuX {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tickX {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kesimpulan {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  line-height: 1.5;
+}

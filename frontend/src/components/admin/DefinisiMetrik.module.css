@@ -1,0 +1,77 @@
+.bungkus {
+  position: relative;
+  flex: none;
+}
+
+.tombol {
+  display: grid;
+  place-items: center;
+  width: var(--adm-h-chip);
+  height: var(--adm-h-chip);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  cursor: pointer;
+}
+
+.tombol:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+}
+
+.tombol[aria-expanded='true'] {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+  color: var(--color-info-fg);
+}
+
+/* Ditambatkan ke kanan ikon supaya tidak keluar layar di kartu kolom terakhir. */
+.panel {
+  position: absolute;
+  top: calc(var(--adm-h-chip) + var(--adm-space-1));
+  right: 0;
+  z-index: 30;
+  width: min(320px, 78vw);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-info-bg);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.judul {
+  margin: 0 0 var(--adm-space-2);
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.daftar {
+  display: grid;
+  gap: var(--adm-space-1) 0;
+  margin: 0;
+}
+
+.daftar dt {
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+}
+
+.daftar dd {
+  margin: 0 0 var(--adm-space-2);
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-7);
+  line-height: 1.5;
+}
+
+.sumber {
+  margin: 0;
+  padding-top: var(--adm-space-2);
+  border-top: 1px solid var(--color-info-border);
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-8);
+}

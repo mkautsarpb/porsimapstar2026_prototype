@@ -1,0 +1,72 @@
+.slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  padding: var(--adm-space-4);
+  border: 1px dashed var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.label {
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kotak {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: center;
+  min-height: 132px;
+  padding: var(--adm-space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-4);
+}
+
+.ikon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-text-disabled);
+}
+
+.bentuk {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-align: center;
+}
+
+.keterangan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.55;
+}

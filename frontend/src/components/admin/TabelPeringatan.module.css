@@ -1,0 +1,123 @@
+.bungkus {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.tabel {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.tabel th {
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border-bottom: 1px solid var(--color-border-blue);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tabel td {
+  height: var(--adm-h-row);
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border-bottom: 1px solid var(--color-border-soft);
+  vertical-align: top;
+}
+
+.tabel tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tingkat {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+tr[data-tingkat='danger'] .tingkat {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}
+
+.perihal {
+  display: block;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.rincian {
+  display: block;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.5;
+}
+
+.sejak {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sejakTepat {
+  display: block;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 400;
+}
+
+.aksi {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.aksi:hover {
+  text-decoration: underline;
+}
+
+.tanpaAksi {
+  color: var(--color-text-disabled);
+}
+
+.kosong {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.kosongJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.kosongTeks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.55;
+}

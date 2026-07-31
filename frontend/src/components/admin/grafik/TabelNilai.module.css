@@ -1,0 +1,62 @@
+.detail {
+  border-top: 1px solid var(--color-border-soft);
+  padding-top: var(--adm-space-2);
+}
+
+.ringkasan {
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ringkasan:focus-visible {
+  outline: 2px solid var(--color-sky-500);
+  outline-offset: var(--adm-space-1);
+}
+
+.bungkus {
+  overflow-x: auto;
+  margin-top: var(--adm-space-2);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.tabel {
+  width: 100%;
+  border-collapse: collapse;
+  /* Kolom angka harus sejajar vertikal — di sinilah tabular-nums memang tepat. */
+  font-variant-numeric: tabular-nums;
+}
+
+.tabel th,
+.tabel td {
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border-bottom: 1px solid var(--color-border-soft);
+  font-size: var(--adm-text-8);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.tabel thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  font-weight: 700;
+}
+
+.tabel tbody th {
+  color: var(--color-navy-900);
+  font-weight: 600;
+  text-align: left;
+}
+
+.tabel td {
+  color: var(--color-navy-900);
+}
+
+.tabel tbody tr:last-child th,
+.tabel tbody tr:last-child td {
+  border-bottom: none;
+}

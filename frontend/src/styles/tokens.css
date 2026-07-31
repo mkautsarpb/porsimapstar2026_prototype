@@ -158,6 +158,90 @@
   --section-padding-y: clamp(56px, 8vw, 104px);
   --section-padding-x: 20px;
 
+  /* ---- Area admin: skala beku (desain "Command Center Panitia") ----
+     Delapan langkah tipografi dan grid spasi 4px, dipakai HANYA di Panel Panitia.
+     Dinomori, bukan dinamai per peran, supaya tidak ada godaan menambah langkah
+     baru di antaranya — nilai di luar delapan langkah ini dianggap bug.
+
+     Yang TIDAK diatur di sini: radius (lihat catatan di bawah) dan dimensi
+     kerangka layout — lebar sidebar, tinggi topbar, lebar kontainer — karena
+     ketiganya bukan skala spasi melainkan ukuran satu-satu. */
+
+  --adm-text-1: 44px; /* judul terbesar, belum terpakai */
+  --adm-text-2: 28px; /* angka KPI */
+  --adm-text-3: 20px;
+  --adm-text-4: 16px; /* judul kartu / keadaan kosong */
+  --adm-text-5: 14px;
+  --adm-text-6: 13px; /* teks isi admin */
+  --adm-text-7: 12px; /* teks sekunder */
+  --adm-text-8: 11px; /* label eyebrow & meta terkecil */
+
+  --adm-space-1: 4px;
+  --adm-space-2: 8px;
+  --adm-space-3: 12px;
+  --adm-space-4: 16px; /* padding kartu */
+  --adm-space-5: 24px;
+  --adm-space-6: 32px;
+  --adm-space-7: 48px;
+  --adm-space-8: 64px;
+
+  /* Kerapatan `compact`. Hanya kontrol yang bisa ditekan — avatar, badge, dan
+     meter tetap literal karena ukurannya dekoratif, bukan target sentuh. */
+  --adm-h-control: 36px; /* tombol & baris navigasi */
+  --adm-h-row: 40px; /* baris tabel, belum terpakai */
+  --adm-h-chip: 28px; /* chip filter & tombol ikon kecil */
+
+  /* ---- Warna grafik dashboard ----
+     Dua palet, dua pekerjaan berbeda. Keduanya DIVALIDASI dengan skrip cek palet,
+     bukan dikira-kira — angka di bawah adalah hasil pengukurannya.
+
+     1. Seri status (tren harian). Warnanya memang berarti status, jadi memakai
+        token status di sini benar — bukan warna dipinjam untuk identitas.
+          sky #2e8bd6 dikirim · success-fg #15724f diverifikasi · danger #b3261e ditolak
+        Semua cek lolos, TAPI pasangan hijau↔merah hanya ΔE 7,9 di deuteranopia —
+        ada di pita 6–8 yang sah HANYA dengan penanda sekunder. Karena itu tiap
+        seri WAJIB punya bentuk penanda titik sendiri (bulat/persegi/belah ketupat)
+        plus legenda dan tabel nilai. Menghapus penandanya membuat grafik ini
+        tidak terbaca bagi pembaca buta warna merah-hijau.
+
+     2. Pasangan kategorikal (komposisi individu vs tim). Ini identitas, bukan
+        status, jadi memakai hue netral:
+          blue-500 #2a55a8 ↔ tier-gold #d99b1c — ΔE 34,4 protan · 39,1 normal.
+        Gold di bawah 3:1 terhadap surface (2,36), jadi label langsung dan tabel
+        nilai wajib ada. Bukan alasan menggantinya, tapi konsekuensinya mengikat.
+
+     Merah brand tidak pernah jadi warna seri. */
+  --adm-seri-dikirim: var(--color-sky-500);
+  --adm-seri-diverifikasi: var(--color-success-fg);
+  --adm-seri-ditolak: var(--color-danger-strong);
+  --adm-seri-individu: var(--color-blue-500);
+  --adm-seri-tim: var(--color-tier-gold);
+  --adm-grafik-mark: var(--color-sky-500); /* seri tunggal */
+  --adm-grafik-sorot: var(--color-navy-700); /* penekanan, hue sama lebih pekat */
+  --adm-grafik-grid: var(--color-border-blue);
+  --adm-grafik-kosong: var(--color-surface-3); /* tahap yang belum dimulai */
+
+  /* Spesifikasi mark, BUKAN skala spasi — karena itu 2px dan tidak ada di grid
+     4px. Celah pemisah antar-fill digambar dengan warna surface, bukan garis
+     tepi: garis tepi menambah tinta yang bukan data. */
+  --adm-grafik-celah: 2px;
+  --adm-grafik-tebal-garis: 2px;
+
+  /* RADIUS — keputusan B (31 Juli 2026): skala dibekukan ke nilai yang SUDAH ada
+     di repo, bukan ke 8/12/16/999 dari dokumen desain. Alasannya sama dengan
+     aturan warna di atas: beda 1–2px tidak terlihat, tapi menyelaraskannya akan
+     menggeser 46 pemakaian lintas modul yang layarnya sudah selesai.
+
+     Skala resmi area admin — JANGAN menambah lapisan --adm-radius-*:
+       --radius-md  9px   kontrol kecil, tombol ikon, chip persegi
+       --radius-lg  12px  panel, popover, baris daftar
+       --radius-xl  14px  kartu widget
+       --radius-pill      pil & meter
+
+     Nilai di luar empat ini dianggap bug di area admin. Dokumen desain Claude
+     Design harus menyusul ke angka ini; kalau tidak, 8/16 akan masuk lagi lewat
+     deliverable berikutnya dan kita berakhir dengan dua skala. */
+
   /* ---- Gerak ---- */
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);

@@ -33,7 +33,13 @@ export const AKUN_DEMO: readonly {
     email: 'peserta@porsimaptar.test',
     password: 'Peserta2026!',
     label: 'Peserta aktif',
-    hasil: 'Masuk berhasil',
+    hasil: 'Masuk berhasil → dashboard peserta',
+  },
+  {
+    email: 'panitia@porsimaptar.test',
+    password: 'Panitia2026!',
+    label: 'Panitia umum',
+    hasil: 'Masuk berhasil → Panel Panitia',
   },
   {
     email: 'belumverif@porsimaptar.test',

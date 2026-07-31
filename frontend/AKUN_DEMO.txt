@@ -13,23 +13,23 @@ Halaman:  /masuk    -> login peserta
 1. DAFTAR AKUN
 --------------------------------------------------------------------------
 
-Password semua akun demo sama: Peserta2026!
-(kecuali akun panitia, lihat baris terakhir)
+Tujuan setelah masuk ditentukan PERAN akun, bukan pilihan di formulir:
+peserta -> /dashboard, panitia -> /admin/dashboard (Panel Panitia).
 
   Email                            Password        Yang akan terjadi
   -------------------------------  --------------  --------------------------
-  peserta@porsimaptar.test         Peserta2026!    Masuk berhasil
+  peserta@porsimaptar.test         Peserta2026!    Masuk berhasil ->
+                                                   dashboard peserta
+  panitia@porsimaptar.test         Panitia2026!    Masuk berhasil ->
+                                                   Panel Panitia
   belumverif@porsimaptar.test      Peserta2026!    Banner "Email belum
                                                    diverifikasi" + tombol
                                                    kirim ulang tautan
   ditangguhkan@porsimaptar.test    Peserta2026!    Banner "Akun sedang
                                                    ditangguhkan"
-  panitia@porsimaptar.test         Panitia2026!    Masuk berhasil (peran
-                                                   panitia, dashboard-nya
-                                                   belum dibuat)
 
-Tiga akun pertama juga muncul di panel "MODE PROTOTYPE" di bawah kartu
-masuk — klik "Isi form" supaya email dan password terisi otomatis.
+Keempat akun ini muncul di panel "MODE PROTOTYPE" di bawah kartu masuk —
+klik "Isi form" supaya email dan password terisi otomatis.
 
 --------------------------------------------------------------------------
 2. CARA MENCOBA TIAP KONDISI

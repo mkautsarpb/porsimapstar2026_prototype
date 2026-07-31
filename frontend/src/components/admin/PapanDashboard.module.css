@@ -1,0 +1,88 @@
+/* Lebar kontainer literal: dimensi kerangka layout, bukan skala spasi. */
+.papan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  max-width: 1192px;
+  margin: 0 auto;
+}
+
+/* Baris tab: tab di kiri, kendali pembaruan di kanan pada baris yang sama. */
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.keteranganTab {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+}
+
+.kontrol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.kontrolStatus {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+.tombol {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  height: 24px;
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tombol:hover {
+  background: var(--color-surface-3);
+}
+
+.tombol[aria-pressed='true'] {
+  border-color: var(--color-warn-border);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.gagalSegar {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-7);
+  line-height: 1.5;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-5);
+}
+
+/* Panel bisa menerima fokus dari tablist; fokusnya harus terlihat. */
+.panel:focus-visible {
+  outline: 2px solid var(--color-sky-500);
+  outline-offset: var(--adm-space-1);
+}

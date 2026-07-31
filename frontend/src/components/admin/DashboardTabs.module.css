@@ -1,0 +1,41 @@
+.tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-4);
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+/*
+ * Tab, bukan kartu pilihan: tinggi tetap, hanya label, penandanya garis bawah.
+ * Deskripsi dipindah ke satu kalimat di bawah baris tab supaya tinggi barisnya
+ * tidak bergantung panjang teks.
+ */
+.tab {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 var(--adm-space-1);
+  border-bottom: var(--adm-grafik-tebal-garis) solid transparent;
+  margin-bottom: -1px;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-6);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.tab[data-terpilih='true'] {
+  border-bottom-color: var(--color-navy-900);
+  color: var(--color-navy-900);
+  font-weight: 700;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--color-sky-500);
+  outline-offset: calc(var(--adm-space-1) * -1);
+}

@@ -1,0 +1,170 @@
+.grafik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+.kanvas {
+  display: flex;
+  gap: var(--adm-space-2);
+}
+
+.sumbuY {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 132px;
+  text-align: right;
+}
+
+.tickY {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.plot {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 132px;
+}
+
+/* Kisi dan sumbu: hairline solid, satu langkah dari surface. Tidak pernah putus-putus. */
+.kisi {
+  stroke: var(--adm-grafik-grid);
+  stroke-width: 1;
+}
+
+.penanda {
+  stroke: var(--color-text-disabled);
+  stroke-width: 1;
+}
+
+.penandaLabel {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 0 var(--adm-space-1);
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Penanda paling kanan ditarik ke dalam supaya tidak terpotong tepi kartu. */
+.penandaLabel:last-of-type {
+  transform: translateX(-100%);
+}
+
+.garis {
+  fill: none;
+  stroke-width: var(--adm-grafik-tebal-garis);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Cincin surface membuat marka tetap terbaca saat bertumpuk dengan garis lain. */
+.marka {
+  stroke: var(--color-surface-1);
+  stroke-width: var(--adm-grafik-celah);
+}
+
+.dikirim {
+  stroke: var(--adm-seri-dikirim);
+}
+
+.diverifikasi {
+  stroke: var(--adm-seri-diverifikasi);
+}
+
+.ditolak {
+  stroke: var(--adm-seri-ditolak);
+}
+
+.marka.dikirim {
+  fill: var(--adm-seri-dikirim);
+}
+
+.marka.diverifikasi {
+  fill: var(--adm-seri-diverifikasi);
+}
+
+.marka.ditolak {
+  fill: var(--adm-seri-ditolak);
+}
+
+.satuan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+}
+
+.sumbuX {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Hanya sebagian tanggal dilukis — 15 label berdempet lebih buruk daripada 6
+   label terbaca. Nilai lengkapnya tetap ada di tabel nilai. */
+.tickX {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendaItem {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+/* Swatch mengulang BENTUK penanda seri, bukan cuma warnanya. */
+.swatch {
+  width: 10px;
+  height: 10px;
+  background: currentcolor;
+}
+
+.swatch.dikirim {
+  color: var(--adm-seri-dikirim);
+}
+
+.swatch.diverifikasi {
+  color: var(--adm-seri-diverifikasi);
+}
+
+.swatch.ditolak {
+  color: var(--adm-seri-ditolak);
+}
+
+.swatch[data-bentuk='bulat'] {
+  border-radius: 50%;
+}
+
+.swatch[data-bentuk='belah'] {
+  transform: rotate(45deg);
+}

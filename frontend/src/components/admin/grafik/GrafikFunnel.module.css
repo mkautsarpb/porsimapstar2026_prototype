@@ -1,0 +1,96 @@
+.grafik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+.daftar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Angka konversi milik CELAH antar tahap, jadi ditulis di celahnya. */
+.konversi {
+  display: flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  margin: 0;
+  padding: var(--adm-space-1) 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+.panah {
+  width: 1px;
+  height: 12px;
+  margin-left: var(--adm-space-2);
+  background: var(--adm-grafik-grid);
+}
+
+.tahap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+}
+
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.label {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.nilai {
+  display: inline-flex;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.porsi {
+  color: var(--color-text-meta);
+  font-weight: 600;
+}
+
+.rel {
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--adm-grafik-kosong);
+}
+
+.batang {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--adm-grafik-mark);
+}
+
+.belum {
+  margin: 0;
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border: 1px dashed var(--adm-grafik-grid);
+  border-radius: var(--radius-md);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+}

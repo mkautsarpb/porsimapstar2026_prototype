@@ -1,0 +1,52 @@
+.layar {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--adm-space-5);
+  background: var(--color-surface-2);
+}
+
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  align-items: flex-start;
+  max-width: 440px;
+  padding: var(--adm-space-5);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+  box-shadow: var(--shadow-card);
+}
+
+.ikon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 800;
+}
+
+.teks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-6);
+  line-height: 1.6;
+}
+
+.tautan {
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-6);
+  font-weight: 600;
+}

@@ -1,0 +1,108 @@
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-5);
+}
+
+.kuota {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kuotaBaris {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--adm-space-1) var(--adm-space-2);
+  align-items: center;
+  padding-bottom: var(--adm-space-2);
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.kuotaBaris:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.kuotaNama {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+}
+
+.kuotaIsi {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  text-align: right;
+}
+
+.kuotaMeter {
+  grid-column: 1 / -1;
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+}
+
+.kuotaMeterIsi {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-sky-500);
+}
+
+.kuotaMeterIsi[data-keadaan='hampir-penuh'] {
+  background: var(--color-gold-500);
+}
+
+.kuotaMeterIsi[data-keadaan='daftar-tunggu'] {
+  background: var(--color-danger-strong);
+}
+
+.kuotaPersen {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+}
+
+.kuotaStatus {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 var(--adm-space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  justify-self: end;
+}
+
+.kuotaStatus[data-keadaan='hampir-penuh'] {
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.kuotaStatus[data-keadaan='daftar-tunggu'] {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}
+
+@media (min-width: 720px) {
+  /* Satu lomba = satu baris utuh: nama, isi, meter, persen, status. */
+  .kuotaBaris {
+    grid-template-columns: 160px 150px 1fr 48px 110px;
+  }
+
+  .kuotaMeter {
+    grid-column: auto;
+  }
+
+  .kuotaIsi {
+    text-align: left;
+  }
+}
