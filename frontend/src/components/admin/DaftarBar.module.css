@@ -1,0 +1,53 @@
+.daftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baris {
+  display: grid;
+  grid-template-columns: minmax(96px, 1.2fr) minmax(60px, 2fr) auto;
+  gap: var(--adm-space-1) var(--adm-space-3);
+  align-items: center;
+}
+
+.nama {
+  overflow: hidden;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rel {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-meter-track);
+}
+
+.isi {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--adm-grafik-mark);
+}
+
+.nilai {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.keterangan {
+  grid-column: 1 / -1;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.45;
+}

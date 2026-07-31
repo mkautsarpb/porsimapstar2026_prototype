@@ -1,0 +1,133 @@
+.kartu {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.kartu[data-keadaan='konflik'] {
+  border-color: var(--color-danger-border);
+}
+
+.kartu[data-keadaan='berubah'] {
+  border-color: var(--color-warn-border);
+}
+
+.tanggal {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.tanggalAngka {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tanggalBulan {
+  color: var(--color-gold-500);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.tanggalSelesai {
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.tanggalSelesai .tanggalBulan {
+  color: var(--color-text-meta);
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.judulBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.nama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.subjudul {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.waktu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+}
+
+.jamLama {
+  color: var(--color-text-meta);
+}
+
+.jam {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.venue {
+  color: var(--color-text-meta);
+}
+
+.catatan {
+  max-width: 74ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.blok {
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+.tautan {
+  align-self: flex-start;
+  color: var(--color-link-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .kartu {
+    gap: 12px;
+  }
+
+  .tanggal {
+    width: 48px;
+    height: 48px;
+  }
+}

@@ -1,0 +1,38 @@
+.pengalih {
+  display: flex;
+  gap: var(--adm-space-1);
+  padding: 2px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+}
+
+.pengalihItem {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pengalihItem:hover {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.pengalihItem[data-aktif='true'] {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.oleh {
+  display: block;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 600;
+}

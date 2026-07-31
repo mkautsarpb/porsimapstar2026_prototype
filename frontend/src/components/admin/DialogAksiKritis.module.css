@@ -1,0 +1,85 @@
+.dampak {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.dampakJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-5);
+  font-weight: 700;
+}
+
+.catatanDampak {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.6;
+}
+
+.catatanDampak p {
+  margin: 0 0 var(--adm-space-1);
+}
+
+.catatanDampak p:last-child {
+  margin-bottom: 0;
+}
+
+.alasan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+}
+
+.grup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.kakiIsian {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.pernyataan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kaki {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding-top: var(--adm-space-3);
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.tombolBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  justify-content: flex-end;
+}
+
+.syarat {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.5;
+  text-align: right;
+}

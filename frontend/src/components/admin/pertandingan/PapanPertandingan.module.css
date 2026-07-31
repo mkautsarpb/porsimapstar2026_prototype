@@ -1,0 +1,9 @@
+.peserta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1);
+  align-items: baseline;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 600;
+}

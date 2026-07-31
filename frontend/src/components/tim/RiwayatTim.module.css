@@ -1,0 +1,83 @@
+.linimasa {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.penanda {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  width: 12px;
+}
+
+.titik {
+  display: block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: var(--radius-pill);
+  background: var(--color-text-disabled);
+}
+
+.item[data-nada='ok'] .titik {
+  background: var(--color-success-fg);
+}
+
+.item[data-nada='warn'] .titik {
+  background: var(--color-warn-strong);
+}
+
+.item[data-nada='danger'] .titik {
+  background: var(--color-danger-strong);
+}
+
+.item[data-nada='info'] .titik {
+  background: var(--color-sky-500);
+}
+
+.garis {
+  display: block;
+  flex: 1;
+  width: 1px;
+  background: var(--color-border-blue);
+}
+
+.item:last-child .garis {
+  display: none;
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 18px;
+}
+
+.item:last-child .isi {
+  padding-bottom: 0;
+}
+
+.teks {
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.meta {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.5;
+}

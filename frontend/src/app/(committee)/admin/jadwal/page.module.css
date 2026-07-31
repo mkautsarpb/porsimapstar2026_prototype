@@ -1,0 +1,132 @@
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-3) var(--adm-space-5);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.kepalaTeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+}
+
+.kepalaAksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.bilah {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.pengalih {
+  display: flex;
+  gap: var(--adm-space-1);
+  padding: 2px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+}
+
+.pengalihItem {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pengalihItem:hover {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.pengalihItem[data-aktif='true'] {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.panelBentrok {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.bentrokKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bentrokDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bentrok {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-danger-bg);
+}
+
+.bentrokBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.tumpang {
+  color: var(--color-danger-strong);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.bentrokSubjek {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}

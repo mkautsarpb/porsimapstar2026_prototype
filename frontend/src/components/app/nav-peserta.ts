@@ -28,26 +28,47 @@ export const NAV_MOBILE: readonly ItemNav[] = [
 export interface ItemSheet extends ItemNav {
   readonly keterangan: string;
   readonly badge?: string;
+  /** Jumlah tugas tertunda; dijumlahkan ke lencana ikon "Lainnya" di bottom nav. */
+  readonly jumlah?: number;
 }
 
-/** Isi sheet "Lainnya" di mobile — jalur ke menu yang tidak muat di bottom nav. */
+/**
+ * Isi sheet "Lainnya" di mobile — jalur ke menu yang tidak muat di bottom nav.
+ *
+ * Sidebar desktop memuat tujuh menu, bottom nav hanya menampung empat. Empat
+ * yang paling sering dipakai saat lomba tetap di bottom nav; sisanya pindah ke
+ * sheet ini, dengan lencana yang naik ke ikon "Lainnya" supaya tidak ada tugas
+ * yang tersembunyi di balik satu ketukan.
+ */
 export const MENU_LAINNYA: readonly ItemSheet[] = [
   {
     href: '/dokumen',
     label: 'Dokumen',
     ikon: 'berkas',
-    keterangan: 'Berkas persyaratan dan riwayat unggahan',
-    badge: '1 revisi',
+    keterangan: '1 perlu diperbaiki, 1 belum diunggah',
+    badge: '2 tugas',
+    jumlah: 2,
   },
   { href: '/profil', label: 'Profil', ikon: 'orang', keterangan: 'Data diri, pendidikan, dan kontak' },
+  {
+    href: '/undangan-tim',
+    label: 'Kotak undangan',
+    ikon: 'amplop',
+    keterangan: 'Undangan tim yang menunggu jawabanmu',
+    badge: '1 menunggu',
+    jumlah: 1,
+  },
   {
     href: '/bantuan',
     label: 'Bantuan',
     ikon: 'bantuan',
-    keterangan: 'PIC cabang, live chat, pertanyaan umum',
+    keterangan: 'Kontak PIC, lapor masalah, FAQ',
   },
   { href: '/sertifikat', label: 'Sertifikat', ikon: 'piagam', keterangan: 'Terbit setelah kompetisi selesai' },
 ];
+
+/** Total tugas tertunda di balik menu "Lainnya". */
+export const JUMLAH_LAINNYA = MENU_LAINNYA.reduce((n, m) => n + (m.jumlah ?? 0), 0);
 
 /** Judul yang tampil di topbar untuk sebuah path. */
 export function judulHalaman(pathname: string): string {

@@ -1,0 +1,44 @@
+.grup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.duaIsian {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--adm-space-3);
+}
+
+@media (min-width: 720px) {
+  .duaIsian {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.nilaiStatis {
+  display: flex;
+  align-items: center;
+  height: var(--adm-h-control);
+  margin: 0;
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 600;
+}
+
+.kaki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--adm-space-3);
+  border-top: 1px solid var(--color-border-soft);
+}

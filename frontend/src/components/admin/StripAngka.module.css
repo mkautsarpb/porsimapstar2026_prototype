@@ -1,0 +1,62 @@
+.strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--adm-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  padding: var(--adm-space-3) var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.nilai {
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-2);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.label {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.45;
+}
+
+/* Nada memakai garis tepi kiri, bukan latar penuh: strip berdiri di atas tabel
+   yang barisnya juga bisa berwarna, dan dua bidang warna besar saling bersaing. */
+.item[data-nada='warn'] {
+  border-color: var(--color-warn-border);
+  box-shadow: inset 3px 0 0 var(--color-warn-strong);
+}
+
+.item[data-nada='danger'] {
+  border-color: var(--color-danger-border);
+  box-shadow: inset 3px 0 0 var(--color-danger-strong);
+}
+
+.item[data-nada='ok'] {
+  border-color: var(--color-success-border);
+  box-shadow: inset 3px 0 0 var(--color-success-fg);
+}
+
+.item[data-nada='info'] {
+  border-color: var(--color-info-border);
+  box-shadow: inset 3px 0 0 var(--color-sky-500);
+}
+
+.item[data-nada='warn'] .nilai {
+  color: var(--color-warn-fg);
+}
+
+.item[data-nada='danger'] .nilai {
+  color: var(--color-danger-strong);
+}

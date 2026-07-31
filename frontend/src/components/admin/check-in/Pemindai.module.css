@@ -1,0 +1,316 @@
+/* Target utama: mobile portrait 390×844, satu tangan, di bawah matahari.
+   Perangkat digambar sebagai kolom sempit yang tetap sempit di layar lebar —
+   melebarkannya di desktop akan menyembunyikan bahwa ini layar ponsel. */
+.perangkat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 390px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.kepala {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border-bottom: 1px solid var(--color-border-soft);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.kepalaBaris {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kepalaJudul {
+  font-family: var(--font-display);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.kepalaJam {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  color: var(--color-text-on-dark);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.titik {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-danger-strong);
+}
+
+.titik[data-daring='true'] {
+  background: var(--color-status-open-fg-dark);
+}
+
+.kepalaCabang {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--color-white);
+  font-size: var(--adm-text-6);
+}
+
+.kepalaCabang .eyebrow,
+.kepalaCabang span:first-child {
+  color: var(--color-text-on-dark-faint);
+}
+
+.kepala .tombol,
+.kepala button {
+  border-color: var(--color-border-on-dark);
+  background: transparent;
+  color: var(--color-white);
+}
+
+.layar {
+  display: grid;
+  place-items: center;
+  min-height: 340px;
+  padding: var(--adm-space-4);
+  background: var(--color-surface-2);
+}
+
+/* Selama menunggu, layar TIDAK memakai warna hasil apa pun. */
+.layar[data-keadaan='menunggu'] {
+  background: var(--color-surface-3);
+}
+
+.layar[data-keadaan='berhasil'] {
+  background: var(--color-success-bg);
+}
+
+.layar[data-keadaan='duplikat'] {
+  background: var(--color-warn-bg);
+}
+
+.layar[data-keadaan='ditolak'] {
+  background: var(--color-danger-bg);
+}
+
+.layar[data-keadaan='gagal'] {
+  background: var(--color-surface-muted);
+}
+
+.bingkai {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
+  padding: var(--adm-space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+}
+
+.sudutKiriAtas,
+.sudutKananAtas,
+.sudutKiriBawah,
+.sudutKananBawah {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--color-navy-900);
+}
+
+.sudutKiriAtas {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: var(--radius-md);
+}
+
+.sudutKananAtas {
+  top: 0;
+  right: 0;
+  border-bottom: none;
+  border-left: none;
+  border-top-right-radius: var(--radius-md);
+}
+
+.sudutKiriBawah {
+  bottom: 0;
+  left: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.sudutKananBawah {
+  right: 0;
+  bottom: 0;
+  border-top: none;
+  border-left: none;
+  border-bottom-right-radius: var(--radius-md);
+}
+
+.bingkaiTeks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-align: center;
+}
+
+.hasil {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.hasilIkon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+}
+
+.hasilKata {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-2);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.hasilJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.hasilRincian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  width: 100%;
+  margin: 0;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  text-align: left;
+}
+
+.hasilRincian > div {
+  display: flex;
+  gap: var(--adm-space-2);
+  justify-content: space-between;
+}
+
+.hasilRincian dt {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+}
+
+.hasilRincian dd {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+}
+
+.hasilCatatan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.55;
+  text-align: left;
+}
+
+.hasilRef {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-8);
+}
+
+.kodeDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  margin: 0;
+  padding: var(--adm-space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  list-style: none;
+  text-align: left;
+}
+
+.kaki {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.pengumuman {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.5;
+}
+
+.hitungan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1);
+}
+
+.hitunganItem {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+}
+
+.hitunganItem[data-nada='ok'] {
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+}
+
+.hitunganItem[data-nada='warn'] {
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.hitunganItem[data-nada='danger'] {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}
+
+.tombolPindai {
+  width: 100%;
+  height: 44px;
+}

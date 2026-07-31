@@ -44,13 +44,18 @@ export const AKSI_PERLU_TINDAKAN: readonly AksiPerluTindakan[] = [
 ];
 
 export const KELENGKAPAN: Kelengkapan = {
-  persen: 80,
+  persen: 70,
   catatan:
-    'Tersisa 1 tahap. Selesaikan sebelum 5 Agustus agar pendaftaranmu masuk antrean review.',
+    'Tersisa 2 tahap. Selesaikan sebelum 5 Agustus agar pendaftaranmu masuk antrean review.',
   langkah: [
     { label: 'Data diri', status: 'Lengkap', keadaan: 'ok' },
     { label: 'Data pendidikan', status: 'Lengkap', keadaan: 'ok' },
-    { label: 'Dokumen persyaratan', status: '3 dari 3 diunggah', keadaan: 'ok' },
+    {
+      label: 'Dokumen persyaratan',
+      status: '1 perlu diperbaiki · 1 belum diunggah',
+      keadaan: 'warn',
+      href: '/dokumen',
+    },
     { label: 'Pemeriksaan eligibility', status: 'Usia 20 — memenuhi', keadaan: 'ok' },
     { label: 'Review & kirim', status: 'Belum dikirim', keadaan: 'warn', href: '/pendaftaran' },
   ],

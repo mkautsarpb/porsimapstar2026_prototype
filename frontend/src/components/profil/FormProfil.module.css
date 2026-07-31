@@ -1,0 +1,138 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.autosave {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  align-self: flex-start;
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.label {
+  padding: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.wajib {
+  color: var(--color-danger-strong);
+}
+
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-size: 14px;
+}
+
+.bantuan {
+  max-width: 78ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.pilihan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opsi {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.opsi[data-terpilih='true'] {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.radio {
+  accent-color: var(--color-gold-500);
+}
+
+/* ---- Blok NIK ---- */
+
+.nik {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.nikJudul {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nikNilai {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+}
+
+.nikPenjelasan {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--color-navy-900);
+  font-size: 13px;
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}

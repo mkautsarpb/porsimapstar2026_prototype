@@ -3,13 +3,19 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useId, useState } from 'react';
+import { PROFIL } from '@/data/peserta';
 import { Ikon } from './Ikon';
-import { MENU_LAINNYA, NAV_MOBILE, navAktif } from './nav-peserta';
+import { JUMLAH_LAINNYA, MENU_LAINNYA, NAV_MOBILE, navAktif } from './nav-peserta';
 import styles from './BottomNav.module.css';
 
 /**
  * Navigasi bawah untuk mobile: empat tujuan utama plus "Lainnya" yang membuka
- * sheet berisi menu sisanya (Dokumen, Profil, Bantuan, Sertifikat).
+ * sheet berisi menu sisanya.
+ *
+ * Sheet dibuka dengan kartu identitas peserta — itu jalur ke Profil sekaligus
+ * pengingat akun mana yang sedang dipakai — dan ditutup dengan Keluar yang
+ * sengaja dipisahkan dan diberi warna berbeda. Jumlah tugas di balik menu ini
+ * dinaikkan ke lencana ikon "Lainnya" supaya tidak ada tugas yang tersembunyi.
  */
 export function BottomNav() {
   const pathname = usePathname();
@@ -42,6 +48,22 @@ export function BottomNav() {
           />
           <div id={sheetId} role="dialog" aria-label="Menu lainnya" className={styles.sheet}>
             <span aria-hidden="true" className={styles.pegangan} />
+
+            <Link href="/profil" className={styles.identitas}>
+              <span aria-hidden="true" className={styles.avatar}>
+                {PROFIL.inisial}
+              </span>
+              <span className={styles.sheetTeks}>
+                <span className={styles.sheetLabel}>{PROFIL.nama}</span>
+                <span className={styles.sheetKet}>
+                  {PROFIL.nomorPeserta} · Politeknik Negeri Semarang
+                </span>
+              </span>
+              <span aria-hidden="true" className={styles.sheetPanah}>
+                <Ikon nama="panah" ukuran={16} tebal={2.4} />
+              </span>
+            </Link>
+
             <ul className={styles.sheetDaftar}>
               {MENU_LAINNYA.map((m) => (
                 <li key={m.href}>
@@ -63,6 +85,17 @@ export function BottomNav() {
                 </li>
               ))}
             </ul>
+
+            {/* TODO(api-contract): POST /api/v1/auth/logout — sesi dihapus server,
+                cookie HttpOnly dibersihkan di sana, bukan di client (§6). */}
+            <Link href="/masuk" className={styles.keluar}>
+              <span aria-hidden="true" className={styles.keluarIkon}>
+                <Ikon nama="panah" ukuran={18} tebal={2} />
+              </span>
+              Keluar
+            </Link>
+
+            <p className={styles.versi}>PORSIMAPTAR XXVI 2026 · versi aplikasi 2.4.0</p>
           </div>
         </>
       ) : null}
@@ -93,8 +126,20 @@ export function BottomNav() {
           onClick={() => setBuka((v) => !v)}
           className={styles.item}
         >
-          <Ikon nama="titik" ukuran={20} />
-          <span className={styles.label}>Lainnya</span>
+          <span className={styles.ikonLencana}>
+            <Ikon nama="titik" ukuran={20} />
+            {JUMLAH_LAINNYA > 0 ? (
+              <span aria-hidden="true" className={styles.lencana}>
+                {JUMLAH_LAINNYA}
+              </span>
+            ) : null}
+          </span>
+          <span className={styles.label}>
+            Lainnya
+            {JUMLAH_LAINNYA > 0 ? (
+              <span className={styles.sr}> · {JUMLAH_LAINNYA} tugas menunggu</span>
+            ) : null}
+          </span>
         </button>
       </nav>
     </>

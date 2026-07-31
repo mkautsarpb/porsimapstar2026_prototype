@@ -1,0 +1,150 @@
+.remah {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kepala {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.lambang {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-2xl);
+  background: var(--color-navy-900);
+  color: var(--color-gold-500);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.identitas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.judulBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.6vw, 24px);
+  font-weight: 700;
+}
+
+.meta {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rincian {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 16px 24px;
+  margin: 0;
+}
+
+.rincian dt {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rincian dd {
+  margin: 5px 0 0;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.konsekuensi {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.konsekuensiItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tanda {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: var(--radius-pill);
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.penjelasan {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.penjelasanTeks {
+  max-width: 72ch;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.aksiTertutup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.keputusan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.keputusan > p {
+  flex: 1;
+  min-width: min(100%, 260px);
+}
+
+@media (max-width: 640px) {
+  .kepala {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,91 @@
+.lapis {
+  position: fixed;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--adm-space-4);
+  inset: 0;
+}
+
+.tirai {
+  position: absolute;
+  border: none;
+  background: rgba(12, 31, 69, 0.55);
+  inset: 0;
+  cursor: default;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - var(--adm-space-7));
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  box-shadow: var(--shadow-modal);
+}
+
+.panel[data-lebar='lebar'] {
+  max-width: 760px;
+}
+
+.kepala {
+  display: flex;
+  gap: var(--adm-space-3);
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--adm-space-4);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.kepalaTeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.sub {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.5;
+}
+
+.tutup {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--adm-h-chip);
+  height: var(--adm-h-chip);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  cursor: pointer;
+}
+
+.tutup:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+}
+
+.isi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-4);
+  overflow-y: auto;
+  padding: var(--adm-space-4);
+}

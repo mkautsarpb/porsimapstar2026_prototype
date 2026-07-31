@@ -1,0 +1,68 @@
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-3) var(--adm-space-5);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.kepalaTeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+}
+
+.kepalaAksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.versiDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.versi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-soft);
+  border-left: 3px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-5);
+}
+
+.versi[data-keadaan='disunting'] {
+  border-left-color: var(--color-sky-500);
+  background: var(--color-info-bg);
+}
+
+.versi[data-keadaan='tayang'] {
+  border-left-color: var(--color-success-fg);
+  background: var(--color-success-bg);
+}
+
+.versiLabel {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}

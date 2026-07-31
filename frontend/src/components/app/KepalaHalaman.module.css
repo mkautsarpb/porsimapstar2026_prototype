@@ -1,0 +1,60 @@
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.kiri {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: min(100%, 280px);
+}
+
+.kembali {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  align-self: flex-start;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kembali:hover {
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.kembaliIkon {
+  display: inline-grid;
+  place-items: center;
+  transform: rotate(180deg);
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.ringkasan {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}

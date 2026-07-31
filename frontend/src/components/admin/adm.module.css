@@ -1,0 +1,493 @@
+/*
+ * Primitif bersama Panel Panitia — padanan `components/app/ui.module.css` untuk
+ * area admin (CLAUDE.md aturan 3: berkas primitif bersama memang konvensi repo).
+ *
+ * Dipisah dari `ui.module.css` karena skalanya berbeda, bukan karena gayanya
+ * berbeda: area admin memakai skala beku `--adm-text-*` / `--adm-space-*` dan
+ * radius 9/12/14/pill. Menyalin `ui.module.css` lalu mengecilkan angkanya di
+ * tiap modul akan menaruh nilai di luar skala kembali ke area admin.
+ */
+
+/* ---- Kerangka layar ---- */
+
+.halaman {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-5);
+  max-width: 1240px;
+}
+
+.bagian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+}
+
+.bagianKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.judulBagian {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+/* ---- Kartu ---- */
+
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.kartuKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.kartuJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-5);
+  font-weight: 700;
+}
+
+/* ---- Teks ---- */
+
+.eyebrow {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.teks {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-6);
+  line-height: 1.6;
+}
+
+.meta {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  line-height: 1.5;
+}
+
+.catatan {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--adm-text-8);
+  line-height: 1.55;
+}
+
+.kuat {
+  color: var(--color-navy-900);
+  font-weight: 700;
+}
+
+/* Nomor referensi, ID termasking, kode alasan — dibaca digit per digit. */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-7);
+  letter-spacing: 0.02em;
+}
+
+/* ---- Tombol: tinggi mengikuti kerapatan compact ---- */
+
+.tombol {
+  display: inline-flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: center;
+  height: var(--adm-h-control);
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tombol:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.tombol:disabled,
+.tombol[aria-disabled='true'] {
+  border-color: var(--color-border);
+  background: var(--color-surface-muted);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.tombolUtama {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.tombolUtama:hover {
+  background: var(--color-navy-700);
+  color: var(--color-white);
+}
+
+.tombolUtama:disabled,
+.tombolUtama[aria-disabled='true'] {
+  border-color: var(--color-border);
+  background: var(--color-surface-muted);
+  color: var(--color-text-disabled);
+}
+
+.tombolBahaya {
+  border-color: var(--color-danger-strong);
+  background: var(--color-danger-strong);
+  color: var(--color-white);
+}
+
+.tombolBahaya:hover {
+  background: var(--color-danger-fg);
+  color: var(--color-white);
+}
+
+.tombolBahaya:disabled,
+.tombolBahaya[aria-disabled='true'] {
+  border-color: var(--color-border);
+  background: var(--color-surface-muted);
+  color: var(--color-text-disabled);
+}
+
+.tombolKecil {
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.barisAksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.barisAksiKanan {
+  justify-content: flex-end;
+}
+
+/* ---- Tautan ---- */
+
+.tautan {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tautan:hover {
+  text-decoration: underline;
+}
+
+/* ---- Panel penjelasan: info · peringatan · bahaya · sukses ---- */
+
+.panel {
+  display: flex;
+  gap: var(--adm-space-3);
+  align-items: flex-start;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-info-bg);
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-6);
+  line-height: 1.6;
+}
+
+.panelIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-link-soft);
+}
+
+.panelTeks {
+  margin: 0;
+}
+
+.panelPeringatan {
+  border-color: var(--color-warn-border);
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.panelPeringatan .panelIkon {
+  color: var(--color-warn-strong);
+}
+
+.panelBahaya {
+  border-color: var(--color-danger-border);
+  background: var(--color-danger-bg);
+  color: var(--color-danger-fg);
+}
+
+.panelBahaya .panelIkon {
+  color: var(--color-danger-strong);
+}
+
+.panelSukses {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+}
+
+.panelSukses .panelIkon {
+  color: var(--color-success-fg);
+}
+
+/* Panel netral: catatan aturan yang bukan peringatan, mis. "NIK tak diekspor". */
+.panelNetral {
+  border-color: var(--color-border-blue);
+  background: var(--color-surface-2);
+  color: var(--color-text-meta);
+}
+
+.panelNetral .panelIkon {
+  color: var(--color-text-muted);
+}
+
+/* ---- Daftar label → nilai (ringkasan dampak, metadata berkas) ---- */
+
+.rincian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  margin: 0;
+}
+
+.rincianBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  justify-content: space-between;
+  padding: var(--adm-space-2) 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.rincianBaris:last-child {
+  border-bottom: none;
+}
+
+.rincianLabel {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+}
+
+.rincianNilai {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+  text-align: right;
+}
+
+/* ---- Keadaan kosong ---- */
+
+.kosong {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  align-items: flex-start;
+  padding: var(--adm-space-5);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.kosongIkon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.kosongJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.kosongTeks {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-6);
+  line-height: 1.6;
+}
+
+/* ---- Formulir ---- */
+
+.ladang {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+}
+
+.ladangLabel {
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+}
+
+.ladangWajib {
+  color: var(--color-text-meta);
+  font-weight: 500;
+}
+
+.isian,
+.pilihan,
+.areaTeks {
+  width: 100%;
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: var(--adm-text-6);
+}
+
+.isian,
+.pilihan {
+  height: var(--adm-h-control);
+}
+
+.areaTeks {
+  padding: var(--adm-space-2) var(--adm-space-3);
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.ladangBantuan {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.5;
+}
+
+.ladangGalat {
+  color: var(--color-danger-strong);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+/* Pilihan radio/checkbox bergaya baris — target sentuh penuh lebar. */
+.opsi {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: flex-start;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.opsi:hover {
+  background: var(--color-surface-2);
+}
+
+.opsi:has(input:checked) {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+}
+
+.opsiDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+/* ---- Meter ---- */
+
+.meter {
+  display: block;
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-meter-track);
+}
+
+.meterIsi {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-meter-fill);
+}
+
+.meterIsi[data-nada='warn'] {
+  background: var(--color-warn-strong);
+}
+
+.meterIsi[data-nada='danger'] {
+  background: var(--color-danger-strong);
+}
+
+/* ---- Kisi dua kolom: isi utama + lajur samping ---- */
+
+.duaLajur {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--adm-space-4);
+  align-items: start;
+}
+
+@media (min-width: 1100px) {
+  .duaLajur {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+
+  .duaLajurLebar {
+    grid-template-columns: minmax(0, 1fr) 420px;
+  }
+
+  .duaLajurSeimbang {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

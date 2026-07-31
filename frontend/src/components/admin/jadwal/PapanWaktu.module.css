@@ -1,0 +1,141 @@
+.bungkus {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.papan {
+  display: grid;
+  overflow-x: auto;
+  min-width: 0;
+  padding-bottom: var(--adm-space-2);
+}
+
+.sudut,
+.kepalaVenue {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: var(--adm-space-2);
+  border-bottom: 1px solid var(--color-border-blue);
+  background: var(--color-surface-2);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.jam {
+  padding-right: var(--adm-space-2);
+  color: var(--color-text-meta);
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-8);
+  text-align: right;
+  transform: translateY(-6px);
+}
+
+.garis {
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.garis[data-tebal='true'] {
+  border-top-color: var(--color-border-blue);
+}
+
+.blok {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  margin: 1px 3px;
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border: 1px solid var(--color-info-border);
+  border-left: 3px solid var(--color-sky-500);
+  border-radius: var(--radius-md);
+  background: var(--color-info-bg);
+}
+
+/* Bentrok ditandai pola garis + kata, bukan warna saja (agents.md §7). */
+.blok[data-bentrok='true'] {
+  border-color: var(--color-danger-border);
+  border-left-color: var(--color-danger-strong);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-danger-bg),
+    var(--color-danger-bg) 6px,
+    var(--color-surface-1) 6px,
+    var(--color-surface-1) 8px
+  );
+}
+
+.blokJudul {
+  margin: 0;
+  overflow: hidden;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+}
+
+.blokMeta {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.3;
+}
+
+.blokBentrok {
+  margin: 0;
+  color: var(--color-danger-strong);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-3);
+  padding-top: var(--adm-space-2);
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.legendaItem {
+  display: inline-flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+.contohAman,
+.contohBentrok {
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+  border: 1px solid var(--color-info-border);
+  border-left: 3px solid var(--color-sky-500);
+  border-radius: 3px;
+  background: var(--color-info-bg);
+}
+
+.contohBentrok {
+  border-color: var(--color-danger-border);
+  border-left-color: var(--color-danger-strong);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-danger-bg),
+    var(--color-danger-bg) 4px,
+    var(--color-surface-1) 4px,
+    var(--color-surface-1) 6px
+  );
+}

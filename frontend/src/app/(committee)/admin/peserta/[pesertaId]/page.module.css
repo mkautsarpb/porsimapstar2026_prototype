@@ -1,0 +1,120 @@
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-3) var(--adm-space-5);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.identitas {
+  display: flex;
+  gap: var(--adm-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-size: var(--adm-text-5);
+  font-weight: 700;
+}
+
+.identitasTeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.namaBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.nama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+}
+
+.berkasDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.berkas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-5);
+}
+
+.berkasTeks {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.berkasJenis {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.jejak {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jejakItem {
+  display: flex;
+  gap: var(--adm-space-3);
+  align-items: flex-start;
+}
+
+.jejakTitik {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.jejakJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+  line-height: 1.45;
+}

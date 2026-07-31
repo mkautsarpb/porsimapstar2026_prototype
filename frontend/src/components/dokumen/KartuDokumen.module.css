@@ -1,0 +1,194 @@
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: flex-start;
+}
+
+.ikon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.ikon[data-nada='ok'] {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+}
+
+.ikon[data-nada='danger'] {
+  border-color: var(--color-danger-border);
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}
+
+.ikon[data-nada='info'] {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.identitas {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.nama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.keterangan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.berkas {
+  margin: 2px 0 0;
+  color: var(--color-navy-900);
+  font-size: 12px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.batas {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.arti {
+  max-width: 78ch;
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.catatan {
+  align-items: flex-start;
+}
+
+.catatanIsi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.catatanTeks {
+  max-width: 78ch;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ---- Riwayat versi ---- */
+
+.riwayat {
+  border-top: 1px solid var(--color-border-blue);
+  padding-top: 12px;
+}
+
+.riwayatRingkas {
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tabel {
+  width: 100%;
+  margin-top: 12px;
+  border-collapse: collapse;
+}
+
+.tabel th {
+  padding: 0 12px 8px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tabel td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+  color: var(--color-navy-900);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+@media (max-width: 720px) {
+  .tabel,
+  .tabel tbody,
+  .tabel tr,
+  .tabel td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabel thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .tabel tr {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid var(--color-border-blue);
+    border-radius: var(--radius-md);
+  }
+
+  .tabel td {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: none;
+  }
+
+  .tabel td::before {
+    content: attr(data-label);
+    color: var(--color-text-meta);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}

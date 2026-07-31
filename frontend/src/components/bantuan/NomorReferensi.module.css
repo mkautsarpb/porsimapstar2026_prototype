@@ -1,0 +1,44 @@
+.kartu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: min(100%, 240px);
+}
+
+.isi > span:first-child {
+  color: var(--color-gold-500);
+}
+
+.nomor {
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.08em;
+}
+
+.keterangan {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--color-text-on-dark-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

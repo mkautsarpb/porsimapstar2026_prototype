@@ -1,0 +1,78 @@
+.blok {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meter {
+  display: flex;
+  overflow: hidden;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+}
+
+.isiBergabung {
+  display: block;
+  height: 100%;
+  background: var(--color-navy-900);
+}
+
+/* Arsir, bukan warna solid: undangan menunggu belum jadi anggota. */
+.isiMenunggu {
+  display: block;
+  height: 100%;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-gold-500),
+    var(--color-gold-500) 4px,
+    var(--color-gold-300) 4px,
+    var(--color-gold-300) 8px
+  );
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.titik {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+}
+
+.titikBergabung {
+  background: var(--color-navy-900);
+}
+
+.titikMenunggu {
+  background: var(--color-gold-500);
+}
+
+.titikBelum {
+  border: 1px dashed var(--color-text-disabled);
+  background: var(--color-surface-3);
+}
+
+.catatan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.55;
+}

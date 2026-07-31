@@ -1,0 +1,116 @@
+.bilah {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: flex-end;
+  min-width: 0;
+}
+
+.kolomDaftar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: flex-end;
+}
+
+.kolom {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.judul {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.select {
+  height: var(--adm-h-chip);
+  max-width: 220px;
+  padding: 0 var(--adm-space-2);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.kolom[data-diubah='true'] .select {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+  color: var(--color-link-soft);
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.terapkan {
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-navy-900);
+  border-radius: var(--radius-md);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.terapkan:hover {
+  background: var(--color-navy-700);
+}
+
+.status {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reset {
+  color: var(--color-link-soft);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reset:hover {
+  text-decoration: underline;
+}
+
+.anak {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.catatan {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.55;
+}

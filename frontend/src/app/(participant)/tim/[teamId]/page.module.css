@@ -1,0 +1,263 @@
+.remah {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kepala {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px 16px;
+  align-items: start;
+}
+
+.lambang {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-2xl);
+  background: var(--color-navy-900);
+  color: var(--color-gold-500);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.identitas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.judulBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 26px);
+  font-weight: 700;
+}
+
+.peran {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.meta {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.aksiKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  grid-column: 1 / -1;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border-blue);
+}
+
+/* ---- Ringkasan roster ---- */
+
+.roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.rosterIsi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-width: min(100%, 320px);
+}
+
+.ringkasan {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.kunci {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.kunciWaktu {
+  color: var(--color-navy-900);
+  font-size: 14px;
+}
+
+.kunciSisa {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kunciTeks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kunciParagraf {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ---- Tugas anggota ---- */
+
+.tugas {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.tugasItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.tugasItem:last-child {
+  border-bottom: none;
+}
+
+.tugasIsi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.tugasJudul {
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tugasKet {
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ---- Keanggotaan & agenda ---- */
+
+.bergabung {
+  margin: 0 0 8px;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.agendaItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.tanggal {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.tanggalAngka {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tanggalBulan {
+  color: var(--color-gold-500);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.agendaIsi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.agendaNama {
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.agendaDetail {
+  color: var(--color-text-meta);
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .kepala {
+    grid-template-columns: 1fr;
+  }
+
+  .kunci {
+    width: 100%;
+  }
+}

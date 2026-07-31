@@ -1,0 +1,88 @@
+.area {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 16px;
+  border: 1px dashed var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.ikon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-1);
+  color: var(--color-link-soft);
+}
+
+.teks {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.label {
+  color: var(--color-navy-900);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ketentuan {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Input tetap ada di DOM dan bisa difokus lewat keyboard, hanya tidak digambar. */
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  grid-column: 2;
+}
+
+.umpan,
+.galat {
+  grid-column: 2;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.galat {
+  color: var(--color-danger-strong);
+  font-weight: 600;
+}
+
+.hasil {
+  font-size: 13px;
+}
+
+@media (max-width: 560px) {
+  .area {
+    grid-template-columns: 1fr;
+  }
+
+  .aksi,
+  .umpan,
+  .galat {
+    grid-column: 1;
+  }
+}

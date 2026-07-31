@@ -1,0 +1,82 @@
+.daftar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tanda {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.item[data-keadaan='ok'] .tanda {
+  background: var(--color-success-bg);
+  color: var(--color-success-fg);
+}
+
+.item[data-keadaan='warn'] .tanda {
+  background: var(--color-warn-bg);
+  color: var(--color-warn-fg);
+}
+
+.isi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.judul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.keadaan {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.item[data-keadaan='ok'] .keadaan {
+  color: var(--color-success-fg);
+}
+
+.item[data-keadaan='warn'] .keadaan {
+  color: var(--color-warn-fg);
+}
+
+.keterangan {
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.6;
+}

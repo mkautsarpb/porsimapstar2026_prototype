@@ -46,6 +46,37 @@
   white-space: nowrap;
 }
 
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.ikonLencana {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.lencana {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-red-500);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 700;
+}
+
 /* ---- Sheet "Lainnya" ---- */
 
 .tirai {
@@ -91,6 +122,37 @@
   background: var(--color-border-blue);
 }
 
+.identitas {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  color: var(--color-navy-900);
+}
+
+.identitas:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--color-navy-900);
+  color: var(--color-gold-500);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .sheetDaftar {
   display: flex;
   flex-direction: column;
@@ -98,6 +160,41 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.keluar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--color-border-blue);
+  color: var(--color-danger-strong);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.keluar:hover {
+  color: var(--color-danger-fg);
+  text-decoration: none;
+}
+
+.keluarIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-bg);
+}
+
+.versi {
+  margin: 8px 0 0;
+  color: var(--color-text-meta);
+  font-size: 11px;
+  text-align: center;
 }
 
 .sheetItem {

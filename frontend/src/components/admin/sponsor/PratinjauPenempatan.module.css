@@ -1,0 +1,77 @@
+.portal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.bilahPortal {
+  display: flex;
+  gap: var(--adm-space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-size: var(--adm-text-8);
+  font-weight: 600;
+}
+
+.pita {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+}
+
+.logoDaftar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Tinggi kotak logo mengikuti tinggi tayang di portal — itu yang sedang diuji. */
+.logo {
+  display: grid;
+  place-items: center;
+  min-width: 120px;
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+}
+
+.logoDaftar[data-tingkat='utama'] .logo {
+  height: 56px;
+  font-size: var(--adm-text-5);
+}
+
+.logoDaftar[data-tingkat='pendukung'] .logo {
+  height: 40px;
+  font-size: var(--adm-text-6);
+}
+
+.logoDaftar[data-tingkat='media'] .logo {
+  height: 28px;
+  font-size: var(--adm-text-8);
+}
+
+.logo[data-bermasalah='true'] {
+  border-color: var(--color-danger-strong);
+  border-style: dashed;
+  background: var(--color-danger-bg);
+  color: var(--color-danger-strong);
+}

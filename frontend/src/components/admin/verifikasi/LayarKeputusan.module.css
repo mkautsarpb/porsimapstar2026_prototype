@@ -1,0 +1,201 @@
+.layar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-4);
+}
+
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--adm-space-3);
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.kepalaKiri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: center;
+  min-width: 0;
+}
+
+.panahBalik {
+  transform: rotate(180deg);
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+}
+
+.kepalaKanan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-8);
+}
+
+.duaPanel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--adm-space-4);
+  align-items: start;
+}
+
+@media (min-width: 1100px) {
+  .duaPanel {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+}
+
+.penampil {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.penampilKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.bidang {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding: var(--adm-space-5);
+  border: 1px dashed var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  text-align: center;
+}
+
+.bidangIkon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}
+
+.bidangJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.sisi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-4);
+}
+
+.namaPeserta {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+}
+
+.nik {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-5);
+}
+
+.butirDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.butir {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: flex-start;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-success-bg);
+}
+
+.butir[data-lolos='false'] {
+  border-color: var(--color-warn-border);
+  background: var(--color-warn-bg);
+}
+
+.butirIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-success-fg);
+}
+
+.butir[data-lolos='false'] .butirIkon {
+  color: var(--color-warn-strong);
+}
+
+.butirJudul {
+  margin: 0 0 2px;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.keputusan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.tombolLebar {
+  width: 100%;
+}

@@ -1,0 +1,27 @@
+.kolom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+}
+
+.daftarKolom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chipKolom {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text-meta);
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-8);
+}

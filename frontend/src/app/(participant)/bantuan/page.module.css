@@ -1,0 +1,47 @@
+.jarak {
+  margin-bottom: 16px;
+}
+
+.pic {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.picItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.picItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.picIsi {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 200px;
+}
+
+.picCabang {
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.picNama,
+.picCatatan {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-word;
+}

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Ikon } from '@/components/app/Ikon';
 import type { AnggotaTim, TimLomba } from '@/data/lomba-detail';
 import ui from '@/components/app/ui.module.css';
@@ -97,8 +98,10 @@ export function TabTim({ tim }: { readonly tim: TimLomba }) {
         </ul>
 
         <p className={`${tab.teks} ${tab.jarakAtas}`}>
-          Butuh anggota baru? Undang lewat kode peserta atau email dari halaman Tim saya. Pencarian
-          anggota bukan direktori publik, jadi hanya kecocokan persis yang muncul.
+          Tab ini hanya ringkasan. Seluruh pengelolaan — mengundang anggota, membatalkan undangan,
+          review, dan riwayat — ada di <Link href="/tim">halaman Tim saya</Link>, supaya tidak ada
+          dua tempat yang mengubah roster dengan aturan berbeda. Pencarian anggota bukan direktori
+          publik, jadi hanya kecocokan persis kode peserta atau email yang muncul.
         </p>
       </div>
     </div>

@@ -1,0 +1,131 @@
+.kepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-3) var(--adm-space-5);
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: var(--adm-space-3);
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.kepalaTeks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.panahBalik {
+  transform: rotate(180deg);
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+}
+
+.juknis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-5);
+}
+
+.juknisNama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}
+
+.chipDaftar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1);
+  margin: var(--adm-space-1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.ofisialDaftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  margin: var(--adm-space-1) 0 var(--adm-space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.ofisial {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-5);
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+}
+
+.tunggu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tungguItem {
+  display: flex;
+  gap: var(--adm-space-3);
+  align-items: center;
+  padding: var(--adm-space-2) var(--adm-space-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-5);
+}
+
+.tungguPosisi {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+}
+
+.tungguNama {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-6);
+  font-weight: 700;
+}

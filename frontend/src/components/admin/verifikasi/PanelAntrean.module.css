@@ -1,0 +1,37 @@
+.bilahPilihan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.bilahPilihan[data-aktif='true'] {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+}
+
+.pilihanTeks {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.pilihanAngka {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-5);
+  font-weight: 700;
+}
+
+.kotak {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}

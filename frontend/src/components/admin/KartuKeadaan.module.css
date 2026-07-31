@@ -1,0 +1,155 @@
+.kartu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-4);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-1);
+}
+
+.keadaan {
+  display: inline-flex;
+  gap: var(--adm-space-1);
+  align-items: center;
+  align-self: flex-start;
+  margin: 0;
+  padding: var(--adm-space-1) var(--adm-space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ikon {
+  display: grid;
+  place-items: center;
+}
+
+.judul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-4);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.teks {
+  max-width: 78ch;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-6);
+  line-height: 1.6;
+}
+
+.teks p {
+  margin: 0 0 var(--adm-space-2);
+}
+
+.teks p:last-child {
+  margin-bottom: 0;
+}
+
+.rincian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  margin: 0;
+}
+
+.rincianBaris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-3);
+  justify-content: space-between;
+  padding: var(--adm-space-1) 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.rincianBaris:last-child {
+  border-bottom: none;
+}
+
+.rincianLabel {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+}
+
+.rincianNilai {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+  text-align: right;
+}
+
+.ref {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--adm-text-8);
+  letter-spacing: 0.02em;
+}
+
+.aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: center;
+  margin-top: var(--adm-space-1);
+}
+
+/* ---- Nada ---- */
+
+.kartu[data-nada='ok'] {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+}
+
+.kartu[data-nada='ok'] .keadaan {
+  background: var(--color-success-border);
+  color: var(--color-success-fg);
+}
+
+.kartu[data-nada='warn'] {
+  border-color: var(--color-warn-border);
+  background: var(--color-warn-bg);
+}
+
+.kartu[data-nada='warn'] .keadaan {
+  background: var(--color-warn-border);
+  color: var(--color-warn-fg);
+}
+
+.kartu[data-nada='danger'] {
+  border-color: var(--color-danger-border);
+  background: var(--color-danger-bg);
+}
+
+.kartu[data-nada='danger'] .keadaan {
+  background: var(--color-danger-border);
+  color: var(--color-danger-fg);
+}
+
+.kartu[data-nada='info'] {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+}
+
+.kartu[data-nada='info'] .keadaan {
+  background: var(--color-info-border);
+  color: var(--color-info-fg);
+}
+
+.kartu[data-nada='proses'] {
+  border-color: var(--color-border-blue);
+  background: var(--color-surface-2);
+}
+
+.kartu[data-nada='proses'] .keadaan {
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+}

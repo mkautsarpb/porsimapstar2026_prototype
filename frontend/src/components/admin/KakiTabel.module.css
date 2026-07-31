@@ -1,0 +1,73 @@
+.kaki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.kiri {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  min-width: 0;
+}
+
+.ringkasan {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+}
+
+.catatan {
+  max-width: 90ch;
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  line-height: 1.55;
+}
+
+.paginasi {
+  display: flex;
+  gap: var(--adm-space-2);
+  align-items: center;
+}
+
+.nav {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav:hover {
+  background: var(--color-surface-3);
+  color: var(--color-navy-900);
+  text-decoration: none;
+}
+
+.navMati {
+  border-color: var(--color-border);
+  background: var(--color-surface-muted);
+  color: var(--color-text-disabled);
+}
+
+.navMati:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-text-disabled);
+}
+
+.posisi {
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 600;
+  white-space: nowrap;
+}

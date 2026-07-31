@@ -1,0 +1,125 @@
+.jadwal {
+  display: inline-flex;
+  align-items: center;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-info-bg);
+  color: var(--color-info-fg);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+}
+
+.duaKolom {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--adm-space-4);
+  align-items: start;
+}
+
+@media (min-width: 1100px) {
+  .duaKolom {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-3);
+}
+
+.bilahAlat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-1);
+  padding: var(--adm-space-1);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+}
+
+.bilahAlat span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: var(--adm-h-chip);
+  padding: 0 var(--adm-space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-7);
+  font-weight: 700;
+}
+
+.pratinjau {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-2);
+  padding: var(--adm-space-3);
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+}
+
+.pratinjauKepala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+/* Lebar kolom portal, bukan lebar panel admin — itu yang sedang diuji. */
+.artikel {
+  max-width: 680px;
+  padding: var(--adm-space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+}
+
+.artikelEyebrow {
+  margin: 0 0 var(--adm-space-2);
+  color: var(--color-text-meta);
+  font-size: var(--adm-text-8);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.artikelJudul {
+  margin: 0 0 var(--adm-space-3);
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.artikelTeks {
+  margin: 0 0 var(--adm-space-3);
+  color: var(--color-text-body);
+  font-size: var(--adm-text-5);
+  line-height: 1.7;
+}
+
+.artikelTeks:last-child {
+  margin-bottom: 0;
+}
+
+.artikelKosong {
+  margin: 0;
+  color: var(--color-warn-fg);
+  font-size: var(--adm-text-6);
+  line-height: 1.6;
+}
+
+.kaki {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-2) var(--adm-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--adm-space-3);
+  border-top: 1px solid var(--color-border-soft);
+}

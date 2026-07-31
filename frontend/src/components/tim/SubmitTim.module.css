@@ -1,0 +1,116 @@
+.blok,
+.blokSiap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-warn-bg);
+}
+
+.blokSiap {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+}
+
+.alasan {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: min(100%, 260px);
+}
+
+.alasanJudul {
+  color: var(--color-warn-fg);
+  font-size: 14px;
+}
+
+.blokSiap .alasanJudul {
+  color: var(--color-success-fg);
+}
+
+.alasanTeks {
+  margin: 0;
+  color: var(--color-warn-fg);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.blokSiap .alasanTeks {
+  color: var(--color-success-fg);
+}
+
+/* ---- Bukti submit ---- */
+
+.sukses {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-2xl);
+  background: var(--color-success-bg);
+}
+
+.suksesIkon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--color-success-border);
+  color: var(--color-success-fg);
+}
+
+.suksesJudul {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.rincian {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px 24px;
+  width: 100%;
+  margin: 0;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+}
+
+.rincian dt {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rincian dd {
+  margin: 4px 0 0;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.suksesTeks {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--color-success-fg);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.suksesAksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

@@ -1,0 +1,86 @@
+.jarak {
+  margin-bottom: 16px;
+}
+
+.dokumen {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dokumenItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.dokumenItem:last-child {
+  border-bottom: none;
+}
+
+.dokumenNama {
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.aksiTahap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rincian {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 14px 24px;
+  margin: 0;
+}
+
+.rincian dt {
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rincian dd {
+  margin: 4px 0 0;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+.usia {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.usiaTeks {
+  max-width: 78ch;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.usiaDaftar {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.65;
+}

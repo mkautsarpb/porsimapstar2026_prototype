@@ -1,0 +1,55 @@
+.bilahCari {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--adm-space-3) var(--adm-space-5);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.cari {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  max-width: 520px;
+}
+
+.isianCari {
+  position: relative;
+}
+
+.ikonCari {
+  position: absolute;
+  top: 50%;
+  left: var(--adm-space-3);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.isianCari input {
+  padding-left: var(--adm-space-6);
+}
+
+.hitung {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adm-space-1);
+  align-items: flex-end;
+}
+
+.hitungAngka {
+  margin: 0;
+  color: var(--color-navy-900);
+  font-family: var(--font-display);
+  font-size: var(--adm-text-3);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.nama {
+  color: var(--color-navy-900);
+  font-weight: 700;
+}

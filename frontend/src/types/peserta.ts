@@ -98,6 +98,42 @@ export interface AgendaPeserta {
   readonly berubah: boolean;
 }
 
+/**
+ * Tiga kelompok agenda di halaman Jadwal Saya. Urutannya tetap: apa yang harus
+ * dikerjakan sebelum lomba, kapan check-in dibuka, lalu pertandingannya.
+ */
+export type KelompokAgenda = 'sebelum' | 'check-in' | 'pertandingan';
+
+export type KeadaanAgenda = 'normal' | 'berubah' | 'konflik' | 'selesai';
+
+export interface AgendaSaya {
+  readonly id: string;
+  readonly kelompok: KelompokAgenda;
+  /** ISO `YYYY-MM-DD`, dipakai kalender. Tampilan tetap memakai `tanggal`/`bulan`. */
+  readonly iso: string;
+  readonly tanggal: string;
+  readonly bulan: string;
+  readonly nama: string;
+  readonly subjudul?: string;
+  readonly jam: string;
+  /** Jam sebelum perubahan — dirender dicoret, bukan dihapus diam-diam. */
+  readonly jamLama?: string;
+  readonly venue: string;
+  readonly keadaan: KeadaanAgenda;
+  readonly catatan?: string;
+  /** Siapa mengubah, kapan, dan kenapa. Wajib ada bila `keadaan === 'berubah'`. */
+  readonly perubahan?: string;
+  /** Penjelasan tabrakan waktu. Wajib ada bila `keadaan === 'konflik'`. */
+  readonly konflik?: string;
+  readonly lombaId?: string;
+}
+
+export interface KonflikJadwal {
+  readonly id: string;
+  readonly ringkas: string;
+  readonly penjelasan: string;
+}
+
 export interface HasilPertandingan {
   readonly id: string;
   readonly nama: string;
@@ -106,6 +142,39 @@ export interface HasilPertandingan {
   readonly babak: string;
   readonly status: string;
   readonly nada: Nada;
+}
+
+/** Empat keadaan dokumen persyaratan. */
+export type StatusDokumen =
+  | 'disetujui'
+  | 'sedang-diperiksa'
+  | 'perlu-diperbaiki'
+  | 'belum-diunggah';
+
+export interface VersiDokumen {
+  readonly versi: string;
+  readonly berkas: string;
+  readonly diunggah: string;
+  readonly hasil: string;
+  readonly nada: Nada;
+}
+
+export interface DokumenPeserta {
+  readonly id: string;
+  readonly nama: string;
+  readonly keterangan: string;
+  readonly status: StatusDokumen;
+  /** Nama berkas + ukuran + waktu unggah versi terakhir, bila sudah ada. */
+  readonly berkas?: string;
+  /** Satu kalimat: apa arti status ini dan apa yang perlu kamu lakukan. */
+  readonly arti: string;
+  readonly catatanPanitia?: string;
+  readonly catatanWaktu?: string;
+  /** Contoh berkas yang biasanya lolos — mengurangi tebak-tebakan saat revisi. */
+  readonly contoh?: string;
+  /** Format, ukuran maksimal, dan syarat teknis lain. */
+  readonly ketentuan: string;
+  readonly riwayat: readonly VersiDokumen[];
 }
 
 export interface StatistikPeserta {

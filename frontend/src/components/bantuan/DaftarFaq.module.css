@@ -1,0 +1,132 @@
+.blok {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.cari {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+}
+
+.cariIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  color: var(--color-text-meta);
+}
+
+.cariInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  outline: none;
+}
+
+.kategori {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-1);
+  color: var(--color-navy-900);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip[data-terpilih='true'] {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.jumlah {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.daftar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+}
+
+.tanya {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.kategoriTanda {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.jawab {
+  max-width: 78ch;
+  margin: 10px 0 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.kosong {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.6;
+}

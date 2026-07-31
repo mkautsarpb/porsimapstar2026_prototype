@@ -1,0 +1,199 @@
+.bingkai {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tabel {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.caption {
+  padding-bottom: 12px;
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.tabel th {
+  padding: 0 12px 10px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+  color: var(--color-text-meta);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tabel td {
+  padding: 14px 12px 14px 0;
+  border-bottom: 1px solid var(--color-border-blue);
+  color: var(--color-navy-900);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.orang {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border-blue);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.identitas {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nama {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  color: var(--color-navy-900);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.peran {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-navy-900);
+  color: var(--color-gold-500);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kode {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.subteks {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-text-meta);
+  font-size: 12px;
+}
+
+.belum {
+  color: var(--color-text-meta);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.catatan {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-danger-bg);
+  color: var(--color-danger-fg);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.catatanIkon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-danger-strong);
+}
+
+.penutup {
+  margin: 0;
+  color: var(--color-text-meta);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ---- Mobile: tiap baris jadi kartu, header kolom pindah ke label sel ---- */
+
+@media (max-width: 860px) {
+  .tabel,
+  .tabel tbody,
+  .baris,
+  .tabel td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabel thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .baris {
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid var(--color-border-blue);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-2);
+  }
+
+  .tabel td {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--color-border-blue);
+  }
+
+  .tabel td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .tabel td::before {
+    content: attr(data-label);
+    color: var(--color-text-meta);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tabel td:first-child::before {
+    display: none;
+  }
+
+  .tabel td:first-child {
+    justify-content: flex-start;
+  }
+}
