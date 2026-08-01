@@ -13,7 +13,17 @@
   min-width: 0;
 }
 
+/*
+ * `position: relative` bukan hiasan. Elemen visually-hidden (`.sr-only` dan
+ * sejenisnya) memakai `position: absolute`; tanpa leluhur berposisi, blok
+ * penampungnya adalah viewport, sehingga elemen itu LOLOS dari kliping
+ * `overflow-y` di sini dan berdiri di koordinat dokumen jauh di bawah layar.
+ * Dokumen ikut memanjang, dan halaman bisa digulir melewati shell sampai
+ * memperlihatkan latar navy `body`. Menjadikan kolom ini blok penampung
+ * mengurung mereka kembali.
+ */
 .konten {
+  position: relative;
   flex: 1;
   min-height: 0;
   overflow-y: auto;

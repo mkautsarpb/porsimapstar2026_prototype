@@ -157,7 +157,11 @@
   line-height: 1.5;
 }
 
+/* Blok penampung untuk elemen visually-hidden — lihat catatan di
+   AppShell.module.css; tanpa ini dokumen ikut memanjang dan bisa digulir
+   melewati shell. */
 .konten {
+  position: relative;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
