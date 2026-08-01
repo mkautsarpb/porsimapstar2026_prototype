@@ -19,16 +19,19 @@ import {
  * dibaca dengan cookie HttpOnly + Secure + SameSite (agents.md §6). Yang perlu
  * diganti hanya isi `bacaSesiPanitia()`; pemanggilnya tidak berubah.
  *
- * MOCK INI SENGAJA GAGAL TERTUTUP. Bawaannya tetap peran yang izinnya terbatas,
- * bukan `super-admin`. Kalau mock memberi seluruh izin, AC #6 akan terlihat
- * lulus karena semua orang melihat tab Sistem, bukan karena gatingnya
- * benar-benar bekerja.
+ * GATING TETAP HARUS TERBUKTI HIDUP. Kalau setiap akun demo memegang seluruh
+ * izin, AC #6 akan terlihat lulus karena semua orang melihat tab Sistem, bukan
+ * karena gerbangnya benar-benar bekerja. Karena itu pembuktiannya dipindah ke
+ * akun, bukan ke bawaan berkas ini:
  *
- * Bawaannya `verifier`, bukan `panitia-umum`: modul Verifikasi adalah bagian
- * utama prototipe ini dan tidak bisa ditinjau kalau layarnya selalu menolak.
- * `match.edit`, `user.manage`, dan `integration.manage` tetap TIDAK diberikan,
- * jadi Pertandingan dan tab Sistem masih membuktikan gatingnya hidup. Pakai
- * `ADMIN_DEMO_PERAN` di bawah untuk mencoba peran lain.
+ *   - `panitia@porsimaptar.test` — `super-admin`, seluruh layar terbuka. Akun
+ *     untuk menelusuri prototipe tanpa membentur penolakan.
+ *   - `basket@porsimaptar.test`  — `verifier`, cakupan satu cabang. Di akun ini
+ *     Pertandingan dan tab Sistem masih menolak, dan angka dashboard menyempit.
+ *
+ * `PERAN_BAWAAN` di bawah tetap peran terbatas: ia hanya dipakai saat nilai
+ * `ADMIN_DEMO_PERAN` atau `ADMIN_DEMO_IZIN` tidak dikenal, dan jalur yang tidak
+ * jelas harus menjawab "tidak boleh", bukan "boleh semua".
  */
 
 const PERAN_BAWAAN: PeranPanitia = 'verifier';
@@ -77,18 +80,24 @@ export async function bacaSesiPanitia(): Promise<SesiPanitia> {
   const dariEnv = process.env.ADMIN_DEMO_PERAN?.trim();
   const peran = dariEnv ? peranDariEnv() : isi.peran;
 
+  /*
+   * Cakupan ikut profil, bukan disimpulkan dari peran. Izin dan cakupan adalah
+   * dua sumbu terpisah: akun bisa boleh melakukan segalanya tapi tetap hanya
+   * memegang sebagian cabang. Hanya jalur `ADMIN_DEMO_PERAN` yang menaikkan
+   * cakupan ke seluruh event, karena di situ profilnya memang ditimpa.
+   *
+   * Seluruh event ditulis sebagai daftar lomba yang lengkap, bukan satu entri
+   * bertuliskan "Seluruh lomba" — kalau begitu jumlahnya terbaca 1 dan semua
+   * salinan yang menyebut "N lomba" ikut salah.
+   */
+  const penuhDariEnv = Boolean(dariEnv) && peran === 'super-admin';
+
   return {
     nama: isi.nama,
     inisial: isi.inisial,
     peran,
     izin: izinDariEnv(peran),
-    /*
-     * Super Admin memegang seluruh event, jadi cakupannya daftar lomba yang
-     * lengkap — bukan satu entri bertuliskan "Seluruh lomba". Kalau ditulis
-     * begitu, jumlah cakupannya terbaca 1 dan seluruh salinan yang menyebut
-     * "N lomba" ikut salah.
-     */
-    cakupanLomba: peran === 'super-admin' ? SELURUH_LOMBA : isi.cakupanLomba,
-    cakupanPenuh: peran === 'super-admin',
+    cakupanLomba: penuhDariEnv ? SELURUH_LOMBA : isi.cakupanLomba,
+    cakupanPenuh: penuhDariEnv ? true : isi.cakupanPenuh,
   };
 }

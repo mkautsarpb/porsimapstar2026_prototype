@@ -31,14 +31,27 @@ export interface IsiProfilPanitia {
   readonly inisial: string;
   readonly peran: PeranPanitia;
   readonly cakupanLomba: readonly string[];
+  /** True bila akun memegang seluruh event, bukan sebagian cabang. */
+  readonly cakupanPenuh: boolean;
 }
 
 export const ISI_PROFIL: Readonly<Record<ProfilPanitia, IsiProfilPanitia>> = {
+  /*
+   * Akun serba bisa untuk menelusuri prototipe: `super-admin` memegang seluruh
+   * izin, jadi tidak ada layar yang menolak dan tab Sistem ikut tampil.
+   *
+   * Cakupannya sengaja tetap enam cabang, bukan seluruh event. Izin dan cakupan
+   * dua hal berbeda, dan angka dashboard memang disusun untuk enam cabang itu —
+   * menaikkannya ke seluruh event membuat sidebar mengaku memegang semuanya
+   * sementara widgetnya masih menghitung enam. Gating tetap terbukti hidup
+   * lewat akun Basket yang cakupannya satu cabang.
+   */
   umum: {
     nama: 'Rakha Adiwangsa',
     inisial: 'RA',
-    peran: 'verifier',
+    peran: 'super-admin',
     cakupanLomba: CAKUPAN_PANITIA,
+    cakupanPenuh: false,
   },
   /** Panitia satu cabang: seluruh angka dashboard menyempit ke Basket. */
   basket: {
@@ -46,6 +59,7 @@ export const ISI_PROFIL: Readonly<Record<ProfilPanitia, IsiProfilPanitia>> = {
     inisial: 'WK',
     peran: 'verifier',
     cakupanLomba: [namaLomba('BKT-04')],
+    cakupanPenuh: false,
   },
 };
 
