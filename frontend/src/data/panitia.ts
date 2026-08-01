@@ -120,12 +120,14 @@ const WIDGET_LOMBA: readonly WidgetDTO[] = [
     denominator_label: 'dalam cakupanmu',
     // `share` menggerakkan bar latar tiap baris — proporsi terhadap lomba terbesar.
     breakdown: [
-      { label: 'Catur', value: '402 peserta · 12 tim', share: 1 },
-      { label: 'Tenis Meja', value: '340 peserta · 10 tim', share: 340 / 402 },
-      { label: 'Futsal', value: '176 peserta · 22 tim', share: 176 / 402 },
-      { label: 'Basket Putra', value: '168 peserta · 24 tim', share: 168 / 402 },
-      { label: 'Voli Putri', value: '108 peserta · 18 tim', share: 108 / 402 },
-      { label: 'E-sport', value: '90 peserta · 18 tim', share: 90 / 402 },
+      // Atletik dan Badminton punya nomor perorangan sekaligus beregu (estafet,
+      // ganda), jadi keduanya menyumbang peserta individu dan tim sekaligus.
+      { label: 'Atletik', value: '402 peserta · 12 tim', share: 1 },
+      { label: 'Badminton', value: '340 peserta · 10 tim', share: 340 / 402 },
+      { label: 'Sepak Bola', value: '176 peserta · 22 tim', share: 176 / 402 },
+      { label: 'Basket', value: '168 peserta · 24 tim', share: 168 / 402 },
+      { label: 'Voli', value: '108 peserta · 18 tim', share: 108 / 402 },
+      { label: 'E-Sport', value: '90 peserta · 18 tim', share: 90 / 402 },
     ],
     last_updated_at: menitLalu(2),
     definition: {
@@ -222,12 +224,12 @@ const FUNNEL: readonly TahapFunnelDTO[] = [
 
 /** Sudah terurut menurun — urutan adalah bagian dari desainnya, bukan kebetulan. */
 const KOMPOSISI: readonly BarisKomposisiDTO[] = [
-  { competition: 'Catur', individual: 330, team: 72 },
-  { competition: 'Tenis Meja', individual: 300, team: 40 },
-  { competition: 'Futsal', individual: 0, team: 176 },
-  { competition: 'Basket Putra', individual: 0, team: 168 },
-  { competition: 'Voli Putri', individual: 0, team: 108 },
-  { competition: 'E-sport', individual: 0, team: 90 },
+  { competition: 'Atletik', individual: 330, team: 72 },
+  { competition: 'Badminton', individual: 300, team: 40 },
+  { competition: 'Sepak Bola', individual: 0, team: 176 },
+  { competition: 'Basket', individual: 0, team: 168 },
+  { competition: 'Voli', individual: 0, team: 108 },
+  { competition: 'E-Sport', individual: 0, team: 90 },
 ];
 
 export const GRAFIK: ChartsDTO = {
@@ -338,11 +340,17 @@ const WIDGET_GRAFIK: readonly WidgetDTO[] = [
   },
 ];
 
+/*
+ * Jumlah terpakainya harus cocok dengan widget "Peserta dan tim per lomba" di
+ * atasnya — 24 tim Basket di sini adalah 24 tim yang sama. Satuannya mengikuti
+ * tipe cabang: cabang tim menghitung tim, Atletik yang perorangan menghitung
+ * orang.
+ */
 export const KUOTA: readonly QuotaRowDTO[] = [
-  { competition: 'Basket Putra', used: 24, capacity: 24, unit: 'tim', state: 'waitlist' },
-  { competition: 'Futsal', used: 22, capacity: 24, unit: 'tim', state: 'tight' },
-  { competition: 'Voli Putri', used: 18, capacity: 20, unit: 'tim', state: 'tight' },
-  { competition: 'Catur', used: 46, capacity: 60, unit: 'peserta', state: 'open' },
+  { competition: 'Basket', used: 24, capacity: 24, unit: 'tim', state: 'waitlist' },
+  { competition: 'Sepak Bola', used: 22, capacity: 24, unit: 'tim', state: 'tight' },
+  { competition: 'Voli', used: 18, capacity: 20, unit: 'tim', state: 'tight' },
+  { competition: 'Atletik', used: 402, capacity: 480, unit: 'peserta', state: 'open' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -490,7 +498,7 @@ export const PERINGATAN: readonly AlertRowDTO[] = [
   {
     id: 'kuota-penuh',
     severity: 'danger',
-    subject: 'Basket Putra penuh',
+    subject: 'Basket penuh',
     detail: '24 dari 24 tim terisi. Pendaftar berikutnya otomatis masuk daftar tunggu.',
     since: menitLalu(410),
     action: { label: 'Pengaturan kuota', path: '/admin/lomba?tab=kuota' },

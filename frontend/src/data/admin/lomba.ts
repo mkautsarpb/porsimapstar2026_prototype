@@ -1,3 +1,4 @@
+import { DAFTAR_LOMBA } from '@/data/lomba';
 import type { BarisCabang, DetailCabang } from '@/types/admin';
 
 /**
@@ -19,6 +20,30 @@ import type { BarisCabang, DetailCabang } from '@/types/admin';
  */
 
 export const TENGGAT_PENDAFTARAN_ISO = '2026-10-05T23:59:00+07:00';
+
+/**
+ * Cakupan panitia contoh yang dipakai seluruh mock Panel Panitia: enam cabang
+ * olahraga. Kodenya ditulis di sini, tapi namanya selalu diambil dari
+ * `DAFTAR_LOMBA` — satu-satunya daftar lomba yang benar. Dulu panel memakai
+ * nama karangan sendiri ("Catur", "Tenis Meja") yang tidak ada di daftar itu.
+ */
+export const KODE_CAKUPAN_PANITIA: readonly string[] = [
+  'VOL-01',
+  'SPK-02',
+  'BDM-03',
+  'BKT-04',
+  'ATL-06',
+  'ESP-07',
+];
+
+export const CAKUPAN_PANITIA: readonly string[] = DAFTAR_LOMBA.filter((l) =>
+  KODE_CAKUPAN_PANITIA.includes(l.kode),
+).map((l) => l.nama);
+
+/** Slug filter URL diturunkan dari namanya, bukan ditulis ulang. */
+export function slugLomba(nama: string): string {
+  return nama.toLowerCase().replace(/\s+/g, '-');
+}
 
 export const DAFTAR_CABANG: readonly BarisCabang[] = [
   {

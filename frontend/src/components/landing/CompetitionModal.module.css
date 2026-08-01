@@ -12,12 +12,13 @@
   animation: cw-fade-in var(--duration-base) linear both;
 }
 
+/* Animasi masuk panel dijalankan dari CompetitionModal.tsx — titik awalnya
+   ikut posisi kartu yang diklik, jadi tidak bisa ditulis sebagai keyframe. */
 .shell {
   display: flex;
   width: 100%;
   max-width: 880px;
   max-height: 85vh;
-  animation: cw-modal-in 280ms var(--ease-out-expo) both;
 }
 
 .panel {

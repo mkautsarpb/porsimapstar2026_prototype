@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties, KeyboardEvent, TouchEvent } from 'react';
 import {
   DETAIL_LOMBA,
@@ -46,10 +46,12 @@ const FOKUS_SELECTOR =
 interface Props {
   readonly lomba: Lomba;
   readonly kuota: RingkasanKuota;
+  /** Posisi kartu yang membuka modal; null bila dibuka lewat tautan langsung. */
+  readonly asal?: DOMRect | null;
   readonly onClose: () => void;
 }
 
-export function CompetitionModal({ lomba, kuota, onClose }: Props) {
+export function CompetitionModal({ lomba, kuota, asal, onClose }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const judulRef = useRef<HTMLHeadingElement>(null);
   const [accTerbuka, setAccTerbuka] = useState(-1);
@@ -60,6 +62,53 @@ export function CompetitionModal({ lomba, kuota, onClose }: Props) {
   const isTim = lomba.tim === 'Tim';
   const grup = grupDari(lomba.kategori);
   const maskot = MASKOT_LOMBA[lomba.kode];
+
+  /*
+    Animasi masuk: panel tumbuh dari kartu yang diklik. Dijalankan lewat Web
+    Animations API, bukan CSS, karena posisi awalnya baru ketahuan setelah
+    layout — kartu bisa ada di mana saja pada grid.
+
+    `prefers-reduced-motion` dibaca langsung dari matchMedia, bukan lewat
+    `useReducedMotion`, karena hook itu sengaja mengembalikan `false` di render
+    pertama demi kecocokan markup server; di sini nilainya sudah dibutuhkan
+    tepat pada layout pertama. Aturan `animation: none` di animations.css tidak
+    menyentuh animasi WAAPI, jadi pengecekannya memang harus di sini.
+  */
+  useLayoutEffect(() => {
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const diam = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (diam) {
+      panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 120, easing: 'linear' });
+      return;
+    }
+
+    const sheet = window.matchMedia('(max-width: 639px)').matches;
+    const akhir = panel.getBoundingClientRect();
+
+    // Bottom sheet naik dari tepi bawah; tautan langsung tanpa kartu pemicu
+    // memakai gerak naik singkat seperti sebelumnya.
+    let mulai = 'translateY(16px)';
+    if (sheet) mulai = 'translateY(100%)';
+    else if (asal && akhir.width > 0 && akhir.height > 0) {
+      const skala = asal.width / akhir.width;
+      const dx = asal.left + asal.width / 2 - (akhir.left + akhir.width / 2);
+      const dy = asal.top + asal.height / 2 - (akhir.top + akhir.height / 2);
+      mulai = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${skala.toFixed(4)})`;
+    }
+
+    panel.animate(
+      [
+        { opacity: 0, transform: mulai },
+        { opacity: 1, transform: 'none' },
+      ],
+      // `fill` sengaja dibiarkan default: bingkai terakhir sama dengan keadaan
+      // alami panel, jadi tidak perlu menahannya — dan menahannya justru
+      // mengunci transform hingga geser-tutup di mode sheet ikut mati.
+      { duration: sheet ? 300 : 380, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+    );
+  }, [asal]);
 
   // Fokus pindah ke judul saat modal terbuka (agents.md §7).
   useEffect(() => {

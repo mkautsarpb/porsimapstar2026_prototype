@@ -1,3 +1,4 @@
+import { CAKUPAN_PANITIA } from '@/data/admin/lomba';
 import {
   IZIN_PER_PERAN,
   PERAN,
@@ -16,23 +17,21 @@ import {
  * dibaca dengan cookie HttpOnly + Secure + SameSite (agents.md §6). Yang perlu
  * diganti hanya isi `bacaSesiPanitia()`; pemanggilnya tidak berubah.
  *
- * MOCK INI SENGAJA GAGAL TERTUTUP. Bawaannya `panitia-umum` yang hanya punya
- * `dashboard.view` — tanpa `integration.manage`, jadi tab Sistem TIDAK muncul
- * kecuali kombinasi izinnya diubah dengan sengaja. Kalau mock memberi seluruh
- * izin, AC #6 akan terlihat lulus karena semua orang melihat tab Sistem, bukan
- * karena gatingnya benar-benar bekerja.
+ * MOCK INI SENGAJA GAGAL TERTUTUP. Bawaannya tetap peran yang izinnya terbatas,
+ * bukan `super-admin`. Kalau mock memberi seluruh izin, AC #6 akan terlihat
+ * lulus karena semua orang melihat tab Sistem, bukan karena gatingnya
+ * benar-benar bekerja.
+ *
+ * Bawaannya `verifier`, bukan `panitia-umum`: modul Verifikasi adalah bagian
+ * utama prototipe ini dan tidak bisa ditinjau kalau layarnya selalu menolak.
+ * `match.edit`, `user.manage`, dan `integration.manage` tetap TIDAK diberikan,
+ * jadi Pertandingan dan tab Sistem masih membuktikan gatingnya hidup. Pakai
+ * `ADMIN_DEMO_PERAN` di bawah untuk mencoba peran lain.
  */
 
-const PERAN_BAWAAN: PeranPanitia = 'panitia-umum';
+const PERAN_BAWAAN: PeranPanitia = 'verifier';
 
-const SELURUH_LOMBA: readonly string[] = [
-  'Basket',
-  'Futsal',
-  'Voli',
-  'Catur',
-  'Tenis Meja',
-  'E-sport',
-];
+const SELURUH_LOMBA: readonly string[] = CAKUPAN_PANITIA;
 
 function peranDikenal(nilai: string): nilai is PeranPanitia {
   return (PERAN as readonly string[]).includes(nilai);

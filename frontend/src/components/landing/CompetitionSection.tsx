@@ -29,6 +29,8 @@ export function CompetitionSection() {
   const [tab, setTab] = useState<TabKey>('Olahraga');
   const [memudar, setMemudar] = useState(false);
   const [modalKode, setModalKode] = useState<string | null>(null);
+  /** Posisi kartu pemicu; dipakai modal supaya panelnya tumbuh dari kartu itu. */
+  const [asalModal, setAsalModal] = useState<DOMRect | null>(null);
   const tabRefs = useRef<Map<TabKey, HTMLButtonElement>>(new Map());
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const pemicuRef = useRef<HTMLElement | null>(null);
@@ -108,12 +110,14 @@ export function CompetitionSection() {
 
   const bukaModal = useCallback((kode: string, trigger: HTMLElement) => {
     pemicuRef.current = trigger;
+    setAsalModal(trigger.getBoundingClientRect());
     setModalKode(kode);
     window.history.pushState(null, '', `#lomba/${kode}`);
   }, []);
 
   const tutupModal = useCallback(() => {
     setModalKode(null);
+    setAsalModal(null);
     // Fokus kembali ke kartu yang membuka modal (agents.md §7).
     pemicuRef.current?.focus();
     pemicuRef.current = null;
@@ -124,6 +128,9 @@ export function CompetitionSection() {
   useEffect(() => {
     const terapkan = (): void => {
       const cocok = window.location.hash.match(/^#lomba\/(.+)$/);
+      // Dibuka lewat tautan langsung atau tombol maju/mundur: tidak ada kartu
+      // pemicu, jadi modal memakai animasi masuk biasa.
+      setAsalModal(null);
       setModalKode(cocok?.[1] ?? null);
     };
     terapkan();
@@ -224,7 +231,12 @@ export function CompetitionSection() {
       */}
       {aktif
         ? createPortal(
-            <CompetitionModal lomba={aktif.lomba} kuota={aktif.kuota} onClose={tutupModal} />,
+            <CompetitionModal
+              lomba={aktif.lomba}
+              kuota={aktif.kuota}
+              asal={asalModal}
+              onClose={tutupModal}
+            />,
             document.body,
           )
         : null}

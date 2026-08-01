@@ -1,3 +1,4 @@
+import { CAKUPAN_PANITIA, slugLomba } from '@/data/admin/lomba';
 import type { TabDashboard } from '@/types/api/admin-dashboard';
 
 /**
@@ -54,12 +55,7 @@ export const FILTER: Readonly<Record<KunciFilter, DefinisiFilter>> = {
     bawaan: 'semua',
     opsi: [
       { nilai: 'semua', label: 'Semua lomba cakupanku' },
-      { nilai: 'basket', label: 'Basket Putra' },
-      { nilai: 'futsal', label: 'Futsal' },
-      { nilai: 'voli', label: 'Voli Putri' },
-      { nilai: 'catur', label: 'Catur' },
-      { nilai: 'tenis-meja', label: 'Tenis Meja' },
-      { nilai: 'esport', label: 'E-sport' },
+      ...CAKUPAN_PANITIA.map((nama) => ({ nilai: slugLomba(nama), label: nama })),
     ],
   },
   kategori: {
