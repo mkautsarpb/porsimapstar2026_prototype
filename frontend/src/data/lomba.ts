@@ -216,6 +216,34 @@ export const MASKOT_LOMBA: Readonly<Record<KodeLomba, string>> = {
   'CYB-17': 'cyber',
 };
 
+/**
+ * Rasio lebar : tinggi bidang gambar tiap ikon di `/uploads/icon_cabor/`.
+ * Rentangnya lebar sekali — perenang 3.61 sampai pebasket 0.36 — sehingga
+ * `background-size: contain` menyamakan sisi terpanjang saja dan ikon jangkung
+ * terbaca jauh lebih kecil. Modal memakai angka ini untuk menyetarakan luasnya.
+ * Wajib ikut diperbarui kalau berkas ikonnya diganti.
+ */
+export const RASIO_IKON: Readonly<Record<string, number>> = {
+  akustik: 0.74,
+  atletik: 0.86,
+  badminton: 0.447,
+  basket: 0.36,
+  cerdascermat: 0.807,
+  cyber: 0.987,
+  esport: 0.827,
+  essay: 0.853,
+  film: 0.387,
+  fotografi: 0.913,
+  futsal: 1.207,
+  inggris: 0.413,
+  lkbb: 0.773,
+  renang: 3.614,
+  silat: 1.187,
+  tari: 0.987,
+  tenis: 0.953,
+  voli: 0.673,
+};
+
 /** DATA SEMENTARA: syarat, dokumen, dan PIC masih seragam untuk semua cabang. */
 export const SYARAT_UMUM: readonly string[] = [
   'Mahasiswa aktif D3–S1, pelajar SMA/sederajat, atau taruna Akpol',

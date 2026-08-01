@@ -2,14 +2,37 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, KeyboardEvent, TouchEvent } from 'react';
-import { DETAIL_LOMBA, DOKUMEN_UMUM, MASKOT_LOMBA, PIC_DEFAULT, SYARAT_UMUM } from '@/data/lomba';
+import {
+  DETAIL_LOMBA,
+  DOKUMEN_UMUM,
+  MASKOT_LOMBA,
+  PIC_DEFAULT,
+  RASIO_IKON,
+  SYARAT_UMUM,
+} from '@/data/lomba';
 import { BATAS_PENDAFTARAN } from '@/data/jadwal';
 import { angkaDepan, grupDari } from '@/lib/kuota';
 import type { Lomba, RingkasanKuota } from '@/types/landing';
 import styles from './CompetitionModal.module.css';
 
 type PanelStyle = CSSProperties &
-  Record<'--left-bg' | '--icon-url' | '--maskot-url' | '--fill-width' | '--drag-y', string>;
+  Record<'--left-bg' | '--icon-url' | '--icon-fit' | '--maskot-url' | '--fill-width' | '--drag-y', string>;
+
+/**
+ * Lebar siluet ikon, dalam persen bidang bujur sangkarnya, supaya semua cabang
+ * terbaca sama besar. Targetnya rata-rata geometris tetap `TARGET_SILUET` dari
+ * sisi bidang; lebarnya jadi `target × √rasio`, tingginya menyusul sendiri
+ * karena `background-size` cuma diberi satu nilai. Dijepit agar tidak melewati
+ * bidang — hanya ikon paling melebar (renang) yang kena batas ini.
+ */
+const TARGET_SILUET = 0.6;
+
+function lebarSiluet(ikon: string): string {
+  const rasio = RASIO_IKON[ikon] ?? 1;
+  const akar = Math.sqrt(rasio);
+  const target = Math.min(TARGET_SILUET, 1 / akar, akar);
+  return `${(target * akar * 100).toFixed(1)}%`;
+}
 
 const LATAR_KIRI: Readonly<Record<string, string>> = {
   Olahraga: 'var(--gradient-modal-olahraga)',
@@ -101,6 +124,7 @@ export function CompetitionModal({ lomba, kuota, onClose }: Props) {
   const panelStyle: PanelStyle = {
     '--left-bg': LATAR_KIRI[grup] ?? LATAR_KIRI.Olahraga ?? '',
     '--icon-url': `url("/uploads/icon_cabor/${lomba.icon}.svg")`,
+    '--icon-fit': lebarSiluet(lomba.icon),
     '--maskot-url': `url("/uploads/maskot/${maskot}.webp")`,
     '--fill-width': `${kuota.persen}%`,
     '--drag-y': `${dragY}px`,
@@ -275,8 +299,6 @@ export function CompetitionModal({ lomba, kuota, onClose }: Props) {
                 Detail teknis masih menunggu konfirmasi panitia.
               </p>
             </div>
-
-            <span aria-hidden="true" className={styles.fade} />
 
             <div className={styles.footer}>
               <a href="#cara" onClick={onClose} className={styles.footerCta}>

@@ -45,16 +45,18 @@
   background: var(--left-bg);
 }
 
+/* Bidangnya bujur sangkar supaya `--icon-fit` cukup satu angka: lebar siluet
+   dalam persen sisi bidang, tinggi ikut rasio aslinya. */
 .leftIconGhost {
   position: absolute;
   left: 50%;
   bottom: 8%;
-  width: 115%;
-  height: 56%;
-  margin-left: -57.5%;
+  height: 65%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: var(--icon-fit);
   background-image: var(--icon-url);
   opacity: 0.04;
   filter: brightness(0) invert(1) blur(2px);
@@ -484,17 +486,8 @@
 }
 
 /* ---- Footer aksi ---- */
-.fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: var(--footer-h, 76px);
-  height: 32px;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0), var(--color-surface-1));
-}
-
 .footer {
+  position: relative;
   flex: none;
   display: flex;
   flex-wrap: wrap;
@@ -503,6 +496,19 @@
   padding: 14px clamp(20px, 3vw, 30px);
   border-top: 1px solid var(--color-border);
   background: var(--color-surface-1);
+}
+
+/* Fade ujung area gulir. Menempel di footer supaya posisinya selalu pas di atas
+   garis footer; dulu dipatok angka tetap sehingga menimpa tombol aksi. */
+.footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 1px);
+  height: 32px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), var(--color-surface-1));
 }
 
 .footerCta {
@@ -555,26 +561,65 @@
     padding: 0;
   }
 
+  /* `dvh` mengikuti tinggi yang benar-benar terlihat; dengan `vh` bagian bawah
+     sheet ngumpet di balik bilah alamat peramban HP. `vh` tetap ditulis dulu
+     sebagai cadangan untuk peramban lama. */
   .shell {
     max-width: 100%;
     max-height: 92vh;
     height: 92vh;
+    max-height: 92dvh;
+    height: 92dvh;
   }
 
   .panel {
     flex-direction: column;
     max-height: 92vh;
+    max-height: 92dvh;
     border-radius: 20px 20px 0 0;
     transform: translateY(var(--drag-y, 0px));
   }
 
+  /* Di sheet, kepala panel ikut alur supaya maskot dapat sisa ruangnya sendiri;
+     versi absolut bikin maskot menabrak kode, status, dan nama cabang. */
   .left {
     flex: none;
-    min-height: 200px;
+    min-height: 240px;
+    justify-content: flex-start;
+    padding-top: 24px;
+  }
+
+  .leftHead {
+    position: static;
+    align-self: stretch;
+    padding: 0 22px;
+  }
+
+  /* Panel kiri di sheet pendek dan melebar, jadi bidang siluet diukur dari
+     lebar panel; mengikuti tingginya bikin siluetnya terlalu kecil terbaca. */
+  .leftIconGhost {
+    width: 62%;
+    height: auto;
+    bottom: 0;
+  }
+
+  /* Arah utama berubah jadi vertikal, jadi basis 62% ikut jadi tinggi dan
+     panel kanan melar melewati sheet — footer beserta tombolnya ikut
+     terdorong keluar. Di sini kanan cukup mengisi sisa tinggi. */
+  .right {
+    flex: 1 1 0;
+    min-height: 0;
   }
 
   .maskot {
-    height: 84%;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Sisakan ruang untuk home indicator / bilah bawah peramban. */
+  .footer {
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
   }
 
   .handle {
