@@ -11,6 +11,7 @@ import type {
   WidgetDTO,
 } from '@/types/api/admin-dashboard';
 import type { MenuAdmin } from '@/types/panitia';
+import { formatAngka } from '@/lib/admin/format';
 
 /**
  * Fixture dashboard panitia — mengikuti desain "Batch D — Dashboard Panitia".
@@ -38,6 +39,96 @@ export const KALENDER = {
 
 function menitLalu(menit: number): string {
   return new Date(Date.parse(WAKTU_SERVER_ISO) - menit * 60_000).toISOString();
+}
+
+// ---------------------------------------------------------------------------
+// Basis per lomba
+//
+// Widget di bawah ditulis untuk cakupan penuh enam lomba, lalu dipersempit oleh
+// `sesuaikanCakupan()` sesuai cakupan akun yang masuk. Angka per lomba di sini
+// adalah sumbernya: panitia cabang Basket harus melihat 168 pendaftaran Basket,
+// bukan 1.284 milik seluruh cakupan. Menyempitkan daftar lomba tapi membiarkan
+// totalnya utuh justru lebih menyesatkan daripada tidak menyaring sama sekali.
+// ---------------------------------------------------------------------------
+
+interface BasisLomba {
+  readonly nama: string;
+  /** Peserta yang mendaftar sebagai perorangan. */
+  readonly individu: number;
+  /** Peserta yang mendaftar lewat tim, beserta jumlah timnya. */
+  readonly timPeserta: number;
+  readonly tim: number;
+}
+
+/** Jumlahnya: 630 individu + 654 lewat tim = 1.284 pendaftaran, 104 tim. */
+const BASIS_LOMBA: readonly BasisLomba[] = [
+  { nama: 'Atletik', individu: 330, timPeserta: 72, tim: 12 },
+  { nama: 'Badminton', individu: 300, timPeserta: 40, tim: 10 },
+  { nama: 'Sepak Bola', individu: 0, timPeserta: 176, tim: 22 },
+  { nama: 'Basket', individu: 0, timPeserta: 168, tim: 24 },
+  { nama: 'Voli', individu: 0, timPeserta: 108, tim: 18 },
+  { nama: 'E-Sport', individu: 0, timPeserta: 90, tim: 18 },
+];
+
+const TOTAL_PENUH = BASIS_LOMBA.reduce((n, l) => n + l.individu + l.timPeserta, 0);
+
+interface RingkasCakupan {
+  readonly lomba: readonly BasisLomba[];
+  readonly total: number;
+  readonly individu: number;
+  readonly timPeserta: number;
+  readonly tim: number;
+  /** Bagian cakupan ini terhadap seluruh pendaftaran; penskala angka turunan. */
+  readonly pangsa: number;
+}
+
+function ringkasCakupan(cakupan: readonly string[]): RingkasCakupan {
+  const lomba = BASIS_LOMBA.filter((l) => cakupan.includes(l.nama));
+  const individu = lomba.reduce((n, l) => n + l.individu, 0);
+  const timPeserta = lomba.reduce((n, l) => n + l.timPeserta, 0);
+  const total = individu + timPeserta;
+  return {
+    lomba,
+    total,
+    individu,
+    timPeserta,
+    tim: lomba.reduce((n, l) => n + l.tim, 0),
+    pangsa: TOTAL_PENUH === 0 ? 0 : total / TOTAL_PENUH,
+  };
+}
+
+/** Cakupan penuh harus menghasilkan angka yang sama persis seperti sebelumnya. */
+function skala(nilai: number, pangsa: number): number {
+  return pangsa >= 1 ? nilai : Math.round(nilai * pangsa);
+}
+
+/*
+ * Deret grafik diskalakan titik demi titik, lalu angka besar di kepala widget
+ * diambil dari JUMLAH deret itu — bukan diskalakan sendiri. Menskalakan
+ * keduanya secara terpisah membuat pembulatan tiap titik menumpuk, dan kepala
+ * widget berbeda satu-dua dari keterangan yang menjumlahkan grafiknya.
+ */
+function harianSkala(pangsa: number): readonly TitikHarianDTO[] {
+  if (pangsa >= 1) return TREN_HARIAN;
+  return TREN_HARIAN.map((t) => ({
+    date: t.date,
+    submitted: t.submitted === null ? null : skala(t.submitted, pangsa),
+    verified: t.verified === null ? null : skala(t.verified, pangsa),
+    rejected: t.rejected === null ? null : skala(t.rejected, pangsa),
+  }));
+}
+
+function jamSkala(pangsa: number): readonly TitikJamDTO[] {
+  if (pangsa >= 1) return TREN_JAM;
+  return TREN_JAM.map((t) => ({ ...t, value: skala(t.value, pangsa) }));
+}
+
+function jumlahHarian(deret: readonly TitikHarianDTO[]): number {
+  return deret.reduce((n, t) => n + (t.submitted ?? 0), 0);
+}
+
+function jumlahJam(deret: readonly TitikJamDTO[]): number {
+  return deret.reduce((n, t) => n + t.value, 0);
 }
 
 const FILTER_PENDAFTARAN = ['event', 'lomba', 'kategori', 'tipe', 'periode', 'status'];
@@ -346,7 +437,7 @@ const WIDGET_GRAFIK: readonly WidgetDTO[] = [
  * tipe cabang: cabang tim menghitung tim, Atletik yang perorangan menghitung
  * orang.
  */
-export const KUOTA: readonly QuotaRowDTO[] = [
+const KUOTA_PENUH: readonly QuotaRowDTO[] = [
   { competition: 'Basket', used: 24, capacity: 24, unit: 'tim', state: 'waitlist' },
   { competition: 'Sepak Bola', used: 22, capacity: 24, unit: 'tim', state: 'tight' },
   { competition: 'Voli', used: 18, capacity: 20, unit: 'tim', state: 'tight' },
@@ -498,6 +589,7 @@ export const PERINGATAN: readonly AlertRowDTO[] = [
   {
     id: 'kuota-penuh',
     severity: 'danger',
+    competition: 'Basket',
     subject: 'Basket penuh',
     detail: '24 dari 24 tim terisi. Pendaftar berikutnya otomatis masuk daftar tunggu.',
     since: menitLalu(410),
@@ -610,9 +702,159 @@ function terapkanGalatDemo(widget: readonly WidgetDTO[]): readonly WidgetDTO[] {
   );
 }
 
-export function widgetUntukTab(tab: TabDashboard): readonly WidgetDTO[] {
+/**
+ * Mempersempit widget ke cakupan akun. Angka per lomba diambil ulang dari
+ * `BASIS_LOMBA`; angka turunan yang tidak bisa dipecah per lomba (antrean
+ * verifikasi, funnel, tren) diskalakan menurut pangsa cakupan.
+ *
+ * Total akun peserta dan dua tahap pertama funnel sengaja TIDAK diskalakan —
+ * keduanya sudah menyatakan diri tidak terikat lomba, karena satu akun bisa
+ * mendaftar di beberapa cabang dan tidak bisa dibagi ke salah satunya.
+ */
+function sesuaikanCakupan(widget: readonly WidgetDTO[], c: RingkasCakupan): readonly WidgetDTO[] {
+  if (c.pangsa >= 1) return widget;
+  const puncak = c.lomba.reduce((n, l) => Math.max(n, l.individu + l.timPeserta), 0);
+
+  return widget.map((w): WidgetDTO => {
+    switch (w.id) {
+      case 'total-pendaftaran':
+        return {
+          ...w,
+          value: c.total,
+          breakdown: [
+            { label: 'Individu', value: formatAngka(c.individu) },
+            { label: 'Tim', value: `${formatAngka(c.timPeserta)} peserta · ${c.tim} tim` },
+          ],
+        };
+
+      case 'peserta-per-lomba':
+        return {
+          ...w,
+          value: c.lomba.length,
+          display_value: `${c.lomba.length} lomba`,
+          breakdown: c.lomba.map((l) => {
+            const jumlah = l.individu + l.timPeserta;
+            return {
+              label: l.nama,
+              value: `${formatAngka(jumlah)} peserta · ${l.tim} tim`,
+              share: puncak === 0 ? 0 : jumlah / puncak,
+            };
+          }),
+        };
+
+      case 'kuota-lomba': {
+        const baris = KUOTA_PENUH.filter((k) => c.lomba.some((l) => l.nama === k.competition));
+        const penuh = baris.filter((k) => k.state === 'waitlist').length;
+        const hampir = baris.filter((k) => k.state === 'tight').length;
+        return {
+          ...w,
+          value: penuh,
+          display_value: `${penuh} lomba penuh`,
+          denominator_label: `${hampir} hampir penuh`,
+          scope: {
+            ...w.scope,
+            override_label: `${baris.length} dari ${c.lomba.length} lomba cakupanmu punya kuota`,
+          },
+        };
+      }
+
+      case 'grafik-harian': {
+        const nilai = jumlahHarian(harianSkala(c.pangsa));
+        return { ...w, value: nilai, display_value: `${formatAngka(nilai)} dikirim` };
+      }
+
+      case 'grafik-per-jam': {
+        const nilai = jumlahJam(jamSkala(c.pangsa));
+        return { ...w, value: nilai, display_value: `${formatAngka(nilai)} pendaftaran` };
+      }
+
+      case 'grafik-funnel': {
+        const diverifikasi = skala(w.value ?? 0, c.pangsa);
+        return {
+          ...w,
+          value: diverifikasi,
+          display_value: `${Math.round((diverifikasi / Math.max(c.total, 1)) * 100)}% sampai diverifikasi`,
+          denominator_label: `dari ${formatAngka(c.total)} pendaftaran dikirim`,
+        };
+      }
+
+      case 'grafik-komposisi':
+        return {
+          ...w,
+          value: c.total,
+          display_value: `${formatAngka(c.individu)} individu · ${formatAngka(c.timPeserta)} lewat tim`,
+          denominator_label: `${c.lomba.length} lomba dalam cakupanmu`,
+        };
+
+      case 'menunggu-verifikasi': {
+        const nilai = skala(w.value ?? 0, c.pangsa);
+        return {
+          ...w,
+          value: nilai,
+          denominator_label: `dari ${formatAngka(c.total)} pendaftaran`,
+          breakdown: w.breakdown?.map((b) => ({
+            ...b,
+            value: formatAngka(skala(Number(String(b.value).replace(/\D/g, '')), c.pangsa)),
+          })),
+        };
+      }
+
+      case 'perlu-perbaikan': {
+        const perbaikan = skala(176, c.pangsa);
+        const ditolak = skala(24, c.pangsa);
+        return {
+          ...w,
+          value: perbaikan + ditolak,
+          denominator_label: `perbaikan ${perbaikan} · ditolak ${ditolak}`,
+        };
+      }
+
+      case 'peserta-terverifikasi': {
+        const nilai = skala(w.value ?? 0, c.pangsa);
+        return {
+          ...w,
+          value: nilai,
+          denominator_label: `${Math.round((nilai / Math.max(c.total, 1)) * 100)}% dari ${formatAngka(c.total)} pendaftaran`,
+        };
+      }
+
+      default:
+        return w;
+    }
+  });
+}
+
+export function widgetUntukTab(tab: TabDashboard, cakupan: readonly string[]): readonly WidgetDTO[] {
   if (tab === 'sistem') return [];
-  return terapkanGalatDemo(tab === 'lomba' ? [...WIDGET_LOMBA, ...WIDGET_GRAFIK] : WIDGET_OPERASIONAL);
+  const dasar = tab === 'lomba' ? [...WIDGET_LOMBA, ...WIDGET_GRAFIK] : WIDGET_OPERASIONAL;
+  return terapkanGalatDemo(sesuaikanCakupan(dasar, ringkasCakupan(cakupan)));
+}
+
+export function kuotaUntuk(cakupan: readonly string[]): readonly QuotaRowDTO[] {
+  return KUOTA_PENUH.filter((k) => cakupan.includes(k.competition));
+}
+
+export function grafikUntuk(cakupan: readonly string[]): ChartsDTO {
+  const c = ringkasCakupan(cakupan);
+  if (c.pangsa >= 1) return GRAFIK;
+
+  return {
+    ...GRAFIK,
+    daily_registrations: harianSkala(c.pangsa),
+    hourly_registrations: jamSkala(c.pangsa),
+    // Dua tahap pertama menghitung akun, bukan pendaftaran, jadi tidak ikut menyempit.
+    funnel: FUNNEL.map((f) =>
+      f.value === null || f.id === 'akun' || f.id === 'email'
+        ? f
+        : { ...f, value: skala(f.value, c.pangsa) },
+    ),
+    composition: KOMPOSISI.filter((k) => cakupan.includes(k.competition)),
+  };
+}
+
+/** Peringatan yang menyebut satu lomba hanya tampil bila lomba itu dipegang. */
+export function peringatanUntuk(cakupan: readonly string[]): readonly AlertRowDTO[] {
+  return PERINGATAN.filter((p) => !p.competition || cakupan.includes(p.competition));
 }
 
 export const NAV_PANITIA: readonly MenuAdmin[] = [

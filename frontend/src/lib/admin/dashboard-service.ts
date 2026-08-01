@@ -1,4 +1,11 @@
-import { GRAFIK, KUOTA, PERINGATAN, WAKTU_SERVER_ISO, kesehatanDemo, widgetUntukTab } from '@/data/panitia';
+import {
+  WAKTU_SERVER_ISO,
+  grafikUntuk,
+  kesehatanDemo,
+  kuotaUntuk,
+  peringatanUntuk,
+  widgetUntukTab,
+} from '@/data/panitia';
 import type { DashboardResponse, TabDashboard } from '@/types/api/admin-dashboard';
 import { KUNCI_FILTER, type NilaiFilter } from './filter-url';
 import { bolehLihatTabSistem, type SesiPanitia } from './izin';
@@ -42,10 +49,13 @@ export function susunDashboard(
     },
     permissions: sesi.izin,
     health,
-    widgets: Object.fromEntries(widgetUntukTab(tab).map((w) => [w.id, w])),
-    quota: tab === 'lomba' ? KUOTA : undefined,
-    charts: tab === 'lomba' ? GRAFIK : undefined,
-    alerts: tab === 'operasional' ? PERINGATAN : undefined,
+    // Penyaringan cakupan terjadi DI SINI, di server. Mengirim seluruh lomba
+    // lalu menyembunyikannya di UI sama saja membocorkan angka cabang yang
+    // bukan wewenang akun ini (FE-ADMIN-002).
+    widgets: Object.fromEntries(widgetUntukTab(tab, sesi.cakupanLomba).map((w) => [w.id, w])),
+    quota: tab === 'lomba' ? kuotaUntuk(sesi.cakupanLomba) : undefined,
+    charts: tab === 'lomba' ? grafikUntuk(sesi.cakupanLomba) : undefined,
+    alerts: tab === 'operasional' ? peringatanUntuk(sesi.cakupanLomba) : undefined,
   };
 }
 

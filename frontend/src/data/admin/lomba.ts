@@ -40,6 +40,13 @@ export const CAKUPAN_PANITIA: readonly string[] = DAFTAR_LOMBA.filter((l) =>
   KODE_CAKUPAN_PANITIA.includes(l.kode),
 ).map((l) => l.nama);
 
+/** Nama resmi satu cabang menurut kodenya. Melempar bila kodenya tidak ada. */
+export function namaLomba(kode: string): string {
+  const lomba = DAFTAR_LOMBA.find((l) => l.kode === kode);
+  if (!lomba) throw new Error(`Kode lomba tidak dikenal: ${kode}`);
+  return lomba.nama;
+}
+
 /** Slug filter URL diturunkan dari namanya, bukan ditulis ulang. */
 export function slugLomba(nama: string): string {
   return nama.toLowerCase().replace(/\s+/g, '-');

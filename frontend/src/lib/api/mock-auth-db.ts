@@ -1,3 +1,4 @@
+import type { ProfilPanitia } from '@/lib/admin/profil-panitia';
 import type { LoginResult } from '@/types/api/auth';
 
 /**
@@ -20,6 +21,12 @@ export interface AkunMock {
   password: string;
   status: StatusAkun;
   peran: LoginResult['role'];
+  /**
+   * Profil panitia yang menentukan peran dan cakupan lomba di Panel Panitia.
+   * Nilainya slug tanpa data pribadi — dikirim ke server lewat cookie supaya
+   * Server Component tahu siapa yang masuk. Lihat `lib/admin/sesi.ts`.
+   */
+  profilPanitia?: ProfilPanitia;
 }
 
 /** Akun contoh untuk mencoba tiap cabang alur. Semua fiktif, domain `.test` tidak routable. */
@@ -40,6 +47,12 @@ export const AKUN_DEMO: readonly {
     password: 'Panitia2026!',
     label: 'Panitia umum',
     hasil: 'Masuk berhasil → Panel Panitia',
+  },
+  {
+    email: 'basket@porsimaptar.test',
+    password: 'Panitia2026!',
+    label: 'Panitia cabang Basket',
+    hasil: 'Panel Panitia, cakupan Basket saja',
   },
   {
     email: 'belumverif@porsimaptar.test',
@@ -71,6 +84,13 @@ function seed(): AkunMock[] {
       peran: 'peserta',
     },
     { email: 'panitia@porsimaptar.test', password: 'Panitia2026!', status: 'aktif', peran: 'panitia' },
+    {
+      email: 'basket@porsimaptar.test',
+      password: 'Panitia2026!',
+      status: 'aktif',
+      peran: 'panitia',
+      profilPanitia: 'basket',
+    },
   ];
 }
 

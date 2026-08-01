@@ -119,6 +119,12 @@ export interface AlertRowDTO {
   readonly detail: string;
   readonly since: IsoDateTime;
   readonly action: { readonly label: string; readonly path: string } | null;
+  /**
+   * Lomba yang dimaksud peringatan ini. Diisi hanya bila peringatannya memang
+   * tentang satu cabang — server memakainya untuk menyembunyikan peringatan di
+   * luar cakupan panitia, bukan untuk ditampilkan.
+   */
+  readonly competition?: string;
 }
 
 export interface QuotaRowDTO {

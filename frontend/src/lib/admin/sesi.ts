@@ -1,4 +1,6 @@
+import { cookies } from 'next/headers';
 import { CAKUPAN_PANITIA } from '@/data/admin/lomba';
+import { COOKIE_PROFIL_PANITIA, ISI_PROFIL, bacaProfilPanitia } from './profil-panitia';
 import {
   IZIN_PER_PERAN,
   PERAN,
@@ -63,11 +65,21 @@ function izinDariEnv(peran: PeranPanitia): readonly Izin[] {
 }
 
 export async function bacaSesiPanitia(): Promise<SesiPanitia> {
-  const peran = peranDariEnv();
+  /*
+   * Profil datang dari akun yang masuk di `/masuk`, lewat cookie penanda demo.
+   * `ADMIN_DEMO_PERAN` tetap menang atas peran profil supaya jalur pengembangan
+   * di atas masih bisa dipakai tanpa harus login ulang.
+   */
+  const jar = await cookies();
+  const profil = bacaProfilPanitia(jar.get(COOKIE_PROFIL_PANITIA)?.value);
+  const isi = ISI_PROFIL[profil];
+
+  const dariEnv = process.env.ADMIN_DEMO_PERAN?.trim();
+  const peran = dariEnv ? peranDariEnv() : isi.peran;
 
   return {
-    nama: 'Rakha Adiwangsa',
-    inisial: 'RA',
+    nama: isi.nama,
+    inisial: isi.inisial,
     peran,
     izin: izinDariEnv(peran),
     /*
@@ -76,7 +88,7 @@ export async function bacaSesiPanitia(): Promise<SesiPanitia> {
      * begitu, jumlah cakupannya terbaca 1 dan seluruh salinan yang menyebut
      * "N lomba" ikut salah.
      */
-    cakupanLomba: SELURUH_LOMBA,
+    cakupanLomba: peran === 'super-admin' ? SELURUH_LOMBA : isi.cakupanLomba,
     cakupanPenuh: peran === 'super-admin',
   };
 }

@@ -1,3 +1,4 @@
+import { COOKIE_PROFIL_PANITIA, type ProfilPanitia } from '@/lib/admin/profil-panitia';
 import type {
   ApiResult,
   LoginPayload,
@@ -145,7 +146,21 @@ export async function kirimMasuk(
   }
 
   resetGagal(payload.email);
+  tandaiProfilPanitia(akun.profilPanitia);
   return { ok: true, data: { role: akun.peran } };
+}
+
+/**
+ * Menitipkan profil panitia yang masuk ke cookie supaya Server Component Panel
+ * Panitia tahu cakupan mana yang harus dipakai. Backend asli akan menggantinya
+ * dengan cookie sesi HttpOnly; yang ini sengaja bisa dibaca client karena mock
+ * loginnya memang berjalan di browser. Isinya slug, bukan data pribadi
+ * (FE-PRIV-001), dan tidak dipakai sebagai dasar keputusan keamanan apa pun.
+ */
+function tandaiProfilPanitia(profil: ProfilPanitia | undefined): void {
+  if (typeof document === 'undefined') return;
+  const nilai = profil ?? 'umum';
+  document.cookie = `${COOKIE_PROFIL_PANITIA}=${nilai}; path=/; max-age=86400; samesite=lax`;
 }
 
 export async function kirimDaftar(
